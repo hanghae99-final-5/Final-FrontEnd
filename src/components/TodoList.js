@@ -6,18 +6,80 @@ const TodoList = () => {
         <TodoListContainer>
             <TodoListWrap>
                 <div>작성일자</div>
-
                 <TodoListContext>
                     <PlusButtonWrap>
                         <div></div>
                     </PlusButtonWrap>
-                    <div>
-                        <div>내용부분</div>
+                    <TodoDetailBox>
+                        <DetailBoxDiv1>
+                            <div>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                            </div>
+                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+                            <div>2022.06.25</div>
+                        </DetailBoxDiv1>
                         <div>
                             <div>1</div>
                             <div>2</div>
                         </div>
-                    </div>
+                    </TodoDetailBox>
+                </TodoListContext>
+            </TodoListWrap>
+
+            <TodoListWrap>
+                <div>작성일자</div>
+                <TodoListContext>
+                    <PlusButtonWrap>
+                        <div></div>
+                    </PlusButtonWrap>
+                    <TodoDetailBox>
+                        <DetailBoxDiv1>
+                            <div>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                            </div>
+                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+                            <div>2022.06.25</div>
+                        </DetailBoxDiv1>
+                        <div>
+                            <div>1</div>
+                            <div>2</div>
+                        </div>
+                    </TodoDetailBox>
+                </TodoListContext>
+            </TodoListWrap>
+
+
+            <TodoListWrap>
+                <div>작성일자</div>
+                <TodoListContext>
+                    <PlusButtonWrap>
+                        <div></div>
+                    </PlusButtonWrap>
+                    <TodoDetailBox>
+                        <DetailBoxDiv1>
+                            <div>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                            </div>
+                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
+                            <div>2022.06.25</div>
+                        </DetailBoxDiv1>
+                        <div>
+                            <div>1</div>
+                            <div>2</div>
+                        </div>
+                    </TodoDetailBox>
                 </TodoListContext>
             </TodoListWrap>
 
@@ -28,6 +90,7 @@ const TodoList = () => {
 export default TodoList;
 
 const TodoListContainer = styled.div`
+    overflow: auto;
     max-width: 360px;
     width: 100%;
     height: 402px;
@@ -50,7 +113,6 @@ const TodoListWrap = styled.div`
 
     & > div:nth-child(1) {
         font-size: 14px;
-        border: 1px solid;
     }
     ${TodoListContext} {
         display: flex;
@@ -75,4 +137,47 @@ const PlusButtonWrap = styled.div`
         background: #C2C2C2;
     
     }
+`;
+const DetailBoxDiv1 = styled.div`
+    font-size: 12px;
+    gap:5px;
+    padding: 10px 0;
+    
+    & > div:nth-child(1) {
+        gap: 2px;
+        display: flex;
+
+    }
+    & > div:nth-child(3) {
+        color: #6C6C6C;
+        }
+
+`; 
+const TodoDetailBox = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    ${DetailBoxDiv1} {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding-left: 14px;
+    }
+    & > div:nth-child(2) {
+        display: flex;
+        align-items: center;
+        padding: 0 14px 0 20px;
+        gap: 11px;
+
+        div {
+            width: 24px;
+            height: 24px;
+            background-color: white;
+        }
+    }
+`;
+const DifficultyIcon = styled.div`
+    width: 16px;
+    height: 16px;
+    background: #6C6C6C;
 `;

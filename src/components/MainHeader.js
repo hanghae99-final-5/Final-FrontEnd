@@ -6,11 +6,10 @@ const MainHeader = () => {
         <MainHeaderWrap>
             <NicknameDiv>GAR99</NicknameDiv>
             <NavDiv>
-                <div>검</div>
-                <div>알</div>
+                <div></div>
+                <div></div>
             </NavDiv>
         </MainHeaderWrap>
-
     )
 
 }
@@ -44,7 +43,7 @@ const NavDiv = styled.div`
     div {
         width: 24px;
         height: 24px;
-        border: 1px solid;
+        background: #EFEFEF;
     }
 `;
 

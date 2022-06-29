@@ -15,6 +15,11 @@ const GlobalStyle = createGlobalStyle`
     *, *::before, *::after {
         box-sizing: border-box;
       }
+      
+    html, body {
+      overscroll-behavior-y: contain;
+    }
+
     body {
         height: 100vh;
         height: calc(var(--vh, 1vh) * 100);
@@ -22,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
         height: -webkit-fill-available;
         min-height: -webkit-fill-available;
+        word-break: break-all;
     }
     body {
     font-family: "Noto Sans Korean", sans-serif;
