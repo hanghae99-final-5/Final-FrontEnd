@@ -30,12 +30,11 @@ const MainHeaderWrap = styled.nav`
 const NicknameDiv = styled.div`
     width: 186px;
     height: auto;
-    border: 1px solid;
     display: flex;
     align-items: center;
     padding: 0 0 0 12px;
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 500;
 `;
 const NavDiv = styled.div`
     display: flex;
