@@ -4,11 +4,11 @@ import styled from "styled-components";
 const MainHeader = () => {
     return (
         <MainHeaderWrap>
-            <div>닉네임</div>
-            <div>
-                <span>검색</span>
-                <span>알림</span>
-            </div>
+            <NicknameDiv>GAR99</NicknameDiv>
+            <NavDiv>
+                <div>검</div>
+                <div>알</div>
+            </NavDiv>
         </MainHeaderWrap>
 
     )
@@ -25,6 +25,28 @@ const MainHeaderWrap = styled.nav`
     background-color: #C2C2C2;
     z-index: 10;
     display: flex;
+    justify-content: space-between;
 `;
+const NicknameDiv = styled.div`
+    width: 186px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    padding: 0 0 0 12px;
+    font-size: 20px;
+    font-weight: 500;
+`;
+const NavDiv = styled.div`
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 0 15px 0 0;
+    div {
+        width: 24px;
+        height: 24px;
+        border: 1px solid;
+    }
+`;
+
 
 
