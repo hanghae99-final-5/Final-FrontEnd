@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import Main from './pages/Main';
+import FirstPage from './pages/FirstPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <div id="wrap">
           <Setting>
             <Main />
+            <FirstPage />
           </Setting>
         </div>
       </Container>
