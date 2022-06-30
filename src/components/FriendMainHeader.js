@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainHeader = () => {
+const FriendMainHeader = () => {
     return (
         <MainHeaderWrap>
-            <NicknameDiv>GAR99</NicknameDiv>
+            <NicknameDiv>FriendNickname</NicknameDiv>
             <NavDiv>
+                <div>C</div>
                 <div></div>
                 <div></div>
             </NavDiv>
@@ -13,7 +14,7 @@ const MainHeader = () => {
     )
 
 }
-export default MainHeader;
+export default FriendMainHeader;
 
 const MainHeaderWrap = styled.nav`
     max-width: 360px;
@@ -22,6 +23,7 @@ const MainHeaderWrap = styled.nav`
     position: fixed;
     top: 0;
     background-color: #C2C2C2;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
 `;

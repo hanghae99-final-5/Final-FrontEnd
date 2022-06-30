@@ -1,7 +1,32 @@
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import Modal from "../element/Modal";
+
+
 
 const TodoList = () => {
+    const [modal,setModal] = useState(false);
+    console.log(modal);
+    const clickedDetailBtn = () => {
+        setModal(true);
+       };
+    const onCancel = () => {
+        console.log("취소");
+        setModal(false);
+    }
+    const onUpdate = () => {
+        console.log("수정");
+        setModal(false);
+    }
+    const onProof = () => {
+        console.log("사진인증");
+        setModal(false);
+    }
+    const ondelete = () => {
+        console.log("삭제");
+        setModal(false);
+    } 
     return (
         <TodoListContainer>
             <TodoListWrap>
@@ -24,10 +49,22 @@ const TodoList = () => {
                         </DetailBoxDiv1>
                         <div>
                             <div>1</div>
-                            <div>2</div>
+                            <div onClick={clickedDetailBtn}>2</div>
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>
+                <Modal
+                title={"상세보기"}
+                udtText={"수정"}
+                proofText={"사진인증"}
+                deleteText={"삭제"}
+                onUpdate={onUpdate}
+                onProof={onProof}
+                ondelete={ondelete}
+                onCancel={onCancel}
+                visible={modal}
+                >
+                </Modal>
             </TodoListWrap>
 
             <TodoListWrap>
@@ -50,7 +87,7 @@ const TodoList = () => {
                         </DetailBoxDiv1>
                         <div>
                             <div>1</div>
-                            <div>2</div>
+                            <div onClick={clickedDetailBtn}>2</div>
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>

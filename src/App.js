@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Main from './pages/Main';
 import FirstPage from './pages/FirstPage';
+import FriendMain from './pages/FriendMain';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Setting>
             <Main />
             <FirstPage />
+            {/* <FriendMain /> */}
           </Setting>
         </div>
       </Container>
