@@ -6,12 +6,12 @@ import TodoList from "../components/TodoList";
 import MainFooter from "../components/MainFooter";
 
 const Main = () => {
-    return(
+    return (
         <>
-        <MainHeader/>
-        <Character/>
-        <TodoList/>
-        <MainFooter/>
+            <MainHeader />
+            <Character />
+            <TodoList />
+            <MainFooter />
         </>
     )
 }

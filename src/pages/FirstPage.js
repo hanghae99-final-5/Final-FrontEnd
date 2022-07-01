@@ -1,15 +1,18 @@
 import React from "react";
-import styled from "styled-components";
+import { FirstWrap, LOGO, FirstButtonWrap } from "../components/FirstPageCSS";
+import { useNavigate } from 'react-router-dom';
 
 const FirstPage = () => {
+    const navigate = useNavigate();
 
     return (
-        <div>
-            <div>LOGO</div>
-            <button><span>로그인</span></button>
-            <button><span>회원가입</span></button>
-        </div>
-
+        <FirstWrap>
+            <LOGO top="106px">LOGO</LOGO>
+            <FirstButtonWrap top="450px" gap="14px">
+                <button onClick={() => navigate('/login')}><span>로그인</span></button>
+                <button onClick={() => navigate('/signup')}><span>회원가입</span></button>
+            </FirstButtonWrap>
+        </FirstWrap>
     )
 }
 

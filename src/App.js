@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { Routes, Route } from 'react-router-dom';
 
 import Main from './pages/Main';
 import FirstPage from './pages/FirstPage';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
 
 function App() {
 
@@ -19,8 +22,12 @@ function App() {
       <Container>
         <div id="wrap">
           <Setting>
-            <Main />
-            <FirstPage />
+            <Routes>
+              <Route exact path='/' element={<Main/>} />
+              <Route exact path='/firstpage' element={<FirstPage/>} />
+              <Route exact path='/signup' element={<Signup/>} />
+              <Route exact path='/login' element={<Login/>} />
+            </Routes>
           </Setting>
         </div>
       </Container>
@@ -41,7 +48,7 @@ const Container = styled.div`
     max-width: 360px;
     height: 100%;
     min-height: 100vh;
-    background: grey;
+    background: gray;
     margin: 0 auto;
     padding: 0 auto;
     position: relative;
@@ -51,4 +58,4 @@ const Setting = styled.div`
   width: 100%;
   height: auto;
   max-height: 100vh;
-  `;
+`;
