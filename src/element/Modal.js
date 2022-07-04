@@ -11,7 +11,7 @@ const DarkBackground = styled.div`
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.4);
 
 `;
 
@@ -57,7 +57,7 @@ const ModalBox = styled.div`
 const ButtonGroup = styled.div`
     display: flex;
     width: 100%;
-    padding: 5% 0 0 0;
+    padding: 5% 0;
     justify-content: space-evenly;
     font-size: 12px;
 
@@ -74,6 +74,24 @@ const Icon = styled.div`
     background: #D9D9D9;
 `;
 
+//사진인증 이미지 박스
+const ImgDiv = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px;
+    height: 250px;
+    border: 1px solid;
+
+    & > img {
+        max-width: 250px;
+        height: 250px;
+        object-fit:contain;
+    }
+
+    
+`;
+
 
 function Modal(
     {
@@ -85,7 +103,8 @@ function Modal(
         onProof,
         ondelete,
         onCancel,
-        visible
+        visible,
+        isProof
     }) {
 
     if(!visible) return null;
@@ -97,20 +116,33 @@ function Modal(
                 <p>{title}</p>
                 <ModalCancel onClick={onCancel}>취소</ModalCancel>
             </ModalTitle>
+
+            {isProof && 
+                <ImgDiv>
+                <img src = "https://firebasestorage.googleapis.com/v0/b/myweb-961b1.appspot.com/o/images%2Favatar.jpg?alt=media&token=9dbbf968-6917-4f67-a264-bfac9090a7b5"/>
+                </ImgDiv>
+            }
+
+            {!isProof? (
             <ButtonGroup>
                 <div>
                     <Icon onClick={onUpdate}></Icon>
                     {udtText}
                 </div>
-                <div>
-                    <Icon onClick={onProof}></Icon>
-                        {proofText}
-                </div>
+                
                 <div>
                 <Icon onClick={ondelete}></Icon>
                     {deleteText}
                 </div>
             </ButtonGroup>
+            ):(
+            <ButtonGroup>
+                <div>
+                    <Icon onClick={onUpdate}></Icon>
+                    {udtText}
+                </div>
+            </ButtonGroup>
+            )}
         </ModalBox>
     </DarkBackground>
 

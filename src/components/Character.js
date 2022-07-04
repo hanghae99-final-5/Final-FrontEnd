@@ -1,28 +1,65 @@
-import React from "react";
+import React ,{useEffect,useState} from "react";
 import styled from "styled-components";
 
+import { useDispatch,useSelector } from "react-redux";
+import { actionCreators as characterAction } from "../redux/moduels/characters";
+
+
 const Character = () => {
+    const dispatch = useDispatch();
+    const characterObj = useSelector(state => state.characters)
+    console.log("characterObj",characterObj);
+
+     //금액을 콤마로 구분해줄 함수
+     const addComma = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
+    useEffect(()=>{
+        dispatch(characterAction.getCharacterDB());
+    },[])
+
+    if (Object.keys(characterObj).length === 0) return null; 
     return (
+    
         <CharacterWrap>
             <div>
-                <div></div>
+                {/* 안에 이큅아이템들 겹쳐서 놓기  */}
+                <div><img src={characterObj.charImg}/></div>
             </div>
 
             <div>
-                <StatusBar>Lv.100</StatusBar>
+                <StatusBar>Lv.{characterObj.level}</StatusBar>
                 <StatusBar>
                     <span>HP</span>
-                    <div>100/100</div>
+                    <div>
+                        <Bar 
+                        width={(characterObj.hp/100)*100 + "%"}
+                        color = "HPColor"
+                        >
+                        <div>
+                            {characterObj.hp}/100
+                        </div>
+                        </Bar>
+                    </div>
                 </StatusBar>
                 <StatusBar>
-                    EXP
-                    <div>100/100</div>
+                    <span>EXP</span>
+                    <div>
+                        <Bar 
+                        width={(characterObj.exp/100)*100 + "%"}
+                        color = "EXPColor"
+                        >
+                            <div>
+                            {characterObj.exp}/100
+                            </div>
+                        </Bar>     
+                    </div>
                 </StatusBar>
                 <MoneyBar>
                     <div></div>
-                    {/* 정규식으로 돈단위 쉼표만들기 */}
                     <div>
-                        10,000
+                        {addComma(characterObj.money)}
                     </div>
                 </MoneyBar>
             </div>
@@ -72,6 +109,16 @@ const CharacterWrap = styled.div`
 
 `;
 
+const Bar = styled.div`
+    position: relative;
+    width: ${(props) => props.width};
+    background: ${(props) => props.theme[props.color]};
+    & > div:nth-child(1){
+        position: absolute;
+        width: 100px !important;
+    }
+`;
+
 const StatusBar = styled.div`
     width: 218px;
     height: 22px;
@@ -82,15 +129,25 @@ const StatusBar = styled.div`
     justify-content: space-between;
     font-size: 14px;
 
-    div {
+    & > div:nth-child(2) {
         display: flex;
         align-items: center;
-        padding-left: 12px;
         background: #C2C2C2;
         width: 184px;
         height: 16px;
         border-radius: 15px;
         font-size: 12px;
+
+        & > div:nth-child(1){
+        display: flex;
+        align-items: center;
+        padding-left: 12px;
+        height: 16px;
+        border-radius: 15px;
+        font-size: 12px;
+        ${Bar}
+        }
+
     }
 
 `;

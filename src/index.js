@@ -4,13 +4,21 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './styles/GlobalStyle';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
+import {Provider} from "react-redux";
+import store from "./redux/configStore";
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-  <GlobalStyle />
-    <App />
-  </>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <GlobalStyle />
+        <App />
+    </Provider>
+  </ThemeProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

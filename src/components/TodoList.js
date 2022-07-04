@@ -1,44 +1,80 @@
-import React from "react";
-import { useState } from "react";
-import styled from "styled-components";
+import React ,{useEffect,useState} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { actionCreators as todoActions } from "../redux/moduels/todo";
+
+import styled, { css } from 'styled-components';
 import Modal from "../element/Modal";
+
+//icons
+import add from "../assets/images/icons/add.png"
+import add_image from "../assets/images/icons/add_image.png"
+import check from "../assets/images/icons/check.png"
+import heart from "../assets/images/icons/heart.png"
+import more_horiz from "../assets/images/icons/more_horiz.png"
+import plus from "../assets/images/icons/plus.png"
+import search from "../assets/images/icons/search.png"
 
 
 
 const TodoList = () => {
-    const [modal,setModal] = useState(false);
-    console.log(modal);
+    const dispatch = useDispatch();
+
+    //store에서 todo load data 가져오기
+    const todoObj = useSelector((state)=>state.todo);
+    const todosList = useSelector(state=>state.todo.todos)
+    //modal 상태관리
+        //사진인증
+    const [proofModal,setProofModal] = useState(false);
+    const clickedproofBtn = () => {
+        setProofModal(true);
+    }
+    
+    
+        //상세보기
+    const [detailModal,setDetailModal] = useState(false);
+    
     const clickedDetailBtn = () => {
-        setModal(true);
+        setDetailModal(true);
        };
     const onCancel = () => {
         console.log("취소");
-        setModal(false);
+        setDetailModal(false);
+        setProofModal(false);
     }
     const onUpdate = () => {
         console.log("수정");
-        setModal(false);
+        setDetailModal(false);
+        setProofModal(false);
     }
     const onProof = () => {
         console.log("사진인증");
-        setModal(false);
+        setDetailModal(false);
+        setProofModal(false);
+
     }
     const ondelete = () => {
         console.log("삭제");
-        setModal(false);
-    } 
+        setDetailModal(false);
+        setProofModal(false);
+    }
+
+    useEffect(() => {
+        dispatch(todoActions.getTodolistDB());
+    },[])
     return (
         <TodoListContainer>
             <TodoListWrap>
                 <div>작성일자</div>
                 <TodoListContext>
                     <PlusButtonWrap>
-                        <div></div>
+                        <div>
+                            <img src={add} />
+                        </div>
+
                     </PlusButtonWrap>
                     <TodoDetailBox>
                         <DetailBoxDiv1>
                             <div>
-                                <DifficultyIcon/>
                                 <DifficultyIcon/>
                                 <DifficultyIcon/>
                                 <DifficultyIcon/>
@@ -62,63 +98,74 @@ const TodoList = () => {
                 onProof={onProof}
                 ondelete={ondelete}
                 onCancel={onCancel}
-                visible={modal}
+                visible={detailModal}
+                >
+                </Modal>
+
+                
+            </TodoListWrap>
+
+        {/* 개인투두  */}
+        {todosList && todosList.map((todo,idx) => {
+            return (
+                <TodoListWrap key={idx}>
+                <div>{todo.confirmDate}</div>
+                <TodoListContext>
+                    <PlusButtonWrap  todoType = {todo.todoType}>
+                        {todo.confirmState ? null: (
+                        <div>
+                            <img src={add} />
+                        </div>
+                        )}
+                    </PlusButtonWrap>
+                    <TodoDetailBox>
+                        <DetailBoxDiv1>
+                            <div>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                                <DifficultyIcon/>
+                            </div>
+                            <div>{todo.content}</div>
+                            <div>{todo.startDate} - {todo.endDate}</div>
+                        </DetailBoxDiv1>
+                        <div>
+                            {/* 개인투두는 사진인증 없음 */}
+                            <div onClick={clickedproofBtn}><img src={add_image}/></div>
+                            <div onClick={clickedDetailBtn}><img src={more_horiz}/> </div>
+                        </div>
+                    </TodoDetailBox>
+                </TodoListContext>
+
+                {/* 상세보기 모달 */}
+                <Modal
+                title={"상세보기"}
+                udtText={"수정"}
+                deleteText={"삭제"}
+                onUpdate={onUpdate}
+                onProof={onProof}
+                ondelete={ondelete}
+                onCancel={onCancel}
+                visible={detailModal}
+                >
+                </Modal>
+                {/* 사진인증모달 */}
+                <Modal
+                isProof = {true}
+                title={"사진인증"}
+                udtText={"인증요청"}
+                proofText={"사진인증"}
+                deleteText={"삭제"}
+                onUpdate={onUpdate}
+                onProof={onProof}
+                ondelete={ondelete}
+                onCancel={onCancel}
+                visible={proofModal}
                 >
                 </Modal>
             </TodoListWrap>
-
-            <TodoListWrap>
-                <div>작성일자</div>
-                <TodoListContext>
-                    <PlusButtonWrap>
-                        <div></div>
-                    </PlusButtonWrap>
-                    <TodoDetailBox>
-                        <DetailBoxDiv1>
-                            <div>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                            </div>
-                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-                            <div>2022.06.25</div>
-                        </DetailBoxDiv1>
-                        <div>
-                            <div>1</div>
-                            <div onClick={clickedDetailBtn}>2</div>
-                        </div>
-                    </TodoDetailBox>
-                </TodoListContext>
-            </TodoListWrap>
-
-
-            <TodoListWrap>
-                <div>작성일자</div>
-                <TodoListContext>
-                    <PlusButtonWrap>
-                        <div></div>
-                    </PlusButtonWrap>
-                    <TodoDetailBox>
-                        <DetailBoxDiv1>
-                            <div>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                            </div>
-                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-                            <div>2022.06.25</div>
-                        </DetailBoxDiv1>
-                        <div>
-                            <div>1</div>
-                            <div>2</div>
-                        </div>
-                    </TodoDetailBox>
-                </TodoListContext>
-            </TodoListWrap>
+            )
+        })}
 
         </TodoListContainer>
     )
@@ -159,9 +206,26 @@ const TodoListWrap = styled.div`
         background: #C2C2C2;
     }
 `;
+
+const PlusButtonColorSt = css`
+    ${props => 
+    props.todoType === 1 && 
+        css`
+        background: ${props.theme.matchingTodoColor};
+        `
+    }
+    ${props => 
+    props.todoType === 0 && 
+        css`
+        background: ${props.theme.singleTodoColor};
+        `
+    }   
+`;
 const PlusButtonWrap = styled.div`
+    //plus버튼 색깔
+    ${PlusButtonColorSt}
+
     width: 52px;
-    background: #6C6C6C;
     min-height: 74px;
     border-radius: 10px 0 0 10px;
     display: flex;
@@ -171,7 +235,6 @@ const PlusButtonWrap = styled.div`
     div {
         width: 24px;
         height: 24px;
-        background: #C2C2C2;
     
     }
 `;

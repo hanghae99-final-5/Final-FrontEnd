@@ -1,13 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import heart from "../assets/images/icons/heart.png"
+import search from "../assets/images/icons/search.png"
+
 const MainHeader = () => {
     return (
         <MainHeaderWrap>
             <NicknameDiv>GAR99</NicknameDiv>
             <NavDiv>
-                <div></div>
-                <div></div>
+                <div><img src={heart}/></div>
+                <div><img src={search} /></div>
             </NavDiv>
         </MainHeaderWrap>
     )
