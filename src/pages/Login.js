@@ -11,6 +11,8 @@ import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
+import main_logo from "../assets/images/main_logo.png";
+
 const Login = () => {
   const idInputRef = useRef();
   const passwordInputRef = useRef();
@@ -31,7 +33,9 @@ const Login = () => {
   };
   return (
     <FirstWrap>
-      <LOGO top="70px">LOGO</LOGO>
+      <LOGO top="106px">
+        <img src={main_logo} />
+      </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
         <input
           type="text"

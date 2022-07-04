@@ -9,6 +9,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { registerAccount } from "../redux/modules/user";
 
+import main_logo from "../assets/images/main_logo.png";
+
 const Signup = () => {
   const emailInputRef = useRef();
   const nicknameInputRef = useRef();
@@ -34,7 +36,9 @@ const Signup = () => {
 
   return (
     <FirstWrap>
-      <LOGO top="70px">LOGO</LOGO>
+      <LOGO top="106px">
+        <img src={main_logo} />
+      </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
         <input type="text" placeholder="이메일" ref={emailInputRef}></input>
         <input type="text" placeholder="닉네임" ref={nicknameInputRef}></input>
