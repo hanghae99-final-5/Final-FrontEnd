@@ -22,11 +22,11 @@ api.interceptors.request.use(function (config) {
 });
 
 export const apis = {
-  signup: (id, email, pw) =>
+  signUp: (email, nickname, password) =>
     api.post("/api/users/signup", {
       username: email,
-      nickname: id,
-      password: pw,
+      nickname: nickname,
+      password: password,
     }),
   signIn: (email, password) =>
     api.post(

@@ -7,7 +7,7 @@ import {
   SignupButtonWrap,
 } from "../components/FirstPageCSS";
 import { useDispatch } from "react-redux";
-import { setLoginDB } from "../redux/modules/user";
+import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const Login = () => {
   const onClickLogin = (e) => {
     e.preventDefault();
     dispatch(
-      setLoginDB(
+      LoginAccount(
         {
           email: idInputRef.current.value,
           password: passwordInputRef.current.value,

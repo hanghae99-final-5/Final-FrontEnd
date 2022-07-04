@@ -23,17 +23,13 @@ export function deleteUser(userInfo) {
   return { type: LOGOUT, userInfo };
 }
 
-export const registerDB = (formData) => {
+export const registerAccount = (user, callback) => {
   return async function (dispatch, getState) {
-    for (let value of formData.values()) {
-      console.log(value);
-    }
     await apis
-      .signUp(formData)
+      .signUp(user.email, user.nickname, user.password)
       .then((res) => {
         alert("회원가입 성공");
-        console.log(res.data);
-        // dispatch(setUser());
+        callback();
       })
       .catch((err) => {
         window.alert(err);
@@ -41,7 +37,7 @@ export const registerDB = (formData) => {
   };
 };
 
-export const setLoginDB = (user, callback) => {
+export const LoginAccount = (user, callback) => {
   return async function (dispatch, getState) {
     await apis
       .signIn(user.email, user.password)
