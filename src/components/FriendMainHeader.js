@@ -1,22 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 
-import heart from "../assets/images/icons/heart.png"
-import search from "../assets/images/icons/search.png"
-
-const MainHeader = () => {
+const FriendMainHeader = () => {
     return (
         <MainHeaderWrap>
-            <NicknameDiv>GAR99</NicknameDiv>
+            <NicknameDiv>FriendNickname</NicknameDiv>
             <NavDiv>
-                <div><img src={heart}/></div>
-                <div><img src={search} /></div>
+                <div>C</div>
+                <div></div>
+                <div></div>
             </NavDiv>
         </MainHeaderWrap>
     )
 
 }
-export default MainHeader;
+export default FriendMainHeader;
 
 const MainHeaderWrap = styled.nav`
     max-width: 360px;
@@ -25,6 +23,7 @@ const MainHeaderWrap = styled.nav`
     position: fixed;
     top: 0;
     background-color: #C2C2C2;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
 `;

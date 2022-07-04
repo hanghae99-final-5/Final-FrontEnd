@@ -6,6 +6,8 @@ import Main from './pages/Main';
 import FirstPage from './pages/FirstPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import FriendMain from './pages/FriendMain';
+
 
 function App() {
 

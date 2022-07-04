@@ -6,14 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import GlobalStyle from './styles/GlobalStyle';
 import { BrowserRouter } from 'react-router-dom';
 
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
+import {Provider} from "react-redux";
+import store from "./redux/configStore";
+
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
-    <BrowserRouter>
-      <GlobalStyle />
-      <App />
-    </BrowserRouter>
-  </>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <BrowserRouter>
+        <GlobalStyle />
+          <App />
+      </BrowserRouter>
+    </Provider>
+  </ThemeProvider>
 );
 
 // If you want your app to work offline and load faster, you can change
