@@ -48,10 +48,10 @@ export const setLoginDB = (user, callback) => {
       .then((res) => {
         const token = res.headers.authorization;
         localStorage.setItem("jwtToken", token);
-
+        let decoded = jwt_decode(token);
         dispatch(
           setUser({
-            nickname: jwt_decode(token).sub, // TODO 닉네임 서버에서 추가해주면 변경
+            nickname: decoded.nickname,
           })
         );
 
