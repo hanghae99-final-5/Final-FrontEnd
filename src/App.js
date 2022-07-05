@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
-import { Routes, Route } from 'react-router-dom';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import { Routes, Route } from "react-router-dom";
 
-import Main from './pages/Main';
-import FirstPage from './pages/FirstPage';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import FriendMain from './pages/FriendMain';
-
+import Main from "./pages/Main";
+import FirstPage from "./pages/FirstPage";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import FriendMain from "./pages/FriendMain";
+import Shop from "./pages/Shop";
 
 function App() {
-
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -25,10 +24,11 @@ function App() {
         <div id="wrap">
           <Setting>
             <Routes>
-              <Route exact path='/' element={<Main/>} />
-              <Route exact path='/firstpage' element={<FirstPage/>} />
-              <Route exact path='/signup' element={<Signup/>} />
-              <Route exact path='/login' element={<Login/>} />
+              <Route exact path="/" element={<Main />} />
+              <Route exact path="/firstpage" element={<FirstPage />} />
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/shop" element={<Shop />} />
             </Routes>
           </Setting>
         </div>
