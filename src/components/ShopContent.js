@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Modal from "../element/Modal";
 
 const ShopContent = () => {
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
+
+  const onCancel = () => {
+    setOpenModal(false);
+  };
   return (
     <ShopContentContainer>
-      <div>모달을 넣을 예정</div>
-      <button>모달 테스트용</button>
+      <ItemCategory>
+        <CategoryDiv>Hair</CategoryDiv>
+      </ItemCategory>
+      <InventoryBoxWrapper>
+        <InventoryBox>
+          <InventoryContent></InventoryContent>
+        </InventoryBox>
+        <expenseBox>
+          <coinIcon></coinIcon>
+          <div>100</div>
+        </expenseBox>
+        <InventoryBox></InventoryBox>
+        <InventoryBox></InventoryBox>
+        <InventoryBox></InventoryBox>
+      </InventoryBoxWrapper>
     </ShopContentContainer>
   );
 };
@@ -25,4 +44,58 @@ const ShopContentContainer = styled.div`
   justify-content: flex-start;
   position: fixed;
   top: 174px;
+  padding: 10px 10px 0 10px;
 `;
+
+const ItemCategory = styled.div`
+  width: 100%;
+  height: 36px;
+  background-color: #f6f6f6;
+  border-radius: 6px;
+  padding: 5px 0 5px 14px;
+  margin: 0 0 6px 0;
+`;
+
+const CategoryDiv = styled.div`
+  width: 36px;
+  height: 26px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2d2d2d;
+`;
+
+const InventoryBoxWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const InventoryBox = styled.div`
+  width: 78px;
+  height: 72px;
+
+  background: #f6f6f6;
+  border-radius: 8px;
+  padding: 10px 13px 10px 13px;
+`;
+
+const InventoryContent = styled.div`
+  width: 52px;
+  height: 52px;
+  background: #e4e4e4;
+`;
+
+const expenseBox = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+const coinIcon = styled.div``;
+
+{
+  /* <expenseBox>
+        <coinIcon></coinIcon>
+        <div>100</div>
+      </expenseBox> */
+}
