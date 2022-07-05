@@ -1,32 +1,166 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import Modal from "../element/Modal";
+import coinIconPng from "../assets/images/icons/coin.png";
 
+// styled-components 수정, api 연결 해야함
 const ShopContent = () => {
-  const navigate = useNavigate();
-  const [openModal, setOpenModal] = useState(false);
-
-  const onCancel = () => {
-    setOpenModal(false);
-  };
   return (
     <ShopContentContainer>
-      <ItemCategory>
-        <CategoryDiv>Hair</CategoryDiv>
-      </ItemCategory>
-      <InventoryBoxWrapper>
-        <InventoryBox>
-          <InventoryContent></InventoryContent>
-        </InventoryBox>
-        <expenseBox>
-          <coinIcon></coinIcon>
-          <div>100</div>
-        </expenseBox>
-        <InventoryBox></InventoryBox>
-        <InventoryBox></InventoryBox>
-        <InventoryBox></InventoryBox>
-      </InventoryBoxWrapper>
+      <div>
+        <ItemCategory>
+          <CategoryDiv>Hair</CategoryDiv>
+        </ItemCategory>
+        <InventoryBoxWrapper>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+        </InventoryBoxWrapper>
+      </div>
+
+      <div>
+        <ItemCategory>
+          <CategoryDiv>Top</CategoryDiv>
+        </ItemCategory>
+        <InventoryBoxWrapper>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+        </InventoryBoxWrapper>
+      </div>
+
+      <div>
+        <ItemCategory>
+          <CategoryDiv>Accessory</CategoryDiv>
+        </ItemCategory>
+        <InventoryBoxWrapper>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+          <InventoryBox>
+            <ItemBox>
+              <InventoryContent></InventoryContent>
+            </ItemBox>
+            <ExpenseBox>
+              <CoinIcon>
+                <img src={coinIconPng} />
+              </CoinIcon>
+              <CoinValueDiv>100</CoinValueDiv>
+            </ExpenseBox>
+          </InventoryBox>
+        </InventoryBoxWrapper>
+      </div>
     </ShopContentContainer>
   );
 };
@@ -57,7 +191,7 @@ const ItemCategory = styled.div`
 `;
 
 const CategoryDiv = styled.div`
-  width: 36px;
+  width: 100%;
   height: 26px;
   font-weight: 400;
   font-size: 18px;
@@ -72,6 +206,10 @@ const InventoryBoxWrapper = styled.div`
 `;
 
 const InventoryBox = styled.div`
+  witdh: 100%;
+`;
+
+const ItemBox = styled.div`
   width: 78px;
   height: 72px;
 
@@ -86,16 +224,20 @@ const InventoryContent = styled.div`
   background: #e4e4e4;
 `;
 
-const expenseBox = styled.div`
+const ExpenseBox = styled.div`
   width: 100%;
   display: flex;
+  padding: 4px 0 4px 17px;
 `;
 
-const coinIcon = styled.div``;
+const CoinIcon = styled.div`
+  margin-right: 4px;
+`;
 
-{
-  /* <expenseBox>
-        <coinIcon></coinIcon>
-        <div>100</div>
-      </expenseBox> */
-}
+const CoinValueDiv = styled.div`
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+`;
