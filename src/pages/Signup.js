@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { registerAccount } from "../redux/modules/user";
 
-import main_logo from "../assets/images/main_logo.png";
+import main_logo from "../assets/images/icons/main_logo.png";
 
 const Signup = () => {
   const emailInputRef = useRef();

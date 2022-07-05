@@ -11,7 +11,7 @@ import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import main_logo from "../assets/images/main_logo.png";
+import main_logo from "../assets/images/icons/main_logo.png";
 
 const Login = () => {
   const idInputRef = useRef();
