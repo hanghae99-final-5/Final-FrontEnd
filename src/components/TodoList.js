@@ -28,13 +28,14 @@ const TodoList = () => {
     const clickedproofBtn = () => {
         setProofModal(true);
     }
-    
-    
-        //상세보기
+          //상세보기
     const [detailModal,setDetailModal] = useState(false);
+    const [clickedTodoId,setClickedTodoId] = useState(null);
     
-    const clickedDetailBtn = () => {
+    const clickedDetailBtn = (e) => {
         setDetailModal(true);
+        console.log(e.target.getAttribute("value"));
+        setClickedTodoId(e.target.getAttribute("value"));
        };
     const onCancel = () => {
         console.log("취소");
@@ -52,10 +53,11 @@ const TodoList = () => {
         setProofModal(false);
 
     }
-    const ondelete = () => {
+    const ondelete = (e) => {
         console.log("삭제");
         setDetailModal(false);
         setProofModal(false);
+        dispatch(todoActions.deleteTodolistDB(clickedTodoId));
     }
 
     useEffect(() => {
@@ -85,12 +87,15 @@ const TodoList = () => {
                                 <DifficultyIcon/>
                             </div>
                             <div>{todo.content}</div>
+                            <div>{todo.todoId}</div>
                             <div>{todo.startDate} - {todo.endDate}</div>
                         </DetailBoxDiv1>
                         <div>
                             {/* 개인투두는 사진인증 없음 */}
+                            {todo.todoType === 0 ? null : (
                             <div onClick={clickedproofBtn}><img src={add_image}/></div>
-                            <div onClick={clickedDetailBtn}><img src={more_horiz}/> </div>
+                            )}
+                            <div onClick={clickedDetailBtn}><img value={todo.todoId} src={more_horiz}/> </div>
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>
@@ -169,13 +174,13 @@ const PlusButtonColorSt = css`
     ${props => 
     props.todoType === 1 && 
         css`
-        background: ${props.theme.matchingTodoColor};
+        background: ${props.theme.main02};
         `
     }
     ${props => 
     props.todoType === 0 && 
         css`
-        background: ${props.theme.singleTodoColor};
+        background: ${props.theme.main01};
         `
     }   
 `;

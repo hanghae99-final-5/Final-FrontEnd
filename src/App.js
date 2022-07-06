@@ -7,6 +7,8 @@ import FirstPage from './pages/FirstPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import FriendMain from './pages/FriendMain';
+import Write from './pages/Write';
+import Matching from './pages/Matching';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
               <Route exact path='/firstpage' element={<FirstPage/>} />
               <Route exact path='/signup' element={<Signup/>} />
               <Route exact path='/login' element={<Login/>} />
+              <Route exact path='/write' element={<Write/>} />
+              <Route exact path='/matching' element={<Matching/>} />
             </Routes>
           </Setting>
         </div>

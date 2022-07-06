@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body {
     font-family: "Noto Sans Korean", sans-serif;
+    color: ${props => props.theme.gray1}
     }
 `;
 

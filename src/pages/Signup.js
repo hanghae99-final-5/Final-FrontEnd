@@ -1,4 +1,3 @@
-import React from "react";
 import { FirstWrap, LOGO, FirstButtonWrap, SignupButtonWrap } from "../components/FirstPageCSS";
 
 const Signup = () => {
