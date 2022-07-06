@@ -104,7 +104,7 @@ function Modal(
         ondelete,
         onCancel,
         visible,
-        isProof
+        isProof,
     }) {
 
     if(!visible) return null;
