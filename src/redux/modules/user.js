@@ -23,6 +23,12 @@ export function deleteUser(userInfo) {
   return { type: LOGOUT, userInfo };
 }
 
+export const checkUser = () => {
+  return async function (dispatch, getState) {
+    dispatch(setUser());
+  };
+};
+
 export const registerAccount = (user, callback) => {
   return async function (dispatch, getState) {
     await apis
@@ -44,12 +50,7 @@ export const LoginAccount = (user, callback) => {
       .then((res) => {
         const token = res.headers.authorization;
         localStorage.setItem("jwtToken", token);
-        let decoded = jwt_decode(token);
-        dispatch(
-          setUser({
-            nickname: decoded.nickname,
-          })
-        );
+        dispatch(setUser());
 
         callback();
       })
@@ -60,28 +61,13 @@ export const LoginAccount = (user, callback) => {
   };
 };
 
-export const loginCheckDB = () => {
-  return async function (dispatch, getState) {
-    apis
-      .loginCheck()
-      .then((res) => {
-        const userInfo = res.data.user;
-        console.log(userInfo);
-        dispatch(setUser(userInfo));
-      })
-      .catch((err) => {
-        alert("유저 정보가 없네요" + err);
-      });
-  };
-};
-
 // Reducer
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case "user/LOAD": {
+      const decoded = jwt_decode(localStorage.getItem("jwtToken"));
       return {
-        // email: action.email,
-        nickname: action.userInfo.nickname,
+        nickname: decoded.nickname,
         is_login: true,
       };
     }
