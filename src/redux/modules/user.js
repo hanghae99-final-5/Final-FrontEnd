@@ -29,6 +29,13 @@ export const checkUser = () => {
   };
 };
 
+export const logoutAccount = (callback) => {
+  return async function (dispatch) {
+    dispatch(deleteUser());
+    callback();
+  };
+};
+
 export const registerAccount = (user, callback) => {
   return async function (dispatch, getState) {
     await apis
@@ -51,7 +58,6 @@ export const LoginAccount = (user, callback) => {
         const token = res.headers.authorization;
         localStorage.setItem("jwtToken", token);
         dispatch(setUser());
-
         callback();
       })
       .catch((err) => {

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import heart from "../assets/images/icons/heart.png";
 import search from "../assets/images/icons/search.png";
+import logout from "../assets/images/icons/인증하기_24.png";
 
 const MainHeader = ({ headerName }) => {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ const MainHeader = ({ headerName }) => {
         </div>
         <div onClick={() => navigate("/matching")}>
           <img src={search} />
+        </div>
+        <div onClick={() => navigate("/logout")}>
+          <img src={logout} />
         </div>
       </NavDiv>
     </MainHeaderWrap>
