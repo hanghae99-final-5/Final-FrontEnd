@@ -1,20 +1,18 @@
 import React from "react";
 import Character from "../components/Character";
 import MainHeader from "../components/MainHeader";
-import TodoList from "../components/TodoList";
 import MainFooter from "../components/MainFooter";
-import { useSelector } from "react-redux";
+import ShopContent from "../components/ShopContent";
 
-const Main = () => {
-  const user = useSelector((state) => state.user);
+const Shop = () => {
   return (
     <>
-      <MainHeader headerName={user.nickname} />
+      <MainHeader headerName={"Shop"} />
       <Character />
-      <TodoList />
+      <ShopContent />
       <MainFooter />
     </>
   );
 };
 
-export default Main;
+export default Shop;
