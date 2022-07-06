@@ -15,7 +15,7 @@ const MainFooter = () => {
         <Text>Friend</Text>
       </ButtonGroup>
       <ButtonGroup>
-        <WriteButton>
+        <WriteButton onClick={() => navigate("/write")}>
           <button></button>
         </WriteButton>
       </ButtonGroup>

@@ -58,7 +58,6 @@ const DateRange = ({startDate,setStartDate,endDate,setEndDate}) => {
                         locale={ko}
                         customInput={<EndCustomInput />}
                     />
-                
 
             </div>
         </Container>

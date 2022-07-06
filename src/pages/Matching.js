@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch,useSelector } from "react-redux";
+import { actionCreators as matchingAction } from "../redux/modules/matching";
+import jwt_decode from "jwt-decode";
 
 import styled from "styled-components";
 import NoDataPage from "../components/Matching/NoDataPage";
@@ -9,6 +12,11 @@ import backArrow from "../assets/images/icons/back_arrow_24.png"
 
 const Matching = () => {
     const navigate = useNavigate();
+    const inputRef = useRef();
+    const dispatch = useDispatch();
+
+ 
+
     return (
         <Container>
             <HeaderWrap>
@@ -16,9 +24,7 @@ const Matching = () => {
                     <BackDiv onClick={()=>navigate("/")}>
                         <img src={backArrow}/>
                     </BackDiv>
-                    <SearchBarinput type="text" placeholder="Search email">
-
-                    </SearchBarinput>
+                    <SearchBarinput type="text" placeholder="Search email" ref={inputRef}/>
                 </Wrapper>
                 <NavDiv>
                     <div>
@@ -26,6 +32,10 @@ const Matching = () => {
                         color="gray2"
                         size="small"
                         outline
+                        onClick={()=>{
+                            console.log(inputRef.current.value);
+                            dispatch(matchingAction.getSearchedUserDB(inputRef.current.value));
+                        }}
                         ><p>Search</p></Button>
                     </div>
                 </NavDiv>

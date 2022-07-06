@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Main = () => {
   const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <>
       <MainHeader headerName={user.nickname} />

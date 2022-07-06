@@ -23,7 +23,7 @@ const getTodolistDB =  () => {
             method: "get",
             url: `${BASE_URL}/api/mytodos`,
             headers: {     
-                'Authorization': "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJuaWNrbmFtZSI6InRlc3QiLCJ1c2VybmFtZSI6InRlc3QxQG5hdmVyLmNvbSIsImlhdCI6MTY1NzA5Njk2NCwiZXhwIjoxNjU3MTMyOTY0fQ.UIoaZMK3ZPAyxmgyybXjfMdh5uLpb9OMnNERpkn9Ils" 
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
             }
             }).then((res)=> {
                 console.log('Todolist조회미들웨어::',res.data);
@@ -86,7 +86,7 @@ const addTodolistDB = (todoObj) => {
                 "todoType" : Number(todoObj.todoType)
             },
             headers: {     
-                'Authorization': "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJuaWNrbmFtZSI6InRlc3QiLCJ1c2VybmFtZSI6InRlc3QxQG5hdmVyLmNvbSIsImlhdCI6MTY1NzA5Njk2NCwiZXhwIjoxNjU3MTMyOTY0fQ.UIoaZMK3ZPAyxmgyybXjfMdh5uLpb9OMnNERpkn9Ils" 
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
                 console.log('Todolist추가미들웨어::',res.data);
@@ -103,7 +103,7 @@ const deleteTodolistDB = (todoId) => {
             method: "delete",
             url: `${BASE_URL}/api/todos/${todoId}`,
             headers: {     
-                'Authorization': "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJuaWNrbmFtZSI6InRlc3QiLCJ1c2VybmFtZSI6InRlc3QxQG5hdmVyLmNvbSIsImlhdCI6MTY1NzA5Njk2NCwiZXhwIjoxNjU3MTMyOTY0fQ.UIoaZMK3ZPAyxmgyybXjfMdh5uLpb9OMnNERpkn9Ils" 
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
                 console.log('Todolist삭제미들웨어::',res.data);
