@@ -1,166 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import coinIconPng from "../assets/images/icons/coin.png";
 
-// styled-components 수정, api 연결 해야함
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as shopAction } from "../redux/modules/shop";
+
+// styled-components 수정
 const ShopContent = () => {
+  const dispatch = useDispatch();
+  const { items, inventories } = useSelector((state) => state.shop);
+
+  const categoryObj = {
+    HAIR: "Hair",
+    CLOTH: "Top",
+    ACCESSORY: "Accessory",
+  };
+
+  useEffect(() => {
+    dispatch(shopAction.getItemsMiddleware());
+  }, []);
   return (
     <ShopContentContainer>
-      <div>
-        <ItemCategory>
-          <CategoryDiv>Hair</CategoryDiv>
-        </ItemCategory>
-        <InventoryBoxWrapper>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-        </InventoryBoxWrapper>
-      </div>
-
-      <div>
-        <ItemCategory>
-          <CategoryDiv>Top</CategoryDiv>
-        </ItemCategory>
-        <InventoryBoxWrapper>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-        </InventoryBoxWrapper>
-      </div>
-
-      <div>
-        <ItemCategory>
-          <CategoryDiv>Accessory</CategoryDiv>
-        </ItemCategory>
-        <InventoryBoxWrapper>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-          <InventoryBox>
-            <ItemBox>
-              <InventoryContent></InventoryContent>
-            </ItemBox>
-            <ExpenseBox>
-              <CoinIcon>
-                <img src={coinIconPng} />
-              </CoinIcon>
-              <CoinValueDiv>100</CoinValueDiv>
-            </ExpenseBox>
-          </InventoryBox>
-        </InventoryBoxWrapper>
-      </div>
+      {Object.entries(categoryObj).map((category) => {
+        return (
+          <div key={category[1]}>
+            <ItemCategory>
+              <CategoryDiv>{category[1]}</CategoryDiv>
+            </ItemCategory>
+            <InventoryBoxWrapper>
+              {items
+                ? items
+                    .filter((item) => item.category === category[0])
+                    .map((item) => {
+                      return (
+                        <InventoryBox key={item.itemId}>
+                          <ItemBox>
+                            <InventoryContent>
+                              <CustomImg src={item.viewImg} />
+                            </InventoryContent>
+                          </ItemBox>
+                          <ExpenseBox>
+                            <CoinIcon>
+                              <img src={coinIconPng} />
+                            </CoinIcon>
+                            <CoinValueDiv>{item.price}</CoinValueDiv>
+                          </ExpenseBox>
+                        </InventoryBox>
+                      );
+                    })
+                : null}
+            </InventoryBoxWrapper>
+          </div>
+        );
+      })}
     </ShopContentContainer>
   );
 };
@@ -174,7 +66,6 @@ const ShopContentContainer = styled.div`
   background-color: white;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   position: fixed;
   top: 174px;
@@ -202,17 +93,18 @@ const CategoryDiv = styled.div`
 const InventoryBoxWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const InventoryBox = styled.div`
   witdh: 100%;
+  margin-right: 8px;
 `;
 
 const ItemBox = styled.div`
   width: 78px;
   height: 72px;
-
   background: #f6f6f6;
   border-radius: 8px;
   padding: 10px 13px 10px 13px;
@@ -240,4 +132,9 @@ const CoinValueDiv = styled.div`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
+`;
+
+const CustomImg = styled.img`
+  width: 100%;
+  min-height: 100%;
 `;
