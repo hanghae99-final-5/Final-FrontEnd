@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled, {keyframes,css} from 'styled-components';
+import Button from './Button';
 
 
 const DarkBackground = styled.div`
@@ -19,7 +20,7 @@ const ModalTitle = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 15px 0 23px 0;
+    padding: 15px 0;
     & > div:nth-child(1) {
         width: 24px;
         height: 24px;
@@ -53,6 +54,13 @@ const ModalBox = styled.div`
 
     ${ModalCancel}
 `;
+const ChildrenText = styled.div`
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+`;
 const ButtonGroup = styled.div`
     display: flex;
     width: 100%;
@@ -67,43 +75,18 @@ const ButtonGroup = styled.div`
     }
 
 `;
-const Icon = styled.div`
-    width: 24px;
-    height: 24px;
-    background: #D9D9D9;
-`;
-
-//사진인증 이미지 박스
-const ImgDiv = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 250px;
-    height: 250px;
-    border: 1px solid;
-
-    & > img {
-        max-width: 250px;
-        height: 250px;
-        object-fit:contain;
-    }
-
-    
-`;
 
 
-function Modal(
+function CommonModal(
     {
         title,
-        udtText,
-        proofText,
-        deleteText,
-        onUpdate,
-        onProof,
-        ondelete,
-        onCancel,
+        modalText,
+        confirmText,
+        isSingleBtn,
         visible,
-        isProof,
+        cancelText,
+        onCancel,
+        onConfirm 
     }) {
 
     if(!visible) return null;
@@ -111,46 +94,29 @@ function Modal(
     <DarkBackground >
         <ModalBox>
             <ModalTitle>
-                <div></div>
                 <p>{title}</p>
-                <ModalCancel onClick={onCancel}>취소</ModalCancel>
             </ModalTitle>
+            <ChildrenText>{modalText}</ChildrenText>
+                {isSingleBtn? 
+                <ButtonGroup>
+                    <Button color="main01" onClick={onConfirm}>{confirmText}</Button>
+                </ButtonGroup>
 
-            {isProof && 
-                <ImgDiv>
-                <img src = "https://firebasestorage.googleapis.com/v0/b/myweb-961b1.appspot.com/o/images%2Favatar.jpg?alt=media&token=9dbbf968-6917-4f67-a264-bfac9090a7b5"/>
-                </ImgDiv>
-            }
-
-            {!isProof? (
-            <ButtonGroup>
-                <div>
-                    <Icon onClick={onUpdate}></Icon>
-                    {udtText}
-                </div>
-                
-                <div>
-                <Icon onClick={ondelete}></Icon>
-                    {deleteText}
-                </div>
-            </ButtonGroup>
-            ):(
-            <ButtonGroup>
-                <div>
-                    <Icon onClick={onUpdate}></Icon>
-                    {udtText}
-                </div>
-            </ButtonGroup>
-            )}
+                :
+                <ButtonGroup>
+                    <Button color="main01" onClick={onConfirm} >{confirmText}</Button>
+                    <Button color="main01">{cancelText}</Button>
+                </ButtonGroup>
+                }
         </ModalBox>
     </DarkBackground>
 
     );
 }
 
-Modal.defaultProps = {
+CommonModal.defaultProps = {
   confirmText: '확인',
   cancelText: '취소'
 };
 
-export default Modal;
+export default CommonModal;
