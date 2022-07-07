@@ -4,7 +4,7 @@ import { actionCreators as todoActions } from "../../redux/modules/todo"
 import { useNavigate } from "react-router-dom";
 
 import styled from "styled-components";
-
+import backArrow from "../../assets/images/icons/back_arrow_24.png"
 import Button from "../../element/Button";
 
 const WriteHeader = ({todoObj}) => {
@@ -20,7 +20,9 @@ const WriteHeader = ({todoObj}) => {
     return (
         <MainHeaderWrap>
             <Wrapper>
-                <BackDiv onClick={()=>navigate("/")}></BackDiv>
+                <BackDiv onClick={()=>navigate("/")}>
+                    <img src={backArrow}/>
+                </BackDiv>
                 <NicknameDiv>Create To Do</NicknameDiv>
             </Wrapper>
             <NavDiv>
@@ -57,7 +59,6 @@ const BackDiv = styled.div`
     font-size: 20px;
     width: 24px;
     height: 24px;
-    background: ${props => props.theme.gray3};
     margin:0 0 0 12px;
 `;
 const NicknameDiv = styled.div`

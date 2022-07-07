@@ -7,6 +7,7 @@ import todo from "./modules/todo";
 import characters from "./modules/characters";
 import user from './modules/user';
 import shop from "./modules/shop";
+import matching from "./modules/matching";
 
 const middlewares = [thunk];
 // const enhancer = applyMiddleware(...middlewares);
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   characters,
   user,
   shop,
+  matching,
 });
 
 const store = createStore(rootReducer,composedEnhancer);

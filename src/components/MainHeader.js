@@ -1,10 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import heart from "../assets/images/icons/heart.png";
 import search from "../assets/images/icons/search.png";
+import logout from "../assets/images/icons/인증하기_24.png";
 
 const MainHeader = ({ headerName }) => {
+  const navigate = useNavigate();
   return (
     <MainHeaderWrap>
       <NicknameDiv>{headerName}</NicknameDiv>
@@ -12,8 +15,11 @@ const MainHeader = ({ headerName }) => {
         <div>
           <img src={heart} />
         </div>
-        <div>
+        <div onClick={() => navigate("/matching")}>
           <img src={search} />
+        </div>
+        <div onClick={() => navigate("/logout")}>
+          <img src={logout} />
         </div>
       </NavDiv>
     </MainHeaderWrap>
@@ -48,6 +54,5 @@ const NavDiv = styled.div`
   div {
     width: 24px;
     height: 24px;
-    background: #efefef;
   }
 `;

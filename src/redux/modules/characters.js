@@ -22,7 +22,7 @@ const getCharacterDB = () => {
             method: "get",
             url: `${BASE_URL}/api/characters`,
             headers: {     
-                'Authorization': "Bearer " + "eyJhbGciOiJIUzI1NiJ9.eyJuaWNrbmFtZSI6InRlc3QiLCJ1c2VybmFtZSI6InRlc3QzQG5hdmVyLmNvbSIsImlhdCI6MTY1NzA5NjU2NiwiZXhwIjoxNjU3MTMyNTY2fQ.Fy2g3t25FUPwx7mmonXosUunaU77HxWKvDpEDjQG7QU" 
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
                 console.log('character조회미들웨어::',res.data);
