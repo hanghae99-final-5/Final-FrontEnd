@@ -70,6 +70,9 @@ const ShopContentContainer = styled.div`
   position: fixed;
   top: 174px;
   padding: 10px 10px 0 10px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ItemCategory = styled.div`
@@ -100,6 +103,9 @@ const InventoryBoxWrapper = styled.div`
 const InventoryBox = styled.div`
   witdh: 100%;
   margin-right: 8px;
+  &:last-child {
+    margin-right: 0px;
+  }
 `;
 
 const ItemBox = styled.div`
