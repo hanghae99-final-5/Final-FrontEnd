@@ -2,8 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import produce from "immer";
 import { BASE_URL } from "../../assets/config";
-import React, { useState } from "react";
-import CommonModal from "../../element/CommonModal";
 
 
 
@@ -56,7 +54,7 @@ const matchingInvitationDB = (memberId) => {
             },
             }).then((res)=> {
                 console.log('matching 초대 미들웨어::',res.data);
-                dispatch(matchingInvitation(res.data))
+                // dispatch(matchingInvitation(res.data))
             }).catch((err)=>{
                 console.log("matching 초대 err::",err);
             })
