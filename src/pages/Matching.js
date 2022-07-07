@@ -1,24 +1,38 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as matchingAction } from "../redux/modules/matching";
-import jwt_decode from "jwt-decode";
 
 import styled from "styled-components";
-import NoDataPage from "../components/Matching/NoDataPage";
 import SearchedUser from "../components/Matching/SearchedUser";
 import Button from "../element/Button";
 import backArrow from "../assets/images/icons/back_arrow_24.png"
+import CommonModal from "../element/CommonModal";
 
 const Matching = () => {
     const navigate = useNavigate();
     const inputRef = useRef();
     const dispatch = useDispatch();
 
- 
+    const [modal,setModal] = useState(false);
+    const [modalText,setModalText] = useState(null);
+    const openErrModal = (modalText) => {
+        setModal(true);
+        setModalText(modalText)
+    }
+    const onConfirm = () => {
+        setModal(false);
+    }
 
     return (
         <Container>
+            <CommonModal 
+            title={"notice"}
+            visible={modal}
+            modalText={modalText}
+            onConfirm={onConfirm}
+            isSingleBtn
+            />
             <HeaderWrap>
                 <Wrapper>
                     <BackDiv onClick={()=>navigate("/")}>
@@ -34,13 +48,13 @@ const Matching = () => {
                         outline
                         onClick={()=>{
                             console.log(inputRef.current.value);
-                            dispatch(matchingAction.getSearchedUserDB(inputRef.current.value));
+                            dispatch(matchingAction.getSearchedUserDB(inputRef.current.value,(modalText)=>openErrModal(modalText)));
                         }}
                         ><p>Search</p></Button>
                     </div>
                 </NavDiv>
             </HeaderWrap>
-            {/* <NoDataPage/> */}
+
             <SearchedUser/>
             
 
