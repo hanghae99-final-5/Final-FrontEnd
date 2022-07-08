@@ -102,7 +102,7 @@ function CommonModal(
                 :
                 <ButtonGroup>
                     <Button color="main01" onClick={onConfirm} >{confirmText}</Button>
-                    <Button color="main01">{cancelText}</Button>
+                    <Button color="main01" onClick={onCancel}>{cancelText}</Button>
                 </ButtonGroup>
                 }
         </ModalBox>

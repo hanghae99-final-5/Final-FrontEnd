@@ -26,6 +26,15 @@ const colorStyle = css`
                     color: white;
                 }           
             `}
+            ${props => 
+            props.disabled &&
+            css`
+                color: ${props => props.theme.gray3};
+                background: none;
+                border: 1px solid ${props => props.theme.gray3};
+                /* :disabled            */
+            `}
+        
     `;
   }}
 `;
@@ -104,11 +113,12 @@ const StyledButton = styled.button`
 
 `;
 
-function Button({ children,color,size,outline,...rest }) {
+function Button({ children,color,size,outline,disabled,...rest }) {
     return <StyledButton 
     color={color} 
     size={size} 
     outline={outline}
+    disabled = {disabled}
     {...rest}
     >
       <p>{children}</p>

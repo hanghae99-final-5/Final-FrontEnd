@@ -8,6 +8,7 @@ import characters from "./modules/characters";
 import user from './modules/user';
 import shop from "./modules/shop";
 import matching from "./modules/matching";
+import notification from "./modules/notification";
 
 const middlewares = [thunk];
 // const enhancer = applyMiddleware(...middlewares);
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   user,
   shop,
   matching,
+  notification,
 });
 
 const store = createStore(rootReducer,composedEnhancer);

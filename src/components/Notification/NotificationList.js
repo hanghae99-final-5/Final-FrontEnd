@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {useDispatch,useSelector} from "react-redux"
 import styled from "styled-components";
 import Button from "../../element/Button";
+import { actionCreators as notificationAction } from "../../redux/modules/notification";
 
 
 const NotificationList = () => {
+    const dispatch = useDispatch();
+    const notificationList = useSelector(state => state.notification);
+    console.log(notificationList);
+    
+
+    useEffect(()=>{
+        dispatch(notificationAction.getNotificationDB())
+    },[])
 
     return(
         <>
@@ -12,7 +22,9 @@ const NotificationList = () => {
              <div className="notiWrap">
                 <IconDiv></IconDiv>
                 <p>bboshi님이 인증을 요청하셨습니다</p>
-                <Button size="medium" color="main02">인증하기</Button>
+                <div>
+                    <Button size="medium" color="EXPColor">수락하기</Button>
+                </div>
              </div>
         </Container>
         <Container>
@@ -25,6 +37,45 @@ const NotificationList = () => {
                 </div>
              </div>
         </Container>
+        {notificationList && notificationList.map((noti,idx)=>{
+            return(
+                <Container key={idx}>
+                    <div className="writeDate">{noti.alarmDate}</div>
+                    <div className="notiWrap">
+                        <IconDiv></IconDiv>
+                        <p>{noti.message}</p>
+                        <div>
+                        {/* alarmType에 따라 인증하기 / 수락하기 */}
+                            {noti.alarmType === "AUTHENTICATION"?
+                                // alarmState에 따라 버튼 활성 / 비활성
+                                noti.alarmState === 0? 
+                                //온클릭에 friendsmain 라우팅 달기 
+                            <Button size="medium" color="main02">인증하기</Button>
+                                :
+                            <Button 
+                            size="medium" 
+                            disabled
+                            >완료</Button>
+                            :
+                                noti.alarmState === 0? 
+                            <Button 
+                            size="medium" 
+                            color="EXPColor"
+                            onClick={()=> {
+                                dispatch(notificationAction.acceptMatchingDB(noti.senderId))
+                            }}
+                            >수락하기</Button>
+                                :
+                            <Button 
+                            size="medium" 
+                            disabled
+                            >완료</Button>
+                            }
+                        </div>
+                    </div>
+        </Container>
+            )
+        }) }
         </>
     )
 }

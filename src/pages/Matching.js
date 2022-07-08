@@ -35,7 +35,7 @@ const Matching = () => {
             />
             <HeaderWrap>
                 <Wrapper>
-                    <BackDiv onClick={()=>navigate("/")}>
+                    <BackDiv onClick={()=>navigate(-1)}>
                         <img src={backArrow}/>
                     </BackDiv>
                     <SearchBarinput type="text" placeholder="Search email" ref={inputRef}/>
@@ -55,7 +55,7 @@ const Matching = () => {
                 </NavDiv>
             </HeaderWrap>
 
-            <SearchedUser/>
+            <SearchedUser inputRef={inputRef}/>
             
 
         </Container>

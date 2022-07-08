@@ -1,22 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {useDispatch} from "react-redux"
+import { actionCreators as notificationAction } from "../../redux/modules/notification";
 import styled from "styled-components";
 import backArrow from "../../assets/images/icons/back_arrow_24.png";
 import deleteIcon from "../../assets/images/icons/delete_24.png"
 
 
 const NotificationHeader = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     return(
         <HeaderWrap>
             <Wrapper>
-                <BackDiv onClick={()=>navigate("/")}>
+                <BackDiv onClick={()=>navigate(-1)}>
                     <img src={backArrow}/>
                 </BackDiv>
                 <NicknameDiv>Activity</NicknameDiv>
             </Wrapper>
                 <NavDiv>
-                    <div>
+                    <div onClick={
+                      ()=>{
+                        dispatch(notificationAction.deleteNotificationDB())
+                        }}>
                     <img src={deleteIcon} />
                     </div>
                 </NavDiv>

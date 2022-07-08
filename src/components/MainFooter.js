@@ -10,7 +10,7 @@ const MainFooter = () => {
         <Button></Button>
         <Text>My page</Text>
       </ButtonGroup>
-      <ButtonGroup>
+      <ButtonGroup onClick={() => navigate("/friend")}>
         <Button></Button>
         <Text>Friend</Text>
       </ButtonGroup>

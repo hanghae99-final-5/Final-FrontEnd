@@ -21,14 +21,14 @@ const TodoWrite = ({setTodoType,setTodoText}) => {
                 <input 
                 type="radio" 
                 id="option1" 
-                name="todoType" value="1"
+                name="todoType" value="2"
                 onChange={clickedMatchingBtn}
                 />
                 <label for="option1">Matching</label>
                 <input type="radio" 
                 id="option2" 
                 name="todoType" 
-                value="0"
+                value="1"
                 onChange={clickedPrivateBtn}
                 />
                 <label for="option2" >Private</label>

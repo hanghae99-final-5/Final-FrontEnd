@@ -11,9 +11,9 @@ import NoDataPage from "./NoDataPage";
 
 
 
-const SearchedUser = () => {
+const SearchedUser = ({inputRef}) => {
     const dispatch = useDispatch();
-
+    console.log("inputRef:::",inputRef.current?.value)
     const searchedUser = useSelector(state => state.matching);
     console.log(searchedUser);
 
@@ -86,8 +86,8 @@ const SearchedUser = () => {
                 </UserWrap>
             </Container>
             )
-        //내 매칭상태가 false && 검색한유저의 매칭상태가 false일경우 초대가능
-        }else{
+        //내 매칭상태가 false && 검색한유저의 매칭상태가 false && 검색한유저가 내아이디가 아닐때 초대가능
+        }else if(inputRef.current?.value !== userName) {
             return(
                 <Container>
                     <UserWrap>

@@ -29,6 +29,7 @@ function App() {
           <Setting>
             <Routes>
               <Route exact path="/" element={<Main />} />
+              <Route exact path="/friend" element={<FriendMain />} />
               <Route exact path="/firstpage" element={<FirstPage />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/login" element={<Login />} />
