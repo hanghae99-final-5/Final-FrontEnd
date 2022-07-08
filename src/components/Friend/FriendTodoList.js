@@ -1,14 +1,46 @@
-import React from "react";
-import styled from "styled-components";
+import React ,{useEffect,useState} from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { actionCreators as todoActions } from "../../redux/modules/todo";
+
+import styled, { css } from 'styled-components';
+import Modal from "../../element/Modal";
+
+//icons
+import add from "../../assets/images/icons/add.png"
+import add_image from "../../assets/images/icons/add_image.png"
+import more_horiz from "../../assets/images/icons/more_horiz.png"
 
 const FriendTodoList = () => {
+    const dispatch = useDispatch();
+     //modal 상태관리
+        //사진인증
+    const [proofModal,setProofModal] = useState(false);
+    const clickedproofBtn = () => {
+        setProofModal(true);
+    }
+    const onProof = () => {
+        console.log("인증하기");
+        setProofModal(false);
+    }
+
+    // useEffect(() => {
+    //     dispatch(todoActions.getFriendTodolistDB())
+    // },[])
+
     return (
         <TodoListContainer>
-            <TodoListWrap>
-                <div>작성일자</div>
+        {/* 개인투두 
+        {todosList && todosList.map((todo,idx) => {
+            return (
+                <TodoListWrap key={idx}>
+                <div>{todo.confirmDate}</div>
                 <TodoListContext>
-                    <PlusButtonWrap>
-                        <div></div>
+                    <PlusButtonWrap  todoType = {todo.todoType}>
+                        {todo.confirmState ? null: (
+                        <div>
+                            <img src={add} />
+                        </div>
+                        )}
                     </PlusButtonWrap>
                     <TodoDetailBox>
                         <DetailBoxDiv1>
@@ -17,18 +49,34 @@ const FriendTodoList = () => {
                                 <DifficultyIcon/>
                                 <DifficultyIcon/>
                                 <DifficultyIcon/>
-                                <DifficultyIcon/>
                             </div>
-                            <div>밥먹고 누워있기ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</div>
-                            <div>2022.06.25</div>
+                            <div>{todo.content}</div>
+                            <div>{todo.startDate} - {todo.endDate}</div>
                         </DetailBoxDiv1>
                         <div>
-                            <div>사진</div>
-                            <div>인증</div>
+                            개인투두는 사진인증 없음
+                            {todo.todoType === 1 ? null : (
+                            <div onClick={clickedproofBtn}><img src={add_image}/></div>
+                            )}
+                            <div onClick={clickedDetailBtn}><img value={todo.todoId} src={more_horiz}/> </div>
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>
+
+                
+                사진인증모달
+                <Modal
+                isProof = {true}
+                title={"사진인증"}
+                udtText={"인증요청"}
+                proofText={"사진인증"}
+                onProof={onProof}
+                visible={proofModal}
+                >
+                </Modal>
             </TodoListWrap>
+            )
+        })} */}
 
         </TodoListContainer>
     )
@@ -69,9 +117,26 @@ const TodoListWrap = styled.div`
         background: #C2C2C2;
     }
 `;
+
+const PlusButtonColorSt = css`
+    ${props => 
+    props.todoType === 2 && 
+        css`
+        background: ${props.theme.main02};
+        `
+    }
+    ${props => 
+    props.todoType === 1 && 
+        css`
+        background: ${props.theme.main01};
+        `
+    }   
+`;
 const PlusButtonWrap = styled.div`
+    //plus버튼 색깔
+    ${PlusButtonColorSt}
+
     width: 52px;
-    background: #6C6C6C;
     min-height: 74px;
     border-radius: 10px 0 0 10px;
     display: flex;
@@ -81,7 +146,6 @@ const PlusButtonWrap = styled.div`
     div {
         width: 24px;
         height: 24px;
-        background: #C2C2C2;
     
     }
 `;

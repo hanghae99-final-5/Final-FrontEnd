@@ -20,7 +20,7 @@ const WriteHeader = ({todoObj}) => {
     return (
         <MainHeaderWrap>
             <Wrapper>
-                <BackDiv onClick={()=>navigate("/")}>
+                <BackDiv onClick={()=>navigate(-1)}>
                     <img src={backArrow}/>
                 </BackDiv>
                 <NicknameDiv>Create To Do</NicknameDiv>

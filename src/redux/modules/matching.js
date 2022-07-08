@@ -2,8 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import produce from "immer";
 import { BASE_URL } from "../../assets/config";
-import React, { useState } from "react";
-import CommonModal from "../../element/CommonModal";
 
 
 
@@ -24,7 +22,9 @@ const initailState = {}
 //middlewares
 const getSearchedUserDB = (username,callback) => {
     return async function (dispatch, getState) {
-        console.log(username);
+        console.log("username",typeof username);
+        if(username === "") 
+            return callback("검색한 사용자의 이메일을 입력해주세요")
         await axios({
             method: "get",
             url: `${BASE_URL}/api/users/${username}`,
@@ -43,6 +43,7 @@ const getSearchedUserDB = (username,callback) => {
                 // errMsg === "검색한 유저가 존재하지 않습니다." && alert("검색한 유저가 존재하지 않습니다.")
                 callback(errMsg);   
             })
+       
     }
 }
 const matchingInvitationDB = (memberId) => {
@@ -56,7 +57,7 @@ const matchingInvitationDB = (memberId) => {
             },
             }).then((res)=> {
                 console.log('matching 초대 미들웨어::',res.data);
-                dispatch(matchingInvitation(res.data))
+                // dispatch(matchingInvitation(res.data))
             }).catch((err)=>{
                 console.log("matching 초대 err::",err);
             })

@@ -9,9 +9,6 @@ const DarkBackground = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     background: rgba(0, 0, 0, 0.4);
 
 `;
@@ -105,7 +102,7 @@ function CommonModal(
                 :
                 <ButtonGroup>
                     <Button color="main01" onClick={onConfirm} >{confirmText}</Button>
-                    <Button color="main01">{cancelText}</Button>
+                    <Button color="main01" onClick={onCancel}>{cancelText}</Button>
                 </ButtonGroup>
                 }
         </ModalBox>

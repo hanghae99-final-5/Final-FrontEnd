@@ -7,11 +7,13 @@ import { BASE_URL } from "../../assets/config";
 const GET_TODOLIST = "GET_TODOLIST";
 const ADD_TODOLIST = "ADD_TODOLIST";
 const DELETE_TODOLIST = "DELETE_TODOLIST";
+const GET_FRIEND_TODOLIST = "GET_FRIEND_TODOLIST";
 
 //action creater
 const getTodolist = createAction(GET_TODOLIST,(todo) => ({todo}));
 const addTodolist = createAction(ADD_TODOLIST,(todo) => ({todo}));
 const deleteTodolist = createAction(DELETE_TODOLIST,(todoId) => ({todoId}));
+const getFriendTodolist = createAction(GET_FRIEND_TODOLIST, (todo) => ({todo}));
 
 //initail state
 const initailState = {}
@@ -31,39 +33,7 @@ const getTodolistDB =  () => {
             }).catch((err)=>{
                 console.log("Todolist조회err::",err);
             })
-        // dispatch(getTodolist({
-        //     "member": [
-        //         {
-        //             "matchingState": false
-        //         }
-        //     ],
-        //     "todos": [
-        //         {
-        //             "todoId": 1,
-        //             "content": "test",
-        //             "proofImg": null,
-        //             "startDate": "2022-06-30",
-        //             "endDate": "2022-07-01",
-        //             "confirmDate": "2022-07-01",
-        //             "difficulty": 3,
-        //             "confirmState": false,
-        //             "completionState": false,
-        //             "todoType" : 0  // (0: 개인, 1: 매칭)
-        //         },
-        //         {
-        //             "todoId": 2,
-        //             "content": "matchingtest",
-        //             "proofImg": null,
-        //             "startDate": "2022-06-30",
-        //             "endDate": "2022-07-01",
-        //             "confirmDate": "2022-07-01",
-        //             "difficulty": 3,
-        //             "confirmState": false,
-        //             "completionState": false,
-        //             "todoType" : 1  // (0: 개인, 1: 매칭)
-        //         }
-        //     ],
-        // }))
+        
     }
 }
 const addTodolistDB = (todoObj) => {
@@ -113,6 +83,22 @@ const deleteTodolistDB = (todoId) => {
             })
     }
 }
+const getFriendTodolistDB = (memberId) => {
+    return async function(dispatch,getState){
+        await axios({
+            method: "get",
+            url: `${BASE_URL}/api/todos/pair/${memberId}`,
+            headers: {     
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
+            }
+            }).then((res)=> {
+                console.log('Friend Todolist조회미들웨어::',res.data);
+                dispatch(getTodolist(res.data))
+            }).catch((err)=>{
+                console.log("Friend Todolist조회err::",err);
+            }) 
+    }
+}
 
 
 
@@ -144,6 +130,8 @@ const actionCreators = {
     addTodolistDB,
     deleteTodolist,
     deleteTodolistDB,
+    getFriendTodolist,
+    getFriendTodolistDB,
 }
 
 export {actionCreators};

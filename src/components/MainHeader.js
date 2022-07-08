@@ -13,7 +13,7 @@ const MainHeader = ({ headerName }) => {
       <NicknameDiv>{headerName}</NicknameDiv>
       <NavDiv>
         <div>
-          <img src={heart} />
+          <img src={heart} onClick={() => navigate("/notification")}/>
         </div>
         <div onClick={() => navigate("/matching")}>
           <img src={search} />

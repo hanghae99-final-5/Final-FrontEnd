@@ -1,47 +1,43 @@
 import React ,{useEffect} from "react";
 import styled from "styled-components";
-
 import { useDispatch,useSelector } from "react-redux";
-import { actionCreators as characterAction } from "../redux/modules/characters";
+import { actionCreators as characterAction } from "../../redux/modules/characters";
 
 
-const Character = () => {
+const FriendCharacter = () => {
     const dispatch = useDispatch();
-    const characterObj = useSelector(state => state.characters)
-    console.log("characterObj",characterObj);
+    const friendObj = useSelector(state => state.characters);
+    console.log("friendObj::: ",friendObj);
 
-     //금액을 콤마로 구분해줄 함수
      const addComma = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
     useEffect(()=>{
-        dispatch(characterAction.getCharacterDB());
+        dispatch(characterAction.getFriendCharacterDB());
     },[])
 
-    if (Object.keys(characterObj).length === 0) return null; 
+    if (Object.keys(friendObj).length === 0) return null; 
     return (
-    
         <CharacterWrap>
             <div>
-                {/* 안에 이큅아이템들 겹쳐서 놓기  */}
-                <div><img src={characterObj.charImg}/></div>
+                <div><img src={friendObj.charImg}/></div>
             </div>
 
             <div>
                 <LevelBar>
-                   <span className="nickName">{characterObj.nickname}</span>
-                   <span>Lv.{characterObj.level}</span>
+                   <span className="nickName">{friendObj.nickname}</span>
+                   <span>Lv.{friendObj.level}</span>
                 </LevelBar>
                 <StatusBar>
                     <span>HP</span>
                     <div>
                         <Bar 
-                        width={(characterObj.hp/characterObj.maxHp)*100 + "%"}
+                        width={(friendObj.hp/100)*100 + "%"}
                         color = "HPColor"
                         >
                         <div>
-                            {characterObj.hp}/{characterObj.maxHp}
+                            {friendObj.hp}/{friendObj.maxHp}
                         </div>
                         </Bar>
                     </div>
@@ -50,11 +46,11 @@ const Character = () => {
                     <span>EXP</span>
                     <div>
                         <Bar 
-                        width={(characterObj.exp/characterObj.maxExp)*100 + "%"}
+                        width={(friendObj.exp/friendObj.maxExp)*100 + "%"}
                         color = "EXPColor"
                         >
                             <div>
-                            {characterObj.exp}/{characterObj.maxExp}
+                            {friendObj.exp}/{friendObj.maxExp}
                             </div>
                         </Bar>     
                     </div>
@@ -62,7 +58,7 @@ const Character = () => {
                 <MoneyBar>
                     <div></div>
                     <div>
-                        {addComma(characterObj.money)}
+                        {addComma(friendObj.money)}
                     </div>
                 </MoneyBar>
             </div>
@@ -70,7 +66,7 @@ const Character = () => {
     )
 }
 
-export default Character;
+export default FriendCharacter;
 
 
 //fontweight 수정하기 
@@ -133,7 +129,8 @@ const LevelBar = styled.div`
     font-size: 14px;
     font-weight: 400;
     .nickName {
-    } 
+    }
+    
 `;
 const StatusBar = styled.div`
     width: 218px;

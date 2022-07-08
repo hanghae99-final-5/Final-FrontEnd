@@ -11,6 +11,7 @@ import Write from "./pages/Write";
 import Matching from "./pages/Matching";
 import Shop from "./pages/Shop";
 import Logout from "./pages/Logout";
+import Notification from "./pages/Notification";
 
 function App() {
   function setScreenSize() {
@@ -28,6 +29,7 @@ function App() {
           <Setting>
             <Routes>
               <Route exact path="/" element={<Main />} />
+              <Route exact path="/friend" element={<FriendMain />} />
               <Route exact path="/firstpage" element={<FirstPage />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/login" element={<Login />} />
@@ -35,6 +37,7 @@ function App() {
               <Route exact path="/matching" element={<Matching />} />
               <Route exact path="/shop" element={<Shop />} />
               <Route exact path="/logout" element={<Logout />} />
+              <Route exact path="/notification" element={<Notification />} />
             </Routes>
           </Setting>
         </div>

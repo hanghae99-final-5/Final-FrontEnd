@@ -87,12 +87,11 @@ const TodoList = () => {
                                 <DifficultyIcon/>
                             </div>
                             <div>{todo.content}</div>
-                            <div>{todo.todoId}</div>
                             <div>{todo.startDate} - {todo.endDate}</div>
                         </DetailBoxDiv1>
                         <div>
                             {/* 개인투두는 사진인증 없음 */}
-                            {todo.todoType === 0 ? null : (
+                            {todo.todoType === 1 ? null : (
                             <div onClick={clickedproofBtn}><img src={add_image}/></div>
                             )}
                             <div onClick={clickedDetailBtn}><img value={todo.todoId} src={more_horiz}/> </div>
@@ -172,13 +171,13 @@ const TodoListWrap = styled.div`
 
 const PlusButtonColorSt = css`
     ${props => 
-    props.todoType === 1 && 
+    props.todoType === 2 && 
         css`
         background: ${props.theme.main02};
         `
     }
     ${props => 
-    props.todoType === 0 && 
+    props.todoType === 1 && 
         css`
         background: ${props.theme.main01};
         `
