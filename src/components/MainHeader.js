@@ -6,11 +6,18 @@ import heart from "../assets/images/icons/heart.png";
 import search from "../assets/images/icons/search.png";
 import logout from "../assets/images/icons/인증하기_24.png";
 
-const MainHeader = ({ headerName }) => {
+const MainHeader = ({ headerName, headerImg }) => {
   const navigate = useNavigate();
   return (
     <MainHeaderWrap>
-      <NicknameDiv>{headerName}</NicknameDiv>
+      {headerName ? (
+        <NicknameDiv>{headerName}</NicknameDiv>
+      ) : (
+        <HeaderIconDiv>
+          <HeaderIconImg src={headerImg} />
+        </HeaderIconDiv>
+      )}
+
       <NavDiv>
         <div>
           <img src={heart} onClick={() => navigate("/notification")}/>
@@ -33,9 +40,20 @@ const MainHeaderWrap = styled.nav`
   height: 54px;
   position: fixed;
   top: 0;
-  background-color: #c2c2c2;
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+`;
+const HeaderIconDiv = styled.div`
+  width: 186px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 0 0 12px;
+`;
+
+const HeaderIconImg = styled.img`
+  width: 47px;
 `;
 const NicknameDiv = styled.div`
   width: 186px;

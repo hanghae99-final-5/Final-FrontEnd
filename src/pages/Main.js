@@ -6,6 +6,7 @@ import MainFooter from "../components/MainFooter";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUser } from "../../src/redux/modules/user";
+import mainLogo from "../assets/images/icons/main_logo.png";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Main = () => {
   }, []);
   return (
     <>
-      <MainHeader headerName={user.nickname} />
+      <MainHeader headerImg={mainLogo} />
       <Character />
       <TodoList />
       <MainFooter />
