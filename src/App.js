@@ -12,6 +12,7 @@ import Matching from "./pages/Matching";
 import Shop from "./pages/Shop";
 import Logout from "./pages/Logout";
 import Notification from "./pages/Notification";
+import Inventory from "./pages/Inventory";
 
 function App() {
   function setScreenSize() {
@@ -38,6 +39,7 @@ function App() {
               <Route exact path="/shop" element={<Shop />} />
               <Route exact path="/logout" element={<Logout />} />
               <Route exact path="/notification" element={<Notification />} />
+              <Route exact path="/inventory" element={<Inventory />} />
             </Routes>
           </Setting>
         </div>

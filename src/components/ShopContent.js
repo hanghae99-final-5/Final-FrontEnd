@@ -4,6 +4,7 @@ import coinIconPng from "../assets/images/icons/coin.png";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as shopAction } from "../redux/modules/shop";
+import { ShopItemBox } from "../element/ItemBox";
 
 // styled-components 수정
 const ShopContent = () => {
@@ -34,11 +35,7 @@ const ShopContent = () => {
                     .map((item) => {
                       return (
                         <InventoryBox key={item.itemId}>
-                          <ItemBox>
-                            <InventoryContent>
-                              <CustomImg src={item.viewImg} />
-                            </InventoryContent>
-                          </ItemBox>
+                          <ShopItemBox img={item.viewImg} />
                           <ExpenseBox>
                             <CoinIcon>
                               <img src={coinIconPng} />
@@ -108,20 +105,6 @@ const InventoryBox = styled.div`
   }
 `;
 
-const ItemBox = styled.div`
-  width: 78px;
-  height: 72px;
-  background: #f6f6f6;
-  border-radius: 8px;
-  padding: 10px 13px 10px 13px;
-`;
-
-const InventoryContent = styled.div`
-  width: 52px;
-  height: 52px;
-  background: #e4e4e4;
-`;
-
 const ExpenseBox = styled.div`
   width: 100%;
   display: flex;
@@ -138,9 +121,4 @@ const CoinValueDiv = styled.div`
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
-`;
-
-const CustomImg = styled.img`
-  width: 100%;
-  min-height: 100%;
 `;
