@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ItemBox = styled.div`
+export const ItemBox = styled.div`
   width: ${(props) => props.width};
   height: 72px;
   background: #f6f6f6;
