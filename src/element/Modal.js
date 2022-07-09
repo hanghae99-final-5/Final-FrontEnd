@@ -13,7 +13,7 @@ const DarkBackground = styled.div`
     /* display: flex;
     align-items: center;
     justify-content: center; */
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
 
 `;
 
@@ -88,8 +88,9 @@ const ImgDiv = styled.div`
         max-width: 250px;
         height: 250px;
         object-fit:contain;
-    }
-
+    }    
+`;
+const ImgInput = styled.input`
     
 `;
 
@@ -106,7 +107,8 @@ function Modal(
         onCancel,
         visible,
         isProof,
-        todoId
+        todoId,
+        proofImg,
     }) {
         const dispatch = useDispatch();
         const [img,setImg] = useState(null);
@@ -140,19 +142,24 @@ function Modal(
 
             {isProof && 
                 <label htmlFor="contained-button-file">
-                    <input accept="image/*" 
+                    <ImgInput accept="image/*" 
                     id="contained-button-file" 
                     multiple type="file"
                     onChange={uploadImage}
                     />
                     <ImgDiv>
-                    {imgSrc && 
+                    {imgSrc && <img src={imgSrc} alt="preview-img" />}
+                    {/* {imgSrc? 
                         <img src={imgSrc} alt="preview-img" />
-                    }
+                        :
+                        proofImg?
+                        <img src={proofImg}  />
+                        :
+                        <img src="https://marchericche.com/ui/assets/admin/img/default.jpg"/>
+                    } */}
                     </ImgDiv>
                 </label>
             }
-
             {!isProof? (
             <ButtonGroup>
                 <div>
@@ -168,9 +175,13 @@ function Modal(
             ):(
             <ButtonGroup>
                 <div onClick={()=>{
+                    console.log(img);
                     dispatch(todoAction.ProofImgUploadDB(img,todoId))
                 }}>
-                    <Icon onClick={onProof}></Icon>
+                    <Icon onClick={()=>{
+                        onProof()
+                        setImgSrc(null)
+                        }}></Icon>
                     {proofText}
                 </div>
             </ButtonGroup>

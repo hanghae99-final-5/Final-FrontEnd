@@ -117,6 +117,7 @@ const ProofImgUploadDB = (img,todoId) => {
         },
         }).then((res)=> {
             console.log("proff img업로드 성공 res.data::",res.data)
+            dispatch(getTodolistDB())
         }).catch((err)=>{
             console.log("Friend Todolist조회err::",err);
         }) 

@@ -19,14 +19,16 @@ const TodoList = () => {
     //store에서 todo load data 가져오기
     const todoObj = useSelector((state)=>state.todo);
     const todosList = useSelector(state=>state.todo.todos)
+    console.log("todosList::",todosList)
     //modal 상태관리
         //사진인증
     const [proofModal,setProofModal] = useState(false);
     const [selectedTodoId,setSelectedTodoId] = useState(null);
+    const [proofImg,setproofImg] = useState(null);
     const clickedproofBtn = (e) => {
         setProofModal(true);
-        console.log(e.target.getAttribute("value"));
         setSelectedTodoId(e.target.getAttribute("value"));
+        setproofImg(e.target.getAttribute("value2"));
     }
           //상세보기
     const [detailModal,setDetailModal] = useState(false);
@@ -68,7 +70,7 @@ const TodoList = () => {
         {/* 개인투두  */}
         {todosList && todosList.map((todo,idx) => {
             return (
-                <TodoListWrap key={idx}>
+                <TodoListWrap key={idx}> 
                 <div>{todo.confirmDate}</div>
                 <TodoListContext>
                     <PlusButtonWrap  todoType = {todo.todoType}>
@@ -92,9 +94,13 @@ const TodoList = () => {
                         <div>
                             {/* 개인투두는 사진인증 없음 */}
                             {todo.todoType === 1 ? null : (
-                            <div onClick={clickedproofBtn}><img value={todo.todoId} src={add_image}/></div>
+                            <div>
+                                <img onClick={clickedproofBtn} value={todo.todoId} value2={todo.proofImg} src={add_image}/>
+                            </div>
                             )}
-                            <div onClick={clickedDetailBtn}><img value={todo.todoId} src={more_horiz}/> </div>
+                            <div onClick={clickedDetailBtn}>
+                                <img value={todo.todoId} src={more_horiz}/> 
+                            </div>
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>
@@ -121,6 +127,7 @@ const TodoList = () => {
                 onCancel={onCancel}
                 visible={proofModal}
                 todoId={selectedTodoId}
+                proofImg={proofImg}
                 >
                 </Modal>
             </TodoListWrap>
