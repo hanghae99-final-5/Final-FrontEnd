@@ -14,6 +14,7 @@ const WriteHeader = ({todoObj}) => {
     const createBtn = () => {
         console.log("todoObj",todoObj);
         dispatch(todoActions.addTodolistDB(todoObj));
+        navigate("/");
     } 
 
 
