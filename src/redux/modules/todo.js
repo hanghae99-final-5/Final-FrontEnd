@@ -99,6 +99,29 @@ const getFriendTodolistDB = (memberId) => {
             }) 
     }
 }
+const ProofImgUploadDB = (img,todoId) => {
+    return async function(dispatch, getState){
+        console.log(img,todoId);
+        const formData = new FormData();
+        formData.append("proofImg",img);
+        // for (let [key, value] of formData.entries()) {
+        //     console.log(key, value);
+        //   }
+        await axios({
+        method: "patch",
+        url: `${BASE_URL}/api/proofimgs/${todoId}`,
+        data: formData,
+        headers: {     
+            "Content-Type": "multipart/form-data",
+            'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
+        },
+        }).then((res)=> {
+            console.log("proff img업로드 성공 res.data::",res.data)
+        }).catch((err)=>{
+            console.log("Friend Todolist조회err::",err);
+        }) 
+    }
+}
 
 
 
@@ -132,6 +155,7 @@ const actionCreators = {
     deleteTodolistDB,
     getFriendTodolist,
     getFriendTodolistDB,
+    ProofImgUploadDB,
 }
 
 export {actionCreators};

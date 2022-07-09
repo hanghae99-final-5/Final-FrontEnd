@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled, {keyframes,css} from 'styled-components';
+import { useDispatch, useSelector, } from 'react-redux';
+import { actionCreators as todoAction } from '../redux/modules/todo';
 
 
 const DarkBackground = styled.div`
@@ -104,7 +106,27 @@ function Modal(
         onCancel,
         visible,
         isProof,
+        todoId
     }) {
+        const dispatch = useDispatch();
+        const [img,setImg] = useState(null);
+        const [imgSrc,setImgSrc] = useState(null);
+        const uploadImage = (e) => {
+            console.log(e.target.files[0]);
+            setImg(e.target?.files[0]);
+            encodeFileToBase64(e.target.files[0]);
+        }
+
+        const encodeFileToBase64 = (fileBlob) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(fileBlob);
+            return new Promise((resolve) => {
+              reader.onload = () => {
+                setImgSrc(reader.result);
+                resolve();
+              };
+            });
+          };
 
     if(!visible) return null;
     return (
@@ -117,9 +139,18 @@ function Modal(
             </ModalTitle>
 
             {isProof && 
-                <ImgDiv>
-                <img src = "https://firebasestorage.googleapis.com/v0/b/myweb-961b1.appspot.com/o/images%2Favatar.jpg?alt=media&token=9dbbf968-6917-4f67-a264-bfac9090a7b5"/>
-                </ImgDiv>
+                <label htmlFor="contained-button-file">
+                    <input accept="image/*" 
+                    id="contained-button-file" 
+                    multiple type="file"
+                    onChange={uploadImage}
+                    />
+                    <ImgDiv>
+                    {imgSrc && 
+                        <img src={imgSrc} alt="preview-img" />
+                    }
+                    </ImgDiv>
+                </label>
             }
 
             {!isProof? (
@@ -136,9 +167,11 @@ function Modal(
             </ButtonGroup>
             ):(
             <ButtonGroup>
-                <div>
-                    <Icon onClick={onUpdate}></Icon>
-                    {udtText}
+                <div onClick={()=>{
+                    dispatch(todoAction.ProofImgUploadDB(img,todoId))
+                }}>
+                    <Icon onClick={onProof}></Icon>
+                    {proofText}
                 </div>
             </ButtonGroup>
             )}

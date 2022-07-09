@@ -8,11 +8,8 @@ import Modal from "../element/Modal";
 //icons
 import add from "../assets/images/icons/add.png"
 import add_image from "../assets/images/icons/add_image.png"
-import check from "../assets/images/icons/check.png"
-import heart from "../assets/images/icons/heart.png"
 import more_horiz from "../assets/images/icons/more_horiz.png"
-import plus from "../assets/images/icons/plus.png"
-import search from "../assets/images/icons/search.png"
+
 
 
 
@@ -25,8 +22,11 @@ const TodoList = () => {
     //modal 상태관리
         //사진인증
     const [proofModal,setProofModal] = useState(false);
-    const clickedproofBtn = () => {
+    const [selectedTodoId,setSelectedTodoId] = useState(null);
+    const clickedproofBtn = (e) => {
         setProofModal(true);
+        console.log(e.target.getAttribute("value"));
+        setSelectedTodoId(e.target.getAttribute("value"));
     }
           //상세보기
     const [detailModal,setDetailModal] = useState(false);
@@ -92,7 +92,7 @@ const TodoList = () => {
                         <div>
                             {/* 개인투두는 사진인증 없음 */}
                             {todo.todoType === 1 ? null : (
-                            <div onClick={clickedproofBtn}><img src={add_image}/></div>
+                            <div onClick={clickedproofBtn}><img value={todo.todoId} src={add_image}/></div>
                             )}
                             <div onClick={clickedDetailBtn}><img value={todo.todoId} src={more_horiz}/> </div>
                         </div>
@@ -115,14 +115,12 @@ const TodoList = () => {
                 <Modal
                 isProof = {true}
                 title={"사진인증"}
-                udtText={"인증요청"}
-                proofText={"사진인증"}
-                deleteText={"삭제"}
+                proofText={"인증요청"}
                 onUpdate={onUpdate}
                 onProof={onProof}
-                ondelete={ondelete}
                 onCancel={onCancel}
                 visible={proofModal}
+                todoId={selectedTodoId}
                 >
                 </Modal>
             </TodoListWrap>
