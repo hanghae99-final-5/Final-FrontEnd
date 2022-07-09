@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { DifficultyItemBox } from "../../element/ItemBox";
 import difficulty1 from "../../assets/images/icons/01_create_page_difficulty_52.png";
@@ -8,6 +8,14 @@ import difficulty4 from "../../assets/images/icons/04_create_page_difficulty_52.
 import coin from "../../assets/images/icons/coin_24.png";
 
 const Difficulty = ({ setDiff }) => {
+  const [selected, setSelected] = useState(null);
+  const difficultyList = ["Easy", "Normal", "Hard", "Hard Core"];
+  const difficultyIconList = [
+    difficulty1,
+    difficulty2,
+    difficulty3,
+    difficulty4,
+  ];
   return (
     <Container>
       <div>Difficulty</div>
@@ -17,38 +25,22 @@ const Difficulty = ({ setDiff }) => {
         <span> 10</span>
       </RewardInfoDiv>
       <div className="wrap">
-        <div
-          onClick={() => {
-            setDiff(1);
-          }}
-        >
-          <DifficultyItemBox img={difficulty1} />
-          <TextDiv>Easy</TextDiv>
-        </div>
-        <div
-          onClick={() => {
-            setDiff(2);
-          }}
-        >
-          <DifficultyItemBox img={difficulty2} />
-          <TextDiv>Normal</TextDiv>
-        </div>
-        <div
-          onClick={() => {
-            setDiff(3);
-          }}
-        >
-          <DifficultyItemBox img={difficulty3} />
-          <TextDiv>Hard</TextDiv>
-        </div>
-        <div
-          onClick={() => {
-            setDiff(4);
-          }}
-        >
-          <DifficultyItemBox img={difficulty4} />
-          <TextDiv>Hard Core</TextDiv>
-        </div>
+        {difficultyList.map((difficulty, idx) => {
+          return (
+            <div
+              onClick={() => {
+                setDiff(idx + 1);
+                setSelected(idx);
+              }}
+            >
+              <DifficultyItemBox
+                img={difficultyIconList[idx]}
+                selected={selected == idx}
+              />
+              <TextDiv>{difficulty}</TextDiv>
+            </div>
+          );
+        })}
       </div>
     </Container>
   );

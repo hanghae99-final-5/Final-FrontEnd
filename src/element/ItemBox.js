@@ -1,29 +1,32 @@
 import styled from "styled-components";
 
 export const ItemBox = styled.div`
-  width: ${(props) => props.width};
+  width: ${(props) => (props.category === "shop" ? "78px" : "72px")};
   height: 72px;
-  background: #f6f6f6;
+  background: ${(props) =>
+    props.selected ? props.theme.gray4 : props.theme.gray5};
   border-radius: 8px;
-  padding: ${(props) => props.padding};
+  padding: ${(props) =>
+    props.category === "shop" ? "10px 13px 10px 13px" : "10px 10px 10px 10px"};
 `;
 
-const CustomImg = styled.img`
+export const CustomImg = styled.img`
   width: 100%;
   min-height: 100%;
 `;
-export default function ItemBoxContainer({ img, width, padding }) {
-  return (
-    <ItemBox width={width} padding={padding}>
-      <CustomImg src={img} />
-    </ItemBox>
-  );
-}
 
 export const ShopItemBox = ({ img }) => (
-  <ItemBoxContainer img={img} width={"78px"} padding={"10px 13px 10px 13px"} />
+  <ItemBoxContainer img={img} category={"shop"} />
 );
 
-export const DifficultyItemBox = ({ img }) => (
-  <ItemBoxContainer img={img} width={"72px"} padding={"10px 10px 10px 10px"} />
+export const DifficultyItemBox = ({ img, selected }) => (
+  <ItemBoxContainer img={img} category={"difficulty"} selected={selected} />
 );
+
+const ItemBoxContainer = ({ img, category, selected }) => (
+  <ItemBox category={category} selected={selected}>
+    <CustomImg src={img} />
+  </ItemBox>
+);
+
+export default ItemBoxContainer;
