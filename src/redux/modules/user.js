@@ -36,6 +36,16 @@ export const logoutAccount = (callback) => {
   };
 };
 
+export const logoutAccountByError = (err, callback) => {
+  return async function (dispatch) {
+    if (err.response.status === 403) {
+      return dispatch(logoutAccount(callback));
+    } else {
+      return;
+    }
+  };
+};
+
 export const registerAccount = (user, callback) => {
   return async function (dispatch, getState) {
     await apis

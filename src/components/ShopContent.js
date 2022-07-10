@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import coinIconPng from "../assets/images/icons/coin.png";
 
@@ -9,6 +10,7 @@ import { ShopItemBox } from "../element/ItemBox";
 // styled-components 수정
 const ShopContent = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items, inventories } = useSelector((state) => state.shop);
 
   const categoryObj = {
@@ -18,7 +20,7 @@ const ShopContent = () => {
   };
 
   useEffect(() => {
-    dispatch(shopAction.getItemsMiddleware());
+    dispatch(shopAction.getItemsMiddleware(() => navigate("/login")));
   }, []);
   return (
     <ShopContentContainer>
