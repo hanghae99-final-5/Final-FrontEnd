@@ -3,8 +3,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as todoActions } from "../../redux/modules/todo";
 
 import styled, { css } from 'styled-components';
-import Modal from "../../element/Modal";
-
+import CommonModal from "../../element/CommonModal";
 //icons
 import add from "../../assets/images/icons/add.png"
 import check from "../../assets/images/icons/check.png"
@@ -22,14 +21,24 @@ const FriendTodoList = () => {
 
      //modal 상태관리
         //사진인증
-    const [proofModal,setProofModal] = useState(false);
-    const clickedproofBtn = () => {
-        setProofModal(true);
+
+    const [modal,setModal] = useState(false);
+    const [proofImg,setproofImg] = useState(null);
+    const [selectedTodoId,setSelectedTodoId] = useState(null);
+
+    const openModal = (e) => {
+        setModal(true);
+        setSelectedTodoId(e.target.getAttribute("value"));
+        setproofImg(e.target.getAttribute("value2"));
     }
-    const onProof = () => {
-        console.log("인증하기");
-        setProofModal(false);
+    const onConfirm = () => {
+        setModal(false);
+        dispatch(todoActions.ConfirmProofImg(selectedTodoId));
     }
+    const onCancel = () => {
+        setModal(false)
+    }
+    
 
     useEffect(() => {
         dispatch(todoActions.getFriendTodolistDB())
@@ -45,7 +54,8 @@ const FriendTodoList = () => {
                     <PlusButtonWrap  todoType = {todo.todoType}>
                         {todo.confirmState ? null: (
                         <div>
-                            <img src={add} />
+                            {/* 친구화면은 +버튼 필요없음 */}
+                            {/* <img src={add} /> */}
                         </div>
                         )}
                     </PlusButtonWrap>
@@ -61,25 +71,28 @@ const FriendTodoList = () => {
                             <div>{todo.startDate} - {todo.endDate}</div>
                         </DetailBoxDiv1>
                         <div>
+                            {/* 매칭투두에만 보이기 */}
                             {todo.todoType === 1 ? null : (
-                            <div onClick={clickedproofBtn}><img src={check}/></div>
+                                // 인증요청하기전까지 버튼 안보이기
+                                todo.proofImg === null || todo.confirmState === true? null 
+                                :
+                            <div onClick={openModal}><img src={check} value={todo.todoId} value2={todo.proofImg}/></div>
                             )}
-                            
                         </div>
                     </TodoDetailBox>
                 </TodoListContext>
-
                 
                 {/* 사진인증모달 */}
-                <Modal
-                isProof = {true}
-                title={"사진인증"}
-                udtText={"인증요청"}
-                proofText={"사진인증"}
-                onProof={onProof}
-                visible={proofModal}
-                >
-                </Modal>
+                <CommonModal 
+                title={"인증요청"}
+                visible={modal}
+                modalText={"인증요청을 확인해주세요"}
+                confirmText={"인증하기"}
+                onConfirm={onConfirm}
+                onCancel={onCancel}
+                proofImg={proofImg}
+                />
+                
             </TodoListWrap>
             )
         })} 

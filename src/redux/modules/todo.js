@@ -83,7 +83,7 @@ const deleteTodolistDB = (todoId) => {
             })
     }
 }
-const getFriendTodolistDB = (memberId) => {
+const getFriendTodolistDB = () => {
     return async function(dispatch,getState){
         await axios({
             method: "get",
@@ -116,11 +116,29 @@ const ProofImgUploadDB = (img,todoId) => {
             'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
         },
         }).then((res)=> {
-            console.log("proff img업로드 성공 res.data::",res.data)
+            console.log("proof img업로드 성공 res.data::",res.data)
             dispatch(getTodolistDB())
         }).catch((err)=>{
-            console.log("Friend Todolist조회err::",err);
+            console.log("proof img업로드 err::",err);
         }) 
+    }
+}
+const ConfirmProofImg = (todoId) => {
+    return async function(dispatch, getState){
+        console.log(todoId);
+        await axios({
+            method: "patch",
+            url: `${BASE_URL}/api/todos/confirm/${todoId}`,
+            headers: {     
+                'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
+            },
+            }).then((res)=> {
+                console.log("proof Img 인증요청 성공 res.data::",res.data)
+                dispatch(getFriendTodolistDB());
+                //plus버튼 접근가능하게 만들어야함;
+            }).catch((err)=>{
+                console.log("proof Img 인증요청 err::",err);
+            }) 
     }
 }
 
@@ -162,6 +180,7 @@ const actionCreators = {
     getFriendTodolist,
     getFriendTodolistDB,
     ProofImgUploadDB,
+    ConfirmProofImg,
 }
 
 export {actionCreators};
