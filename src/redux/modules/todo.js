@@ -87,13 +87,13 @@ const getFriendTodolistDB = (memberId) => {
     return async function(dispatch,getState){
         await axios({
             method: "get",
-            url: `${BASE_URL}/api/todos/pair/${memberId}`,
+            url: `${BASE_URL}/api/todos/pair/`,
             headers: {     
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             }
             }).then((res)=> {
                 console.log('Friend Todolist조회미들웨어::',res.data);
-                dispatch(getTodolist(res.data))
+                dispatch(getFriendTodolist(res.data))
             }).catch((err)=>{
                 console.log("Friend Todolist조회err::",err);
             }) 
@@ -142,7 +142,12 @@ export default handleActions(
                 // console.log(newTodos);
                 draft.todos = newTodos;
 
-            })
+        }),
+        [GET_FRIEND_TODOLIST]:(state,action) => {
+            console.log("GET_FRIEND_TODOLIST reducer:::",action)
+            return action.payload.todo;
+        }
+        
     },
     initailState
 )
