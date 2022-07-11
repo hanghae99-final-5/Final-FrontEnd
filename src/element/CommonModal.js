@@ -99,6 +99,7 @@ function CommonModal(
         onCancel,
         onConfirm,
         proofImg,
+        isConfirmProofImg,
     }) {
 
     if(!visible) return null;
@@ -109,9 +110,11 @@ function CommonModal(
                 <p>{title}</p>
             </ModalTitle>
             <ChildrenText>{modalText}</ChildrenText>
+                {isConfirmProofImg &&
                 <ImgDiv>
                     <img src={proofImg} />
                 </ImgDiv>
+                }
                 {isSingleBtn? 
                 <ButtonGroup>
                     <Button color="main01" onClick={onConfirm}>{confirmText}</Button>

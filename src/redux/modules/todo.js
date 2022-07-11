@@ -1,4 +1,5 @@
 import { createAction, handleActions } from "redux-actions";
+import { actionCreators as characterAction } from "./characters";
 import axios from "axios";
 import produce from "immer";
 import { BASE_URL } from "../../assets/config";
@@ -7,13 +8,16 @@ import { BASE_URL } from "../../assets/config";
 const GET_TODOLIST = "GET_TODOLIST";
 const ADD_TODOLIST = "ADD_TODOLIST";
 const DELETE_TODOLIST = "DELETE_TODOLIST";
+const COMPLETE_TODOLIST = "COMPLETE_TODOLIST";
 const GET_FRIEND_TODOLIST = "GET_FRIEND_TODOLIST";
 
 //action creater
 const getTodolist = createAction(GET_TODOLIST,(todo) => ({todo}));
 const addTodolist = createAction(ADD_TODOLIST,(todo) => ({todo}));
 const deleteTodolist = createAction(DELETE_TODOLIST,(todoId) => ({todoId}));
+const completeTodolist = createAction(COMPLETE_TODOLIST,(todoId) => ({todoId}))
 const getFriendTodolist = createAction(GET_FRIEND_TODOLIST, (todo) => ({todo}));
+
 
 //initail state
 const initailState = {}
@@ -68,7 +72,6 @@ const addTodolistDB = (todoObj) => {
 }
 const deleteTodolistDB = (todoId) => {
     return async function(dispatch,getState){
-        console.log(todoId);
         await axios({
             method: "delete",
             url: `${BASE_URL}/api/todos/${todoId}`,
@@ -83,6 +86,26 @@ const deleteTodolistDB = (todoId) => {
             })
     }
 }
+const completeTodolistDB = (todoId) => {
+    return async function(dispatch,getState) {
+        console.log(todoId);
+        await axios({
+            method: "patch",
+            url: `${BASE_URL}/api/todos/completion/${todoId}`,
+            headers: {     
+                authorization: "Bearer " + localStorage.getItem("jwtToken")
+            },
+            }).then((res)=> {
+                console.log('Todolist완료미들웨어::',res.data);
+                dispatch(characterAction.getCharacterDB());
+                dispatch(getTodolistDB());
+                
+            }).catch((err)=>{
+                console.log("Todolist완료err::",err);
+            })
+    }
+}
+
 const getFriendTodolistDB = () => {
     return async function(dispatch,getState){
         await axios({
@@ -181,6 +204,8 @@ const actionCreators = {
     getFriendTodolistDB,
     ProofImgUploadDB,
     ConfirmProofImg,
+    completeTodolist,
+    completeTodolistDB,
 }
 
 export {actionCreators};

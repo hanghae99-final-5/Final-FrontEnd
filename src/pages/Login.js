@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { BASE_URL } from "../assets/config";
 import {
   FirstWrap,
   LOGO,
@@ -34,10 +36,17 @@ const Login = () => {
 
   const onClickGoogleLogin = (e) => {
     e.preventDefault();
-    dispatch(LoginGoogleAccount());
+    const response = axios({
+      method: "get",
+      url: `${BASE_URL}/api/users/login/google`,
+    })
+    console.log(response);
+    // const redirectUrl = dispatch(LoginGoogleAccount());
+    // console.log("redirectUrl::", redirectUrl);
+    // window.location.href = redirectUrl;
   };
   return (
-    <FirstWrap>
+    <FirstWrap>       
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>

@@ -38,9 +38,10 @@ const getSearchedUserDB = (username,callback) => {
                 console.log("matching user조회 err::",err);
                 console.log(err.response.data);
                 console.log(callback);
-                const errMsg = err.response.data
+                const errMsg = err.response.data.message
                 // errMsg === "이메일 형식이 아닙니다." && alert("이메일 형식이 아닙니다.") 
                 // errMsg === "검색한 유저가 존재하지 않습니다." && alert("검색한 유저가 존재하지 않습니다.")
+                console.log("errMsg",errMsg);
                 callback(errMsg);   
             })
        

@@ -85,12 +85,15 @@ export const LoginGoogleAccount = () => {
       url: `${BASE_URL}/api/users/login/google`,
     })
       .then((res) => {
-        console.log("google res :", res);
+        console.log("google res :", res.data);
       })
       .catch((err) => {
         console.log("google err", err);
       });
   };
+  // return function (dispatch, getState) {
+  //   return "https://accounts.google.com/o/oauth2/v2/auth?scope=profile%20email&response_type=code&redirect_uri=http://localhost:8080/api/login/oauth2/code/google/callback&client_id=741199557843-ca81auqk6ehf6prl05p9668t47hnfa7u.apps.googleusercontent.com";
+  // };
 };
 
 // Reducer
