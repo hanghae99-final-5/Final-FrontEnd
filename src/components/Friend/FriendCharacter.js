@@ -7,7 +7,6 @@ import { actionCreators as characterAction } from "../../redux/modules/character
 const FriendCharacter = () => {
     const dispatch = useDispatch();
     const friendObj = useSelector(state => state.characters);
-    console.log("friendObj::: ",friendObj);
 
      const addComma = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")

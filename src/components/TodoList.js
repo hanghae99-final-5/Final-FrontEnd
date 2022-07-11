@@ -71,7 +71,7 @@ const TodoList = () => {
         {todosList && todosList.map((todo,idx) => {
             return (
                 <TodoListWrap key={idx}> 
-                <div>{todo.confirmDate}</div>
+                <div>{todo.createdAt}</div>
                 <TodoListContext>
                     <PlusButtonWrap  todoType = {todo.todoType}>
                         {todo.confirmState ? null: (
