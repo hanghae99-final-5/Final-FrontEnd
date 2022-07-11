@@ -7,7 +7,7 @@ import {
   SignupButtonWrap,
 } from "../components/FirstPageCSS";
 import { useDispatch } from "react-redux";
-import { LoginAccount } from "../redux/modules/user";
+import { LoginAccount, LoginGoogleAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,6 +31,11 @@ const Login = () => {
       )
     );
   };
+
+  const onClickGoogleLogin = (e) => {
+    e.preventDefault();
+    dispatch(LoginGoogleAccount());
+  };
   return (
     <FirstWrap>
       <LOGO top="106px">
@@ -52,7 +57,7 @@ const Login = () => {
         <button onClick={onClickLogin}>
           <span>로그인</span>
         </button>
-        <button>
+        <button onClick={onClickGoogleLogin}>
           <span>Google 계정으로 로그인</span>
         </button>
       </FirstButtonWrap>
