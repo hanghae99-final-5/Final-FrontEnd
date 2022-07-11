@@ -74,11 +74,11 @@ const TodoList = () => {
                 <div>{todo.createdAt}</div>
                 <TodoListContext>
                     <PlusButtonWrap  todoType = {todo.todoType}>
-                        {todo.confirmState ? null: (
+                        {todo.confirmState ?(
                         <div>
                             <img src={add} />
                         </div>
-                        )}
+                        ):null}
                     </PlusButtonWrap>
                     <TodoDetailBox>
                         <DetailBoxDiv1>
@@ -170,7 +170,7 @@ const TodoListWrap = styled.div`
         width: 336px;
         min-height: 74px;
         border-radius: 10px;
-        background: #C2C2C2;
+        background: ${props=>props.theme.gray5};
     }
 `;
 
@@ -239,7 +239,6 @@ const TodoDetailBox = styled.div`
         div {
             width: 24px;
             height: 24px;
-            background-color: white;
         }
     }
 `;

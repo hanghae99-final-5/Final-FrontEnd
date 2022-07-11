@@ -9,7 +9,7 @@ const DarkBackground = styled.div`
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.15);
 
 `;
 
@@ -72,6 +72,20 @@ const ButtonGroup = styled.div`
     }
 
 `;
+const ImgDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 250px;
+  height: 250px;
+  border: 1px solid;
+
+  & > img {
+    max-width: 250px;
+    height: 250px;
+    object-fit: contain;
+  }
+`;
 
 
 function CommonModal(
@@ -83,7 +97,8 @@ function CommonModal(
         visible,
         cancelText,
         onCancel,
-        onConfirm 
+        onConfirm,
+        proofImg,
     }) {
 
     if(!visible) return null;
@@ -94,6 +109,9 @@ function CommonModal(
                 <p>{title}</p>
             </ModalTitle>
             <ChildrenText>{modalText}</ChildrenText>
+                <ImgDiv>
+                    <img src={proofImg} />
+                </ImgDiv>
                 {isSingleBtn? 
                 <ButtonGroup>
                     <Button color="main01" onClick={onConfirm}>{confirmText}</Button>
