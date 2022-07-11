@@ -1,6 +1,7 @@
 import axios from "axios";
 import { apis } from "../../shared/api";
 import { setCookie, deleteCookie } from "../../shared/cookie";
+import { BASE_URL } from "../../assets/config";
 
 import jwt_decode from "jwt-decode";
 
@@ -73,6 +74,21 @@ export const LoginAccount = (user, callback) => {
       .catch((err) => {
         console.log("===setLoginDB err === ", err);
         window.alert("아이디와 비밀번호를 다시확인해주세요");
+      });
+  };
+};
+
+export const LoginGoogleAccount = () => {
+  return async function (dispatch, getState) {
+    await axios({
+      method: "get",
+      url: `${BASE_URL}/api/users/login/google`,
+    })
+      .then((res) => {
+        console.log("google res :", res);
+      })
+      .catch((err) => {
+        console.log("google err", err);
       });
   };
 };
