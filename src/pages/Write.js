@@ -20,6 +20,7 @@ const Write = () => {
     const [modal,setModal] = useState(false);
     const [modalText,setModalText] = useState(null);
     const openErrModal = (modalText) => {
+        console.log("들어왔는지")
         setModal(true);
         setModalText(modalText)
     }

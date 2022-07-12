@@ -14,8 +14,7 @@ const WriteHeader = ({todoObj,openErrModal,onConfirm}) => {
     const createBtn = () => {
         console.log("todoObj",todoObj);
         console.log(openErrModal);
-        dispatch(todoActions.addTodolistDB(todoObj,(modalText)=>openErrModal(modalText)));
-        navigate("/");
+        dispatch(todoActions.addTodolistDB(todoObj,(modalText)=>openErrModal(modalText),()=>navigate("/")));
     } 
 
 

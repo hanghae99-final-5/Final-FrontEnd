@@ -25,11 +25,10 @@ const getItemsMiddleware = (callback) => {
       },
     })
       .then((res) => {
-        console.log("item조회 success!::", res.data);
         dispatch(getItems(res.data));
       })
       .catch((err) => {
-        dispatch(logoutAccountByError(err, callback));
+        dispatch(logoutAccountByError(err));
         console.log("item조회 err::", err.response.status);
       });
   };
@@ -46,10 +45,10 @@ const buyItemsMiddleware = (itemId) => {
       },
     })
       .then((res) => {
-        console.log("item조회 success!::", res.data);
-        dispatch(getItems(res.data));
+        dispatch(getItemsMiddleware());
       })
       .catch((err) => {
+        dispatch(logoutAccountByError(err));
         console.log("item조회 err::", err);
       });
 
@@ -61,7 +60,6 @@ const buyItemsMiddleware = (itemId) => {
 export default handleActions(
   {
     [GET_ITEMS]: (state, action) => {
-      console.log("item reducer action:::", action);
       return action.payload.items;
     },
   },

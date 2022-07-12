@@ -85,7 +85,7 @@ const CharacterWrap = styled.div`
     max-width: 360px;
     width: 100%;
     height: 120px;
-    background-color: #EFEFEF;
+    background-color: #fff;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -96,7 +96,7 @@ const CharacterWrap = styled.div`
     & > div:nth-child(1) {
     width: 100px;
     height: 100px;
-    border: 1px solid; 
+    border: 1px solid ${props=>props.theme.gray4}; 
     background: #FDFFFA;
     display: flex;
     align-items: center;
@@ -206,6 +206,7 @@ const MoneyBar = styled.div`
     width: 16px;
     height: 16px;
     background-image: url(${coin});
+    vertical-align: bottom;
     }
     
 `;

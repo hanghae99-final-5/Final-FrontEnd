@@ -30,17 +30,17 @@ export const checkUser = () => {
   };
 };
 
-export const logoutAccount = (callback) => {
+export const logoutAccount = () => {
   return async function (dispatch) {
     dispatch(deleteUser());
-    callback();
+    window.location.href = "/login"
   };
 };
 
-export const logoutAccountByError = (err, callback) => {
+export const logoutAccountByError = (err) => {
   return async function (dispatch) {
     if (err.response.status === 403) {
-      return dispatch(logoutAccount(callback));
+      return dispatch(logoutAccount());
     } else {
       return;
     }

@@ -40,9 +40,9 @@ const getTodolistDB =  () => {
         
     }
 }
-const addTodolistDB = (todoObj,callback) => {
+const addTodolistDB = (todoObj,modalCallback,navigate) => {
     return async function(dispatch,getState){
-        console.log("callback",callback)
+        console.log("callback",modalCallback)
         console.log("addtodo",{
             "content" : todoObj.todoText,
             "startDate" : todoObj.convertedStartDate,
@@ -64,15 +64,14 @@ const addTodolistDB = (todoObj,callback) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
+                navigate();
                 console.log('Todolist추가미들웨어::',res.data);
                 
                 // dispatch(addTodolist(res.data))
             }).catch((err)=>{
-                callback("ddd");
                 console.log("Todolist추가err::",err);
-                console.log(err.response.data.message)
                 const errMsg = err.response.data.message
-                
+                modalCallback(errMsg);
             })
     }
 }
