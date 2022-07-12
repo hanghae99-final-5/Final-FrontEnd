@@ -40,8 +40,9 @@ const getTodolistDB =  () => {
         
     }
 }
-const addTodolistDB = (todoObj) => {
+const addTodolistDB = (todoObj,callback) => {
     return async function(dispatch,getState){
+        console.log("callback",callback)
         console.log("addtodo",{
             "content" : todoObj.todoText,
             "startDate" : todoObj.convertedStartDate,
@@ -64,9 +65,14 @@ const addTodolistDB = (todoObj) => {
             },
             }).then((res)=> {
                 console.log('Todolist추가미들웨어::',res.data);
+                
                 // dispatch(addTodolist(res.data))
             }).catch((err)=>{
+                callback("ddd");
                 console.log("Todolist추가err::",err);
+                console.log(err.response.data.message)
+                const errMsg = err.response.data.message
+                
             })
     }
 }

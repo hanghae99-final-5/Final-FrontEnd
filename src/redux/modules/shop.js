@@ -35,6 +35,28 @@ const getItemsMiddleware = (callback) => {
   };
 };
 
+const buyItemsMiddleware = (itemId) => {
+  return async function (dispatch, getState) {
+    console.log("itemId::",itemId)
+    await axios({
+      method: "post",
+      url: `${BASE_URL}/api/items/${itemId}`,
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwtToken"),
+      },
+    })
+      .then((res) => {
+        console.log("item조회 success!::", res.data);
+        dispatch(getItems(res.data));
+      })
+      .catch((err) => {
+        console.log("item조회 err::", err);
+      });
+
+  };
+};
+
+
 //reducer
 export default handleActions(
   {
@@ -49,6 +71,7 @@ export default handleActions(
 const actionCreators = {
   getItems,
   getItemsMiddleware,
+  buyItemsMiddleware,
 };
 
 export { actionCreators };

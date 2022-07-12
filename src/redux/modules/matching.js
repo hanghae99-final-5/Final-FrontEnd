@@ -22,7 +22,6 @@ const initailState = {}
 //middlewares
 const getSearchedUserDB = (username,callback) => {
     return async function (dispatch, getState) {
-        console.log("username",typeof username);
         if(username === "") 
             return callback("검색한 사용자의 이메일을 입력해주세요")
         await axios({

@@ -36,14 +36,10 @@ const Login = () => {
 
   const onClickGoogleLogin = (e) => {
     e.preventDefault();
-    const response = axios({
-      method: "get",
-      url: `${BASE_URL}/api/users/login/google`,
-    })
-    console.log(response);
-    // const redirectUrl = dispatch(LoginGoogleAccount());
-    // console.log("redirectUrl::", redirectUrl);
-    // window.location.href = redirectUrl;
+    
+    const redirectUrl = dispatch(LoginGoogleAccount());
+    console.log("redirectUrl::", redirectUrl);
+    window.location.href = redirectUrl;
   };
   return (
     <FirstWrap>       

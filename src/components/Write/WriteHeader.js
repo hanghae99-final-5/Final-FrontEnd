@@ -7,13 +7,14 @@ import styled from "styled-components";
 import backArrow from "../../assets/images/icons/back_arrow_24.png"
 import Button from "../../element/Button";
 
-const WriteHeader = ({todoObj}) => {
+const WriteHeader = ({todoObj,openErrModal,onConfirm}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const createBtn = () => {
         console.log("todoObj",todoObj);
-        dispatch(todoActions.addTodolistDB(todoObj));
+        console.log(openErrModal);
+        dispatch(todoActions.addTodolistDB(todoObj,(modalText)=>openErrModal(modalText)));
         navigate("/");
     } 
 

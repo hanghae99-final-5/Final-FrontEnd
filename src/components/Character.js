@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as characterAction } from "../redux/modules/characters";
+import coin from "../assets/images/icons/coin_24.png"
 
 
 const Character = () => {
@@ -25,7 +26,13 @@ const Character = () => {
         <CharacterWrap>
             <div>
                 {/* 안에 이큅아이템들 겹쳐서 놓기  */}
-                <div><img src={characterObj.charImg}/></div>
+                <Avartar url={characterObj.charImg} >
+                    <Equip1 url1={characterObj.equipItems[0].equipImg} >
+                        <Equip2 url2={characterObj.equipItems[1].equipImg}>
+                            <Equip3 url3={characterObj.equipItems[2].equipImg}/>
+                        </Equip2>
+                    </Equip1>
+                </Avartar>
             </div>
 
             <div>
@@ -90,16 +97,10 @@ const CharacterWrap = styled.div`
     width: 100px;
     height: 100px;
     border: 1px solid; 
-    background: #C2C2C2;
+    background: #FDFFFA;
     display: flex;
     align-items: center;
-    justify-content: center;
-
-        & div {
-        width: 52px;
-        height: 64px;
-        background: #EFEFEF;
-        }
+    justify-content: center;     
     }
 
     & > div:nth-child(2) {
@@ -112,6 +113,28 @@ const CharacterWrap = styled.div`
 
 `;
 
+const Avartar = styled.div`
+    width: 52px;
+    height: 64px;
+    background-color: #FDFFFA;
+    background-image: url(${props=>props.url});        
+`;
+const Equip1 = styled.div`
+    width: 52px;
+    height: 64px;
+    background-image: url(${props=>props.url1});    
+`;
+const Equip2 = styled.div`
+    width: 52px;
+    height: 64px;
+    background-image: url(${props=>props.url2});    
+`;
+const Equip3 = styled.div`
+    width: 52px;
+    height: 64px;
+    background-image: url(${props=>props.url3});    
+`;
+
 const Bar = styled.div`
     position: relative;
     width: ${(props) => props.width};
@@ -119,6 +142,7 @@ const Bar = styled.div`
     & > div:nth-child(1){
         position: absolute;
         width: 100px !important;
+        color: #fff;
     }
 `;
 const LevelBar = styled.div`
@@ -132,8 +156,7 @@ const LevelBar = styled.div`
     justify-content: space-between;
     font-size: 14px;
     font-weight: 400;
-    .nickName {
-    } 
+    
 `;
 const StatusBar = styled.div`
     width: 218px;
@@ -178,9 +201,11 @@ const MoneyBar = styled.div`
     font-size: 14px;
     gap: 6px;
 
+    //vertical align 조절
     & > div:nth-child(1) {
     width: 16px;
     height: 16px;
-    background: #C2C2C2;
+    background-image: url(${coin});
     }
+    
 `;

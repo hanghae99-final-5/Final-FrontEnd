@@ -16,7 +16,7 @@ export const CustomImg = styled.img`
 `;
 
 export const ShopItemBox = ({ img }) => (
-  <ItemBoxContainer img={img} category={"shop"} />
+  <ItemBoxContainer img={img} category={"shop"}/>
 );
 
 export const DifficultyItemBox = ({ img, selected }) => (

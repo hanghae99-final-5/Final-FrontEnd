@@ -6,6 +6,8 @@ import coinIconPng from "../assets/images/icons/coin.png";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as shopAction } from "../redux/modules/shop";
 import { ShopItemBox } from "../element/ItemBox";
+import CommonModal from "../element/CommonModal";
+import { useRef } from "react";
 
 // styled-components 수정
 const ShopContent = () => {
@@ -18,12 +20,38 @@ const ShopContent = () => {
     CLOTH: "Top",
     ACCESSORY: "Accessory",
   };
+  //모달 상태관리 
+  const ref = useRef();
+  const [modal,setModal] = useState(false);
+  const [selectedId,setSelectedId] = useState(null);
+    const openModal = (e) => {
+        setModal(true);
+        console.log(ref);
+        console.log(e.target);
+        // setSelectedId(ref.current.key);
+        // console.log(e.target.getAttribute("value"));
+    }
+    const onConfirm = () => {
+        dispatch(shopAction.buyItemsMiddleware(selectedId))
+        setModal(false);
+    }
+    const onCancel = () => {
+      setModal(false);
+    }
 
   useEffect(() => {
     dispatch(shopAction.getItemsMiddleware(() => navigate("/login")));
   }, []);
   return (
     <ShopContentContainer>
+      <CommonModal 
+            title={"notice"}
+            visible={modal}
+            modalText={"정말 구입하시겠습니까?"}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+            confirmText="구입하기"
+            />
       {Object.entries(categoryObj).map((category) => {
         return (
           <div key={category[1]}>
@@ -36,8 +64,8 @@ const ShopContent = () => {
                     .filter((item) => item.category === category[0])
                     .map((item) => {
                       return (
-                        <InventoryBox key={item.itemId}>
-                          <ShopItemBox img={item.viewImg} />
+                        <InventoryBox key={item.itemId} onClick={openModal} ref={ref}>
+                          <ShopItemBox img={item.viewImg} value={item.itemId}   />
                           <ExpenseBox>
                             <CoinIcon>
                               <img src={coinIconPng} />
@@ -100,7 +128,6 @@ const InventoryBoxWrapper = styled.div`
 `;
 
 const InventoryBox = styled.div`
-  witdh: 100%;
   margin-right: 8px;
   &:last-child {
     margin-right: 0px;
