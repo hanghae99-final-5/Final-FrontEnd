@@ -33,9 +33,14 @@ const Login = () => {
   };
 
   const onClickGoogleLogin = (e) => {
-    e.preventDefault();
-    dispatch(LoginGoogleAccount());
+    // e.preventDefault();
+    console.log("env :", process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID);
+    const ClientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
+    console.log("Cli::", ClientId);
+    const redirectUri = "http://localhost:3000/login-process";
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${ClientId}.apps.googleusercontent.com`;
   };
+
   return (
     <FirstWrap>
       <LOGO top="106px">
