@@ -6,6 +6,7 @@ import coinIconPng from "../assets/images/icons/coin.png";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as shopAction } from "../redux/modules/shop";
 import { ShopItemBox } from "../element/ItemBox";
+import CommonModal from "../element/CommonModal";
 
 // styled-components 수정
 const ShopContent = () => {
@@ -18,31 +19,54 @@ const ShopContent = () => {
     CLOTH: "Top",
     ACCESSORY: "Accessory",
   };
+  //모달 상태관리 
+  const [modal,setModal] = useState(false);
+  const [selectedId,setSelectedId] = useState(null);
+    const openModal = (e) => {
+        setModal(true);
+        setSelectedId(e.target.getAttribute("value"))
+    }
+    const onConfirm = () => {
+        dispatch(shopAction.buyItemsMiddleware(selectedId))
+        setModal(false);
+    }
+    const onCancel = () => {
+      setModal(false);
+    }
+
 
   useEffect(() => {
     dispatch(shopAction.getItemsMiddleware(() => navigate("/login")));
   }, []);
   return (
     <ShopContentContainer>
+      <CommonModal 
+            title={"notice"}
+            visible={modal}
+            modalText={"정말 구입하시겠습니까?"}
+            onConfirm={onConfirm}
+            onCancel={onCancel}
+            confirmText="구입하기"
+            />
       {Object.entries(categoryObj).map((category) => {
         return (
           <div key={category[1]}>
             <ItemCategory>
               <CategoryDiv>{category[1]}</CategoryDiv>
             </ItemCategory>
-            <InventoryBoxWrapper>
+            <InventoryBoxWrapper >
               {items
                 ? items
                     .filter((item) => item.category === category[0])
                     .map((item) => {
                       return (
-                        <InventoryBox key={item.itemId}>
-                          <ShopItemBox img={item.viewImg} />
-                          <ExpenseBox>
-                            <CoinIcon>
-                              <img src={coinIconPng} />
+                        <InventoryBox key={item.itemId} onClick={openModal}>
+                          <ShopItemBox img={item.viewImg} value={item.itemId}/>
+                          <ExpenseBox value={item.itemId}>
+                            <CoinIcon value={item.itemId}>
+                              <img src={coinIconPng} value={item.itemId}/>
                             </CoinIcon>
-                            <CoinValueDiv>{item.price}</CoinValueDiv>
+                            <CoinValueDiv value={item.itemId}>{item.price}</CoinValueDiv>
                           </ExpenseBox>
                         </InventoryBox>
                       );
@@ -100,7 +124,6 @@ const InventoryBoxWrapper = styled.div`
 `;
 
 const InventoryBox = styled.div`
-  witdh: 100%;
   margin-right: 8px;
   &:last-child {
     margin-right: 0px;

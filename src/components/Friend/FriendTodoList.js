@@ -91,6 +91,7 @@ const FriendTodoList = () => {
                 onConfirm={onConfirm}
                 onCancel={onCancel}
                 proofImg={proofImg}
+                isConfirmProofImg
                 />
                 
             </TodoListWrap>
@@ -133,7 +134,7 @@ const TodoListWrap = styled.div`
         width: 336px;
         min-height: 74px;
         border-radius: 10px;
-        background: #C2C2C2;
+        background: ${props=>props.theme.gray5};
     }
 `;
 
@@ -149,7 +150,13 @@ const PlusButtonColorSt = css`
         css`
         background: ${props.theme.main01};
         `
-    }   
+    }
+    ${props => 
+    props.completionState  && 
+        css`
+        opacity: 0.4;
+        `
+    }  
 `;
 const PlusButtonWrap = styled.div`
     //plus버튼 색깔
@@ -183,7 +190,18 @@ const DetailBoxDiv1 = styled.div`
         }
 
 `; 
+const TodoDetailBoxSt =  css`
+    ${props => 
+    props.completionState === true  && 
+        css`
+        opacity: 0.4;
+        `
+    } 
+`;
 const TodoDetailBox = styled.div`
+    //detailBox 색깔
+    ${TodoDetailBoxSt}
+    
     display: flex;
     width: 100%;
     justify-content: space-between;

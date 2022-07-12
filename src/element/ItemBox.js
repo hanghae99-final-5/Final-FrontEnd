@@ -15,17 +15,17 @@ export const CustomImg = styled.img`
   min-height: 100%;
 `;
 
-export const ShopItemBox = ({ img }) => (
-  <ItemBoxContainer img={img} category={"shop"} />
+export const ShopItemBox = ({ img, value }) => (
+  <ItemBoxContainer img={img} category={"shop"} value={value}/>
 );
 
 export const DifficultyItemBox = ({ img, selected }) => (
   <ItemBoxContainer img={img} category={"difficulty"} selected={selected} />
 );
 
-const ItemBoxContainer = ({ img, category, selected }) => (
-  <ItemBox category={category} selected={selected}>
-    <CustomImg src={img} />
+const ItemBoxContainer = ({ img, category, selected, value }) => (
+  <ItemBox category={category} selected={selected} value={value}>
+    <CustomImg src={img} value={value}/>
   </ItemBox>
 );
 

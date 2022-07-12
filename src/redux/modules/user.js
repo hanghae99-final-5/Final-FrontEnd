@@ -29,17 +29,17 @@ export const checkUser = () => {
   };
 };
 
-export const logoutAccount = (callback) => {
+export const logoutAccount = () => {
   return async function (dispatch) {
     dispatch(deleteUser());
-    callback();
+    window.location.href = "/login"
   };
 };
 
-export const logoutAccountByError = (err, callback) => {
+export const logoutAccountByError = (err) => {
   return async function (dispatch) {
     if (err.response.status === 403) {
-      return dispatch(logoutAccount(callback));
+      return dispatch(logoutAccount());
     } else {
       return;
     }
@@ -112,6 +112,9 @@ export const getJwtByGoogleOauth = (code, callback) => {
         console.log("google err", err);
       });
   };
+  // return function (dispatch, getState) {
+  //   return "https://accounts.google.com/o/oauth2/v2/auth?scope=profile%20email&response_type=code&redirect_uri=http://localhost:8080/api/login/oauth2/code/google/callback&client_id=741199557843-ca81auqk6ehf6prl05p9668t47hnfa7u.apps.googleusercontent.com";
+  // };
 };
 
 // Reducer

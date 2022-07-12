@@ -9,9 +9,12 @@ import Modal from "../element/Modal";
 import add from "../assets/images/icons/add.png"
 import add_image from "../assets/images/icons/add_image.png"
 import more_horiz from "../assets/images/icons/more_horiz.png"
+import diffIcon from "../assets/images/icons/leaf_difficulty_16px.png"
 
 
-
+const diffCount = (count) => {
+    return [...Array(count).keys()].map((Icon,idx)=> <DifficultyIcon/>)
+}
 
 const TodoList = () => {
     const dispatch = useDispatch();
@@ -73,20 +76,28 @@ const TodoList = () => {
                 <TodoListWrap key={idx}> 
                 <div>{todo.createdAt}</div>
                 <TodoListContext>
-                    <PlusButtonWrap  todoType = {todo.todoType}>
-                        {todo.confirmState ?(
+                    <PlusButtonWrap completionState={todo.completionState} todoType = {todo.todoType}>
+                        {
+                        todo.todoType === 2 && todo.confirmState && !todo.completionState?(
                         <div>
-                            <img src={add} />
+                            <img src={add} onClick={() => 
+                                dispatch(todoActions.completeTodolistDB(todo.todoId))} />
+
                         </div>
                         ):null}
+                        {todo.todoType === 1 && !todo.completionState? 
+                        (<div>
+                            <img src={add} onClick={() => 
+                                dispatch(todoActions.completeTodolistDB(todo.todoId))} />
+
+                        </div>)
+                        :
+                        null }
                     </PlusButtonWrap>
-                    <TodoDetailBox>
+                    <TodoDetailBox completionState={todo.completionState} >
                         <DetailBoxDiv1>
                             <div>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
+                           {diffCount(todo.difficulty)}
                             </div>
                             <div>{todo.content}</div>
                             <div>{todo.startDate} - {todo.endDate}</div>
@@ -186,7 +197,13 @@ const PlusButtonColorSt = css`
         css`
         background: ${props.theme.main01};
         `
-    }   
+    }
+    ${props => 
+    props.completionState  && 
+        css`
+        opacity: 0.4;
+        `
+    }  
 `;
 const PlusButtonWrap = styled.div`
     //plus버튼 색깔
@@ -219,11 +236,23 @@ const DetailBoxDiv1 = styled.div`
         color: #6C6C6C;
         }
 
-`; 
+`;
+const TodoDetailBoxSt =  css`
+    ${props => 
+    props.completionState === true  && 
+        css`
+        opacity: 0.4;
+        `
+    } 
+`;
 const TodoDetailBox = styled.div`
+    //detailBox 색깔
+    ${TodoDetailBoxSt}
     display: flex;
     width: 100%;
     justify-content: space-between;
+    
+
     ${DetailBoxDiv1} {
         display: flex;
         flex-direction: column;
@@ -245,5 +274,5 @@ const TodoDetailBox = styled.div`
 const DifficultyIcon = styled.div`
     width: 16px;
     height: 16px;
-    background: #6C6C6C;
+    background-image: url( ${diffIcon} );
 `;

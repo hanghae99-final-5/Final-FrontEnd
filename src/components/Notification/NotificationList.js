@@ -3,10 +3,12 @@ import {useDispatch,useSelector} from "react-redux"
 import styled from "styled-components";
 import Button from "../../element/Button";
 import { actionCreators as notificationAction } from "../../redux/modules/notification";
+import { useNavigate } from "react-router-dom";
 
 
 const NotificationList = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const notificationList = useSelector(state => state.notification);
     console.log(notificationList);
     
@@ -17,26 +19,6 @@ const NotificationList = () => {
 
     return(
         <>
-        <Container>
-             <div className="writeDate">2022.06.25</div>
-             <div className="notiWrap">
-                <IconDiv></IconDiv>
-                <p>bboshi님이 인증을 요청하셨습니다</p>
-                <div>
-                    <Button size="medium" color="EXPColor">수락하기</Button>
-                </div>
-             </div>
-        </Container>
-        <Container>
-             <div className="writeDate">2022.06.25</div>
-             <div className="notiWrap">
-                <IconDiv></IconDiv>
-                <p>bboshi님과 함께하시겠습니까?</p>
-                <div>
-                    <Button size="medium" color="EXPColor">수락하기</Button>
-                </div>
-             </div>
-        </Container>
         {notificationList && notificationList.map((noti,idx)=>{
             return(
                 <Container key={idx}>
@@ -50,7 +32,7 @@ const NotificationList = () => {
                                 // alarmState에 따라 버튼 활성 / 비활성
                                 noti.alarmState === 0? 
                                 //온클릭에 friendsmain 라우팅 달기 
-                            <Button size="medium" color="main02">인증하기</Button>
+                            <Button size="medium" color="main02" onClick={()=>{navigate("/friend")}}>인증하기</Button>
                                 :
                             <Button 
                             size="medium" 
