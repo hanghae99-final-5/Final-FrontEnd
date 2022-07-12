@@ -1,6 +1,5 @@
 import axios from "axios";
 import { apis } from "../../shared/api";
-import { setCookie, deleteCookie } from "../../shared/cookie";
 import { BASE_URL } from "../../assets/config";
 
 import jwt_decode from "jwt-decode";
@@ -78,14 +77,36 @@ export const LoginAccount = (user, callback) => {
   };
 };
 
-export const LoginGoogleAccount = () => {
+// export const LoginGoogleAccount = () => {
+//   return async function (dispatch, getState) {
+//     // let code = new URL(window.location.href).searchParams.get("code");
+//     await axios({
+//       method: "get",
+//       url: `${BASE_URL}/api/users/login/google`,
+//     })
+//       .then((res) => {
+//         console.log("google res :", res.data);
+//         const test =
+//           "https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=http://localhost:3000/login-process&client_id=741199557843-ca81auqk6ehf6prl05p9668t47hnfa7u.apps.googleusercontent.com";
+//         window.location.href = test;
+//       })
+//       .catch((err) => {
+//         console.log("google err", err);
+//       });
+//   };
+// };
+
+export const getJwtByGoogleOauth = (code, callback) => {
   return async function (dispatch, getState) {
+    console.log("getJwt!!");
     await axios({
       method: "get",
-      url: `${BASE_URL}/api/users/login/google`,
+      url: `${BASE_URL}/api/login/oauth2/code/google/callback/?code=${code}`,
     })
       .then((res) => {
-        console.log("google res :", res);
+        console.log("get jwt ::", res);
+        localStorage.setItem("jwtToken", res.data);
+        callback();
       })
       .catch((err) => {
         console.log("google err", err);

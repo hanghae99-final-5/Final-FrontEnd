@@ -13,6 +13,7 @@ import Shop from "./pages/Shop";
 import Logout from "./pages/Logout";
 import Notification from "./pages/Notification";
 import Inventory from "./pages/Inventory";
+import LoginProcess from "./pages/LoginProcess";
 
 function App() {
   function setScreenSize() {
@@ -40,6 +41,7 @@ function App() {
               <Route exact path="/logout" element={<Logout />} />
               <Route exact path="/notification" element={<Notification />} />
               <Route exact path="/inventory" element={<Inventory />} />
+              <Route exact path="/login-process" element={<LoginProcess />} />
             </Routes>
           </Setting>
         </div>
