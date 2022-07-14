@@ -36,6 +36,7 @@ function App() {
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/write" element={<Write />} />
+              <Route exact path="/edit/:id" element={<Write />} />
               <Route exact path="/matching" element={<Matching />} />
               <Route exact path="/shop" element={<Shop />} />
               <Route exact path="/logout" element={<Logout />} />
@@ -58,15 +59,17 @@ const Container = styled.div`
   min-height: 100vh;
   display: flex;
   position: relative;
+  background-color: #eee;
   #wrap {
     width: 100%;
     max-width: 360px;
     height: 100%;
     min-height: 100vh;
-    background: gray;
     margin: 0 auto;
     padding: 0 auto;
     position: relative;
+    background: #fff;
+  
   }
 `;
 const Setting = styled.div`

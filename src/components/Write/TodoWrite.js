@@ -1,18 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import "../../styles/radiobtn.css"
 
-const TodoWrite = ({setTodoType,setTodoText}) => {
-
+const TodoWrite = ({setTodoType,setTodoText,todoText,todoType}) => {
+    const todoId = useParams().id;
 
     const clickedMatchingBtn = (e) => {
         console.log(e.target.value);
-        setTodoType(e.target.value)
+        setTodoType(Number(e.target.value))
     }
     const clickedPrivateBtn = (e) => {
         console.log(e.target.value);
-        setTodoType(e.target.value);
+        setTodoType(Number(e.target.value));
     }
+
 
     return(
         <Container>
@@ -22,20 +24,23 @@ const TodoWrite = ({setTodoType,setTodoText}) => {
                 type="radio" 
                 id="option1" 
                 name="todoType" value="2"
+                checked = {todoType === 2}
                 onChange={clickedMatchingBtn}
                 />
-                <label for="option1">Matching</label>
+                <label htmlFor="option1">Matching</label>
                 <input type="radio" 
                 id="option2" 
                 name="todoType" 
                 value="1"
+                checked = {todoType === 1}
                 onChange={clickedPrivateBtn}
                 />
-                <label for="option2" >Private</label>
+                <label htmlFor="option2" >Private</label>
             </ButtonGroup>
             <TodoInput 
             onChange={(e)=>{setTodoText(e.target.value)}} 
-            type="text" 
+            type="text"
+            defaultValue={todoText}
             placeholder="할 일을 적어주세요"/>
         </Container>
     )

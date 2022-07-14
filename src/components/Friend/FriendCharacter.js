@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as characterAction } from "../../redux/modules/characters";
 
-
 const FriendCharacter = () => {
     const dispatch = useDispatch();
-    const friendObj = useSelector(state => state.characters);
+    const friendObj = useSelector(state => state.characters.friendCharacter);
+    console.log("friendObj",friendObj);
 
      const addComma = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -57,7 +57,7 @@ const FriendCharacter = () => {
                 <MoneyBar>
                     <div></div>
                     <div>
-                        {addComma(friendObj.money)}
+                        {friendObj.money}
                     </div>
                 </MoneyBar>
             </div>
