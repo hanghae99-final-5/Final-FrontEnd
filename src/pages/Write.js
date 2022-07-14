@@ -15,7 +15,6 @@ const Write = () => {
 
     //todo 수정 조회 데이터
     const editTodoObj = useSelector(state => state.todo.EditTodo);
-    console.log("editTodoObj:::",editTodoObj);
 
     const [todoType,setTodoType] = useState(null);
     const [todoText,setTodoText] = useState(null);

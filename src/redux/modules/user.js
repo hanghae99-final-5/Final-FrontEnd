@@ -98,13 +98,11 @@ export const LoginAccount = (user, callback) => {
 
 export const getJwtByGoogleOauth = (code, callback) => {
   return async function (dispatch, getState) {
-    console.log("getJwt!!");
     await axios({
       method: "get",
       url: `${BASE_URL}/api/login/oauth2/code/google/callback/?code=${code}`,
     })
       .then((res) => {
-        console.log("get jwt ::", res);
         localStorage.setItem("jwtToken", res.data.authorization);
     
         callback();

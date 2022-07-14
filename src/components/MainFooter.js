@@ -4,17 +4,23 @@ import { useNavigate } from "react-router-dom";
 import shopImg from "../assets/images/icons/footer_shop_24.png";
 import inventoryImg from "../assets/images/icons/footer_inven_24.png";
 import writeImg from "../assets/images/icons/write.png";
+import mypageImg from "../assets/images/icons/footer_my_page_24.png"
+import friendImg from "../assets/images/icons/footer_friend.png"
 
 const MainFooter = () => {
   const navigate = useNavigate();
   return (
     <MainFooterWrap>
       <ButtonGroup onClick={() => navigate("/")}>
-        <Button></Button>
+        <Button>
+          <img src={mypageImg}/>
+        </Button>
         <Text>My page</Text>
       </ButtonGroup>
       <ButtonGroup onClick={() => navigate("/friend")}>
-        <Button></Button>
+        <Button>
+          <img src={friendImg}/>
+        </Button>
         <Text>Friend</Text>
       </ButtonGroup>
       <ButtonGroup>

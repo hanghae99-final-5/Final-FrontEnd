@@ -14,13 +14,10 @@ const WriteHeader = ({todoObj,openErrModal,onConfirm}) => {
 
     
     const createBtn = () => {
-        console.log("todoObj",todoObj);
-        console.log(openErrModal);
         dispatch(todoActions.addTodolistDB(todoObj,(modalText)=>openErrModal(modalText),()=>navigate("/")));
     } 
     const editBtn = () => {
-        console.log("todoObj",todoObj);
-        dispatch(todoActions.editTodolistDB(todoObj,todoId))
+        dispatch(todoActions.editTodolistDB(todoObj,todoId,(modalText)=>openErrModal(modalText),()=>navigate("/")))
     }
 
     return (

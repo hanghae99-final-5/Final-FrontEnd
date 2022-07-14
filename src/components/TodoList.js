@@ -2,6 +2,7 @@ import React ,{useEffect,useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
 import { useNavigate } from "react-router-dom";
+import diffCount from "../element/diffCount";
 
 import styled, { css } from 'styled-components';
 import Modal from "../element/Modal";
@@ -10,13 +11,8 @@ import Modal from "../element/Modal";
 import add from "../assets/images/icons/add.png"
 import add_image from "../assets/images/icons/add_image.png"
 import more_horiz from "../assets/images/icons/more_horiz.png"
-import diffIcon from "../assets/images/icons/leaf_difficulty_16px.png"
 
 
-
-const diffCount = (count) => {
-    return [...Array(count).keys()].map((Icon,idx)=> <DifficultyIcon/>)
-}
 
 const TodoList = () => {
     const dispatch = useDispatch();
@@ -25,7 +21,6 @@ const TodoList = () => {
     //store에서 todo load data 가져오기
     const todoObj = useSelector((state)=>state.todo);
     const todosList = useSelector(state=>state.todo.todo.todos)
-    console.log("todosList::",todosList)
     //modal 상태관리
         //사진인증
     const [proofModal,setProofModal] = useState(false);
@@ -45,12 +40,10 @@ const TodoList = () => {
         setClickedTodoId(e.target.getAttribute("value"));
        };
     const onCancel = () => {
-        console.log("취소");
         setDetailModal(false);
         setProofModal(false);
     }
     const onUpdate = () => {
-        console.log("수정");
         navigate("/edit/"+clickedTodoId)
         setDetailModal(false);
         setProofModal(false);
@@ -164,6 +157,9 @@ const TodoListContainer = styled.div`
     justify-content: flex-start;
     position: fixed;
     top: 174px;
+    ::-webkit-scrollbar {
+    display: none;
+    }
 `;
 const TodoListContext = styled.div`
 
@@ -271,9 +267,4 @@ const TodoDetailBox = styled.div`
             height: 24px;
         }
     }
-`;
-const DifficultyIcon = styled.div`
-    width: 16px;
-    height: 16px;
-    background-image: url( ${diffIcon} );
 `;

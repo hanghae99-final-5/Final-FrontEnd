@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as todoAction } from "../redux/modules/todo";
 import editIcon from "../assets/images/icons/edit_24.png"
 import deleteIcon from "../assets/images/icons/delete_24.png"
+import closeIcon from "../assets/images/icons/close_24.png"
+import proofIcon from "../assets/images/icons/proof_24.png"
 
 const DarkBackground = styled.div`
   position: fixed;
@@ -36,6 +38,7 @@ const ModalCancel = styled.div`
   height: 24px;
   background: #c2c2c2;
   font-size: 12px;
+  cursor: pointer;
 `;
 
 const ModalBox = styled.div`
@@ -71,7 +74,7 @@ const ButtonGroup = styled.div`
 const Icon = styled.div`
   width: 24px;
   height: 24px;
-  background-image: url();
+  cursor: pointer;
 `;
 
 //사진인증 이미지 박스
@@ -82,6 +85,7 @@ const ImgDiv = styled.div`
   max-width: 250px;
   height: 250px;
   border: 1px solid;
+  cursor: pointer;
 
   & > img {
     max-width: 250px;
@@ -144,7 +148,7 @@ function Modal({
               setImgSrc(null);
             }}
           >
-            취소
+            <img src={closeIcon}/>
           </ModalCancel>
         </ModalTitle>
 
@@ -200,7 +204,9 @@ function Modal({
                   onProof();
                   setImgSrc(null);
                 }}
-              ></Icon>
+              >
+                <img src={proofIcon}/>
+              </Icon>
               {proofText}
             </div>
           </ButtonGroup>

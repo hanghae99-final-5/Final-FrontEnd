@@ -12,9 +12,14 @@ import NoDataPage from "../components/Matching/NoDataPage";
 const FriendMain = () => {
     const dispatch = useDispatch();
     const friendObj = useSelector(state=>state.characters.friendCharacter);
+    const member = useSelector(state=>state.todo.friendTodo.member);
+    let memberId = null
+    if(member !== undefined){
+         memberId = member[0].partnerId
+    }
+
     //matching상태로 friend페이지 뷰 다르게 보여주기 
     const isMatching =friendObj.matchingState;
-    console.log(isMatching);
 
 
     const [modal,setModal] = useState(false);
@@ -23,7 +28,8 @@ const FriendMain = () => {
     }
     const onConfirm = () => {
         //프렌즈 메인에도 멤버아이디 줘야함
-        dispatch(matchingAction.matchingCancleDB())
+
+        dispatch(matchingAction.matchingCancleDB(memberId))
         setModal(false);
     }
     const onCancel = () => {
@@ -31,7 +37,7 @@ const FriendMain = () => {
     }
     return(
         <>
-        {isMatching === undefined ? 
+        {isMatching === false ? 
             <>
                 <FriendMainHeader openModal={openModal}/>
                 <NoDataPage/>

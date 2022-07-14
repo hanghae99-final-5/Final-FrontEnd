@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 import heart from "../assets/images/icons/heart.png";
 import search from "../assets/images/icons/search.png";
-import logout from "../assets/images/icons/인증하기_24.png";
+import logout from "../assets/images/icons/logout_24.png";
+import logo from "../assets/images/logos/logo.png";
 
 const MainHeader = ({ headerName, headerImg }) => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const MainHeader = ({ headerName, headerImg }) => {
         <NicknameDiv>{headerName}</NicknameDiv>
       ) : (
         <HeaderIconDiv>
-          <HeaderIconImg src={headerImg} />
+          <HeaderIconImg src={logo} />
         </HeaderIconDiv>
       )}
 
@@ -43,6 +44,7 @@ const MainHeaderWrap = styled.nav`
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid ${props=>props.theme.gray4}
 `;
 const HeaderIconDiv = styled.div`
   width: 186px;
@@ -54,6 +56,7 @@ const HeaderIconDiv = styled.div`
 
 const HeaderIconImg = styled.img`
   width: 47px;
+  cursor: pointer;
 `;
 const NicknameDiv = styled.div`
   width: 186px;
@@ -72,5 +75,7 @@ const NavDiv = styled.div`
   div {
     width: 24px;
     height: 24px;
+    cursor: pointer;
   }
+ 
 `;

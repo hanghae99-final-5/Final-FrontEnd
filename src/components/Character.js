@@ -9,7 +9,6 @@ import coin from "../assets/images/icons/coin_24.png"
 const Character = () => {
     const dispatch = useDispatch();
     const characterObj = useSelector(state => state.characters.character)
-    console.log("characterObj",characterObj);
 
      //금액을 콤마로 구분해줄 함수
      const addComma = (num) => {
@@ -69,7 +68,7 @@ const Character = () => {
                 <MoneyBar>
                     <div></div>
                     <div>
-                        {characterObj.money}
+                        {addComma(characterObj.money)}
                     </div>
                 </MoneyBar>
             </div>
