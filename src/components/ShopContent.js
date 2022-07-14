@@ -14,61 +14,79 @@ const ShopContent = () => {
   const navigate = useNavigate();
   const { items, inventories } = useSelector((state) => state.shop);
 
+  const inventoryItems = inventories ? inventories.map((x) => x.itemId) : null;
+
   const categoryObj = {
     HAIR: "Hair",
     CLOTH: "Top",
     ACCESSORY: "Accessory",
   };
-  //모달 상태관리 
-  const [modal,setModal] = useState(false);
-  const [selectedId,setSelectedId] = useState(null);
-    const openModal = (e) => {
-        setModal(true);
-        setSelectedId(e.target.getAttribute("value"))
+  //모달 상태관리
+  const [modal, setModal] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+  const openModal = (e) => {
+    if (inventoryItems.includes(Number(e.target.getAttribute("value")))) {
+      return;
     }
-    const onConfirm = () => {
-        dispatch(shopAction.buyItemsMiddleware(selectedId))
-        setModal(false);
-    }
-    const onCancel = () => {
-      setModal(false);
-    }
-
+    setModal(true);
+    setSelectedId(e.target.getAttribute("value"));
+  };
+  const onConfirm = () => {
+    dispatch(shopAction.buyItemsMiddleware(selectedId));
+    setModal(false);
+  };
+  const onCancel = () => {
+    setModal(false);
+  };
 
   useEffect(() => {
     dispatch(shopAction.getItemsMiddleware(() => navigate("/login")));
   }, []);
   return (
     <ShopContentContainer>
-      <CommonModal 
-            title={"notice"}
-            visible={modal}
-            modalText={"정말 구입하시겠습니까?"}
-            onConfirm={onConfirm}
-            onCancel={onCancel}
-            confirmText="구입하기"
-            />
+      <CommonModal
+        title={"notice"}
+        visible={modal}
+        modalText={"정말 구입하시겠습니까?"}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        confirmText="구입하기"
+        style={{ opacity: 1 }}
+      />
       {Object.entries(categoryObj).map((category) => {
         return (
           <div key={category[1]}>
             <ItemCategory>
               <CategoryDiv>{category[1]}</CategoryDiv>
             </ItemCategory>
-            <InventoryBoxWrapper >
+            <InventoryBoxWrapper>
               {items
                 ? items
                     .filter((item) => item.category === category[0])
                     .map((item) => {
                       return (
-                        <InventoryBox key={item.itemId} onClick={openModal}>
-                          <ShopItemBox img={item.viewImg} value={item.itemId}/>
-                          <ExpenseBox value={item.itemId}>
-                            <CoinIcon value={item.itemId}>
-                              <img src={coinIconPng} value={item.itemId}/>
-                            </CoinIcon>
-                            <CoinValueDiv value={item.itemId}>{item.price}</CoinValueDiv>
-                          </ExpenseBox>
-                        </InventoryBox>
+                        <>
+                          {inventoryItems.includes(item.itemId) ? null : (
+                            <InventoryBox
+                              key={item.itemId}
+                              value={item.itemId}
+                              onClick={openModal}
+                            >
+                              <ShopItemBox
+                                img={item.viewImg}
+                                value={item.itemId}
+                              />
+                              <ExpenseBox value={item.itemId}>
+                                <CoinIcon value={item.itemId}>
+                                  <img src={coinIconPng} value={item.itemId} />
+                                </CoinIcon>
+                                <CoinValueDiv value={item.itemId}>
+                                  {item.price}
+                                </CoinValueDiv>
+                              </ExpenseBox>
+                            </InventoryBox>
+                          )}
+                        </>
                       );
                     })
                 : null}
