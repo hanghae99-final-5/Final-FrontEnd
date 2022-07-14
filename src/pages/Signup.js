@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
-  FirstWrap,
+  FirstPageWrapper,
   LOGO,
   FirstButtonWrap,
   SignupButtonWrap,
@@ -35,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <FirstWrap>
+    <FirstPageWrapper>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>
@@ -58,7 +58,7 @@ const Signup = () => {
           <span>회원가입</span>
         </button>
       </FirstButtonWrap>
-    </FirstWrap>
+    </FirstPageWrapper>
   );
 };
 

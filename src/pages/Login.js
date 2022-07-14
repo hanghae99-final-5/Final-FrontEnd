@@ -1,15 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { BASE_URL } from "../assets/config";
+
 import {
-  FirstWrap,
+  FirstPageWrapper,
   LOGO,
   FirstButtonWrap,
   SignupButtonWrap,
 } from "../components/FirstPageCSS";
 import { useDispatch } from "react-redux";
-import { LoginAccount, LoginGoogleAccount } from "../redux/modules/user";
+import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -41,19 +39,15 @@ const Login = () => {
   };
 
   return (
-    <FirstWrap>
+    <FirstPageWrapper>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
+        <input type="text" placeholder="아이디" ref={idInputRef}></input>
         <input
           type="text"
-          placeholder="아이디를 입력하세요"
-          ref={idInputRef}
-        ></input>
-        <input
-          type="text"
-          placeholder="비밀번호를 입력하세요"
+          placeholder="비밀번호"
           ref={passwordInputRef}
         ></input>
       </SignupButtonWrap>
@@ -65,7 +59,7 @@ const Login = () => {
           <span>Google 계정으로 로그인</span>
         </button>
       </FirstButtonWrap>
-    </FirstWrap>
+    </FirstPageWrapper>
   );
 };
 
