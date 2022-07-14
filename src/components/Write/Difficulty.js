@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { DifficultyItemBox } from "../../element/ItemBox";
 import difficulty1 from "../../assets/images/icons/01_create_page_difficulty_52.png";
@@ -7,35 +7,38 @@ import difficulty3 from "../../assets/images/icons/03_create_page_difficulty_52.
 import difficulty4 from "../../assets/images/icons/04_create_page_difficulty_52.png";
 import coin from "../../assets/images/icons/coin_24.png";
 
-const Difficulty = ({ setDiff,diff }) => {
-  const difficultyList = ["Easy", "Normal", "Hard", "Hard Core"];
-  const difficultyIconList = [
-    difficulty1,
-    difficulty2,
-    difficulty3,
-    difficulty4,
+const Difficulty = ({ setDiff, diff, todoType }) => {
+  const difficultyList = [
+    { name: "Easy", coin: 10, exp: 5, icon: difficulty1 },
+    { name: "Normal", coin: 20, exp: 10, icon: difficulty2 },
+    { name: "Hard", coin: 30, exp: 15, icon: difficulty3 },
+    { name: "Hard Core", coin: 40, exp: 20, icon: difficulty4 },
   ];
+
   return (
     <Container>
       <div>Difficulty</div>
-      <RewardInfoDiv>
-        <span>EXP 10 </span>
-        <img src={coin} style={{ "verticalAlign": "top" }} />
-        <span> 10</span>
-      </RewardInfoDiv>
+      {todoType === 2 && diff ? (
+        <RewardInfoDiv>
+          <span>EXP {difficultyList[diff - 1].exp} </span>
+          <img src={coin} style={{ verticalAlign: "top" }} />
+          <span> {difficultyList[diff - 1].coin}</span>
+        </RewardInfoDiv>
+      ) : null}
       <div className="wrap">
-        {difficultyList.map((difficulty, idx) => {
+        {difficultyList.map((difficultyObj, idx) => {
           return (
-            <div key = {idx}
+            <div
+              key={idx}
               onClick={() => {
                 setDiff(idx + 1);
               }}
             >
               <DifficultyItemBox
-                img={difficultyIconList[idx]}
-                selected={diff-1 === idx}
+                img={difficultyObj.icon}
+                selected={diff - 1 === idx}
               />
-              <TextDiv>{difficulty}</TextDiv>
+              <TextDiv>{difficultyObj.name}</TextDiv>
             </div>
           );
         })}

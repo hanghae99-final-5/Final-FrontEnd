@@ -8,7 +8,6 @@ const LoginProcess = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("code");
-    console.log("code ::", code);
     dispatch(getJwtByGoogleOauth(code, () => navigate("/")));
   }, []);
   return <div>승인요청중</div>;
