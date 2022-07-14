@@ -30,6 +30,7 @@ const DateRange = ({startDate,setStartDate,endDate,setEndDate}) => {
 
         <Container>
             <div>Date</div>
+            <p>날짜는 수정할 수 없으니 신중히 골라주세요!</p>
             <div className="wrap">
                 
                     <DatePicker
@@ -76,6 +77,11 @@ const Container = styled.div`
         font-weight: 400;
         font-size: 16px;
         padding: 0 0 12px 0;
+    }
+    p {
+        font-size: 10px;
+        padding: 0 0 12px 0;
+        color: ${props => props.theme.gray2};
     }
     .wrap {
         display: flex;

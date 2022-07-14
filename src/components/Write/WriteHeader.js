@@ -1,22 +1,27 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as todoActions } from "../../redux/modules/todo"
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
 import styled from "styled-components";
 import backArrow from "../../assets/images/icons/back_arrow_24.png"
 import Button from "../../element/Button";
 
 const WriteHeader = ({todoObj,openErrModal,onConfirm}) => {
+    const todoId = useParams().id;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    
     const createBtn = () => {
         console.log("todoObj",todoObj);
         console.log(openErrModal);
         dispatch(todoActions.addTodolistDB(todoObj,(modalText)=>openErrModal(modalText),()=>navigate("/")));
     } 
-
+    const editBtn = () => {
+        console.log("todoObj",todoObj);
+        dispatch(todoActions.editTodolistDB(todoObj,todoId))
+    }
 
     return (
         <MainHeaderWrap>
@@ -24,15 +29,31 @@ const WriteHeader = ({todoObj,openErrModal,onConfirm}) => {
                 <BackDiv onClick={()=>navigate(-1)}>
                     <img src={backArrow}/>
                 </BackDiv>
+                {todoId? 
+                <NicknameDiv>Edit To Do</NicknameDiv>
+                :
                 <NicknameDiv>Create To Do</NicknameDiv>
+                }
             </Wrapper>
             <NavDiv>
                 <div>
+                    {todoId?
+                    <Button 
+                    color="EXPColor"
+                    size="small"
+                    onClick={editBtn}
+                    >
+                        <p>Edit</p>
+                    </Button>
+                    :
                     <Button 
                     color="EXPColor"
                     size="small"
                     onClick={createBtn}
-                    ><p>Create</p></Button>
+                    >
+                        <p>Create</p>
+                    </Button>
+                    }
                 </div>
             </NavDiv>
         </MainHeaderWrap>

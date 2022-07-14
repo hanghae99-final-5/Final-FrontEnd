@@ -12,10 +12,13 @@ const GET_CHARACTER = "GET_CHARACTER";
 const GET_FRIEND_CHARACTER = "GET_FRIEND_CHARACTER";
 //action creater
 const getCharacter = createAction(GET_CHARACTER, (character) => ({character}));
-const getFriendCharacter = createAction(GET_FRIEND_CHARACTER, (character) => ({character}));
+const getFriendCharacter = createAction(GET_FRIEND_CHARACTER, (friendCharacter) => ({friendCharacter}));
 
-//initail state
-const initailState = {}
+//initial state
+const initialState = {
+    character:{},
+    friendCharacter:{}
+}
 
 //middlewares
 const getCharacterDB = () => {
@@ -36,6 +39,7 @@ const getCharacterDB = () => {
 }
 const getFriendCharacterDB = () => {
     return async function (dispatch, getState) {
+        console.log("ddddd");
         await axios({
             method: "get",
             url: `${BASE_URL}/api/characters/partners`,
@@ -54,16 +58,17 @@ const getFriendCharacterDB = () => {
 //reducer
 export default handleActions(
     {
-        [GET_CHARACTER]:(state,action) => {
-            console.log("character reducer:::" ,action)
-            return action.payload.character
-        },
-        [GET_FRIEND_CHARACTER]:(state,action) => {
-            console.log("Friend character reducer:::" ,action)
-            return action.payload.character
-        }
+        [GET_CHARACTER]:(state,action) => 
+            produce(state,(draft)=>{
+                draft.character = action.payload.character
+            })
+        ,
+        [GET_FRIEND_CHARACTER]:(state,action) => 
+            produce(state,(draft)=>{
+                draft.friendCharacter = action.payload.friendCharacter
+            })
     },
-    initailState
+    initialState
 )
 
 const actionCreators = {

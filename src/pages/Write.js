@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {useDispatch,useSelector} from "react-redux"
+import { actionCreators as todoAction } from "../redux/modules/todo";
 import styled from "styled-components";
 import DateRange from "../components/Write/DateRange";
 import Difficulty from "../components/Write/Difficulty";
@@ -7,6 +10,13 @@ import WriteHeader from "../components/Write/WriteHeader";
 import CommonModal from "../element/CommonModal";
 
 const Write = () => {
+    const dispatch = useDispatch();
+    const todoId = useParams().id;
+
+    //todo 수정 조회 데이터
+    const editTodoObj = useSelector(state => state.todo.EditTodo);
+    console.log("editTodoObj:::",editTodoObj);
+
     const [todoType,setTodoType] = useState(null);
     const [todoText,setTodoText] = useState(null);
     const [diff,setDiff] = useState(null);
@@ -20,7 +30,6 @@ const Write = () => {
     const [modal,setModal] = useState(false);
     const [modalText,setModalText] = useState(null);
     const openErrModal = (modalText) => {
-        console.log("들어왔는지")
         setModal(true);
         setModalText(modalText)
     }
@@ -28,6 +37,20 @@ const Write = () => {
         setModal(false);
     }
 
+    useEffect(()=>{
+        {todoId &&
+        dispatch(todoAction.getEditTodolistDB(todoId))
+        }
+    },[]) 
+    useEffect(()=>{
+        setTodoType(editTodoObj.todoType)
+        setTodoText(editTodoObj.content)
+        setDiff(editTodoObj.difficulty)
+    },[editTodoObj])
+
+    
+
+    if (Object.keys(editTodoObj).length === 0 && todoId) return null; 
     return(
         <>
         <WriteContainer>
@@ -43,14 +66,22 @@ const Write = () => {
             openErrModal = {openErrModal}
             onConfirm = {onConfirm}
             />
-            <TodoWrite setTodoType={setTodoType} setTodoText={setTodoText}/>
-            <Difficulty setDiff={setDiff}/>
+            <TodoWrite 
+            setTodoType={setTodoType} 
+            setTodoText={setTodoText}
+            todoText={todoText}
+            todoType={todoType}
+            />
+            <Difficulty setDiff={setDiff} diff={diff}/>
+            {/* 수정페이지에서는 DATE수정불가 */}
+            {!todoId &&
             <DateRange 
             startDate={startDate} 
             setStartDate={setStartDate} 
             endDate={endDate}
             setEndDate={setEndDate} 
             />
+            }
         </WriteContainer>
         </>
     )

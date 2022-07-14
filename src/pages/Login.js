@@ -35,8 +35,6 @@ const Login = () => {
   };
 
   const onClickGoogleLogin = (e) => {
-    // e.preventDefault();
-    console.log("env :", process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID);
     const ClientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
     console.log("Cli::", ClientId);
     const redirectUri = "http://localhost:3000/login-process";

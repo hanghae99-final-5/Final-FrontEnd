@@ -1,6 +1,7 @@
 import React ,{useEffect,useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { actionCreators as todoActions } from "../redux/modules/todo";
+import { useNavigate } from "react-router-dom";
 
 import styled, { css } from 'styled-components';
 import Modal from "../element/Modal";
@@ -12,16 +13,18 @@ import more_horiz from "../assets/images/icons/more_horiz.png"
 import diffIcon from "../assets/images/icons/leaf_difficulty_16px.png"
 
 
+
 const diffCount = (count) => {
     return [...Array(count).keys()].map((Icon,idx)=> <DifficultyIcon/>)
 }
 
 const TodoList = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     //store에서 todo load data 가져오기
     const todoObj = useSelector((state)=>state.todo);
-    const todosList = useSelector(state=>state.todo.todos)
+    const todosList = useSelector(state=>state.todo.todo.todos)
     console.log("todosList::",todosList)
     //modal 상태관리
         //사진인증
@@ -36,10 +39,9 @@ const TodoList = () => {
           //상세보기
     const [detailModal,setDetailModal] = useState(false);
     const [clickedTodoId,setClickedTodoId] = useState(null);
-    
+
     const clickedDetailBtn = (e) => {
         setDetailModal(true);
-        console.log(e.target.getAttribute("value"));
         setClickedTodoId(e.target.getAttribute("value"));
        };
     const onCancel = () => {
@@ -49,20 +51,19 @@ const TodoList = () => {
     }
     const onUpdate = () => {
         console.log("수정");
+        navigate("/edit/"+clickedTodoId)
         setDetailModal(false);
         setProofModal(false);
     }
     const onProof = () => {
-        console.log("사진인증");
         setDetailModal(false);
         setProofModal(false);
 
     }
     const ondelete = (e) => {
-        console.log("삭제");
+        dispatch(todoActions.deleteTodolistDB(clickedTodoId));
         setDetailModal(false);
         setProofModal(false);
-        dispatch(todoActions.deleteTodolistDB(clickedTodoId));
     }
 
     useEffect(() => {

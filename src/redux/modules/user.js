@@ -105,16 +105,15 @@ export const getJwtByGoogleOauth = (code, callback) => {
     })
       .then((res) => {
         console.log("get jwt ::", res);
-        localStorage.setItem("jwtToken", res.data);
+        localStorage.setItem("jwtToken", res.data.authorization);
+    
         callback();
       })
       .catch((err) => {
         console.log("google err", err);
       });
   };
-  // return function (dispatch, getState) {
-  //   return "https://accounts.google.com/o/oauth2/v2/auth?scope=profile%20email&response_type=code&redirect_uri=http://localhost:8080/api/login/oauth2/code/google/callback&client_id=741199557843-ca81auqk6ehf6prl05p9668t47hnfa7u.apps.googleusercontent.com";
-  // };
+  
 };
 
 // Reducer

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as todoAction } from "../redux/modules/todo";
-import { render } from "react-dom";
+import editIcon from "../assets/images/icons/edit_24.png"
+import deleteIcon from "../assets/images/icons/delete_24.png"
 
 const DarkBackground = styled.div`
   position: fixed;
@@ -70,7 +71,7 @@ const ButtonGroup = styled.div`
 const Icon = styled.div`
   width: 24px;
   height: 24px;
-  background: #d9d9d9;
+  background-image: url();
 `;
 
 //사진인증 이미지 박스
@@ -173,12 +174,16 @@ function Modal({
         {!isProof ? (
           <ButtonGroup>
             <div>
-              <Icon onClick={onUpdate}></Icon>
+              <Icon onClick={onUpdate}>
+                <img src={editIcon}/>
+              </Icon>
               {udtText}
             </div>
 
             <div>
-              <Icon onClick={ondelete}></Icon>
+              <Icon onClick={ondelete}>
+                <img src={deleteIcon}/>
+              </Icon>
               {deleteText}
             </div>
           </ButtonGroup>
