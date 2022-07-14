@@ -31,12 +31,8 @@ const getSearchedUserDB = (username,callback) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('matching user조회 미들웨어::',res.data);
                 dispatch(getSearchedUser(res.data))
             }).catch((err)=>{
-                console.log("matching user조회 err::",err);
-                console.log(err.response.data);
-                console.log(callback);
                 const errMsg = err.response.data.message
                 // errMsg === "이메일 형식이 아닙니다." && alert("이메일 형식이 아닙니다.") 
                 // errMsg === "검색한 유저가 존재하지 않습니다." && alert("검색한 유저가 존재하지 않습니다.")
@@ -48,7 +44,6 @@ const getSearchedUserDB = (username,callback) => {
 }
 const matchingInvitationDB = (memberId) => {
     return async function (dispatch, getState) {
-        console.log(memberId);
         await axios({
             method: "post",
             url: `${BASE_URL}/api/users/invitation/${memberId}`,
@@ -56,7 +51,6 @@ const matchingInvitationDB = (memberId) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('matching 초대 미들웨어::',res.data);
                 // dispatch(matchingInvitation(res.data))
             }).catch((err)=>{
                 console.log("matching 초대 err::",err);
@@ -65,7 +59,6 @@ const matchingInvitationDB = (memberId) => {
 }
 const matchingCancleDB = (memberId) => {
     return async function (dispatch, getState) {
-        console.log(memberId);
         await axios({
             method: "patch",
             url: `${BASE_URL}/api/users/cancel/${memberId}`,
@@ -73,7 +66,6 @@ const matchingCancleDB = (memberId) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('matching 취소 미들웨어::',res.data);
                 dispatch(matchingInvitation(res.data))
             }).catch((err)=>{
                 console.log("matching 취소 err::",err);
@@ -85,7 +77,6 @@ const matchingCancleDB = (memberId) => {
 export default handleActions(
     {
         [GET_SEARCHED_USER]:(state,action) => {
-            console.log("search user reducer:::",action);
             return action.payload.searchedUser;
         },
        

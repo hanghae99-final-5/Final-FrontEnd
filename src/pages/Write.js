@@ -13,9 +13,8 @@ const Write = () => {
   const dispatch = useDispatch();
   const todoId = useParams().id;
 
-  //todo 수정 조회 데이터
-  const editTodoObj = useSelector((state) => state.todo.EditTodo);
-  console.log("editTodoObj:::", editTodoObj);
+    //todo 수정 조회 데이터
+    const editTodoObj = useSelector(state => state.todo.EditTodo);
 
   const [todoType, setTodoType] = useState(null);
   const [todoText, setTodoText] = useState(null);

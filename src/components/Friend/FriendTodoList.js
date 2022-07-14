@@ -7,17 +7,16 @@ import CommonModal from "../../element/CommonModal";
 //icons
 import add from "../../assets/images/icons/add.png"
 import check from "../../assets/images/icons/check.png"
+import diffCount from "../../element/diffCount";
 
 const FriendTodoList = () => {
     const dispatch = useDispatch();
     
     // friend store에서 member배열만
-    const memberStateList = useSelector(state=>state.todo.member);
+    const memberStateList = useSelector(state=>state.todo.friendTodo.member);
     //todos배열만
-    const todosList = useSelector(state=>state.todo.todos);
+    const todosList = useSelector(state=>state.todo.friendTodo.todos);
 
-    console.log("friend memberStateList:::",memberStateList);
-    console.log("friend todosList:::",todosList);
 
      //modal 상태관리
         //사진인증
@@ -38,7 +37,6 @@ const FriendTodoList = () => {
     const onCancel = () => {
         setModal(false)
     }
-    
 
     useEffect(() => {
         dispatch(todoActions.getFriendTodolistDB())
@@ -62,10 +60,7 @@ const FriendTodoList = () => {
                     <TodoDetailBox>
                         <DetailBoxDiv1>
                             <div>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
-                                <DifficultyIcon/>
+                            {diffCount(todo.difficulty)}
                             </div>
                             <div>{todo.content}</div>
                             <div>{todo.startDate} - {todo.endDate}</div>

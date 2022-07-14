@@ -7,11 +7,9 @@ const TodoWrite = ({setTodoType,setTodoText,todoText,todoType}) => {
     const todoId = useParams().id;
 
     const clickedMatchingBtn = (e) => {
-        console.log(e.target.value);
         setTodoType(Number(e.target.value))
     }
     const clickedPrivateBtn = (e) => {
-        console.log(e.target.value);
         setTodoType(Number(e.target.value));
     }
 

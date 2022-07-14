@@ -13,15 +13,12 @@ import NoDataPage from "./NoDataPage";
 
 const SearchedUser = ({inputRef}) => {
     const dispatch = useDispatch();
-    console.log("inputRef:::",inputRef.current?.value)
     const searchedUser = useSelector(state => state.matching);
-    console.log(searchedUser);
 
     //토큰에서 유저 아이디 받아오기
     const token = localStorage.getItem("jwtToken")
     const decodedToken = jwt_decode(token);
     const userName = decodedToken.username;
-    console.log(userName);
 
 
     if (Object.keys(searchedUser).length === 0 ) 

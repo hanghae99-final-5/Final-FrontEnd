@@ -22,7 +22,7 @@ const getEditTodolist = createAction(GET_EDIT_TODOLIST,(todo)=>({todo}))
 //initail state
 const initailState = {
     todo:{},
-    friendTo:{},
+    friendTodo:{},
     EditTodo:{},
 }
 
@@ -36,7 +36,6 @@ const getTodolistDB =  () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             }
             }).then((res)=> {
-                console.log('Todolist조회미들웨어::',res.data);
                 dispatch(getTodolist(res.data))
             }).catch((err)=>{
                 console.log("Todolist조회err::",err);
@@ -46,14 +45,6 @@ const getTodolistDB =  () => {
 }
 const addTodolistDB = (todoObj,modalCallback,navigate) => {
     return async function(dispatch,getState){
-        console.log("callback",modalCallback)
-        // console.log("addtodo",{
-        //     "content" : todoObj.todoText,
-        //     "startDate" : todoObj.convertedStartDate,
-        //     "endDate" : todoObj.convertedEndDate,
-        //     "difficulty" : todoObj.diff,
-        //     "todoType" : Number(todoObj.todoType)
-        // })
         await axios({
             method: "post",
             url: `${BASE_URL}/api/todos`,
@@ -70,9 +61,7 @@ const addTodolistDB = (todoObj,modalCallback,navigate) => {
             }).then((res)=> {
                 dispatch(getTodolistDB());
                 navigate();
-                console.log('Todolist추가미들웨어::',res.data);
                 
-                // dispatch(addTodolist(res.data))
             }).catch((err)=>{
                 console.log("Todolist추가err::",err);
                 const errMsg = err.response.data.message
@@ -80,13 +69,8 @@ const addTodolistDB = (todoObj,modalCallback,navigate) => {
             })
     }
 }
-const editTodolistDB = (todoObj,todoId) => {
+const editTodolistDB = (todoObj,todoId,modalCallback,navigate) => {
     return async function(dispatch,getState){
-        console.log("edittodo",{
-            "content" : todoObj.todoText,
-            "difficulty" : todoObj.diff,
-            "todoType" : Number(todoObj.todoType)
-        })
         await axios({
             method: "patch",
             url: `${BASE_URL}/api/todos/${todoId}`,
@@ -100,12 +84,12 @@ const editTodolistDB = (todoObj,todoId) => {
             },
             }).then((res)=> {
                 dispatch(getTodolistDB());
-                console.log('Todolist수정미들웨어::',res.data);
+                navigate();
                 
-                // dispatch(addTodolist(res.data))
             }).catch((err)=>{
                 console.log("Todolist수정err::",err);
-                
+                const errMsg = err.response.data.message
+                modalCallback(errMsg);
             })
     }
 }
@@ -119,7 +103,6 @@ const deleteTodolistDB = (todoId) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('Todolist삭제미들웨어::',res.data);
                 dispatch(deleteTodolist(todoId));
             }).catch((err)=>{
                 console.log("Todolist삭제err::",err);
@@ -128,7 +111,6 @@ const deleteTodolistDB = (todoId) => {
 }
 const completeTodolistDB = (todoId) => {
     return async function(dispatch,getState) {
-        console.log(todoId);
         await axios({
             method: "patch",
             url: `${BASE_URL}/api/todos/completion/${todoId}`,
@@ -136,7 +118,6 @@ const completeTodolistDB = (todoId) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('Todolist완료미들웨어::',res.data);
                 dispatch(characterAction.getCharacterDB());
                 dispatch(getTodolistDB());
                 
@@ -155,7 +136,6 @@ const getFriendTodolistDB = () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             }
             }).then((res)=> {
-                console.log('Friend Todolist조회미들웨어::',res.data);
                 dispatch(getFriendTodolist(res.data))
             }).catch((err)=>{
                 console.log("Friend Todolist조회err::",err);
@@ -164,7 +144,6 @@ const getFriendTodolistDB = () => {
 }
 const ProofImgUploadDB = (img,todoId) => {
     return async function(dispatch, getState){
-        console.log(img,todoId);
         const formData = new FormData();
         formData.append("proofImg",img);
         // for (let [key, value] of formData.entries()) {
@@ -179,7 +158,6 @@ const ProofImgUploadDB = (img,todoId) => {
             'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
         },
         }).then((res)=> {
-            console.log("proof img업로드 성공 res.data::",res.data)
             dispatch(getTodolistDB())
         }).catch((err)=>{
             console.log("proof img업로드 err::",err);
@@ -188,7 +166,6 @@ const ProofImgUploadDB = (img,todoId) => {
 }
 const ConfirmProofImg = (todoId) => {
     return async function(dispatch, getState){
-        console.log(todoId);
         await axios({
             method: "patch",
             url: `${BASE_URL}/api/todos/confirm/${todoId}`,
@@ -196,7 +173,6 @@ const ConfirmProofImg = (todoId) => {
                 'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
             },
             }).then((res)=> {
-                console.log("proof Img 인증요청 성공 res.data::",res.data)
                 dispatch(getFriendTodolistDB());
             }).catch((err)=>{
                 console.log("proof Img 인증요청 err::",err);
@@ -205,7 +181,6 @@ const ConfirmProofImg = (todoId) => {
 }
 const getEditTodolistDB = (todoId) => {
     return async function(dispatch, getState){
-        console.log(todoId);
         await axios({
             method: "get",
             url: `${BASE_URL}/api/todos/${todoId}`,
@@ -213,7 +188,6 @@ const getEditTodolistDB = (todoId) => {
                 'Authorization': "Bearer " + localStorage.getItem("jwtToken") ,
             },
             }).then((res)=> {
-                console.log("get editTotolist res.data::",res.data)
                 dispatch(getEditTodolist(res.data))
             }).catch((err)=>{
                 console.log("get editTotolist err::",err);
@@ -228,13 +202,11 @@ export default handleActions(
         //처음 투두리스트 조회
         [GET_TODOLIST]:(state,action) => 
             produce(state,(draft)=>{
-                console.log("GET_TODOLIST reducer:::", state,action);
                 draft.todo = action.payload.todo
             })
         ,
         [DELETE_TODOLIST]:(state,action) => 
             produce(state,(draft)=>{
-                console.log(state);
                 const newTodos =  state.todo.todos.filter((todo,idx)=>{
                     return todo.todoId !== parseInt(action.payload.todoId)
                 })
@@ -243,12 +215,11 @@ export default handleActions(
         //friend depth 수정하기
         [GET_FRIEND_TODOLIST]:(state,action) => 
             produce(state,(draft)=>{
-                console.log("GET_FRIEND_TODOLIST reducer:::",action) 
+                draft.friendTodo = action.payload.todo
             })
         ,
         [GET_EDIT_TODOLIST]:(state,action) => 
             produce(state,(draft)=>{
-                console.log(state,action);
                 draft.EditTodo = action.payload.todo
             })
     },

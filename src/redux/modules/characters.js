@@ -30,7 +30,6 @@ const getCharacterDB = () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('character조회미들웨어::',res.data);
                 dispatch(getCharacter(res.data))
             }).catch((err)=>{
                 console.log("character조회err::",err);
@@ -39,7 +38,6 @@ const getCharacterDB = () => {
 }
 const getFriendCharacterDB = () => {
     return async function (dispatch, getState) {
-        console.log("ddddd");
         await axios({
             method: "get",
             url: `${BASE_URL}/api/characters/partners`,
@@ -47,9 +45,9 @@ const getFriendCharacterDB = () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('Friendcharacter조회미들웨어::',res.data);
                 dispatch(getFriendCharacter(res.data));
             }).catch((err)=>{
+                dispatch(getFriendCharacter({matchingState:false}))
                 console.log("Friendcharacter조회err::",err);
             })
     }

@@ -10,7 +10,6 @@ const NotificationList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const notificationList = useSelector(state => state.notification);
-    console.log(notificationList);
     
 
     useEffect(()=>{

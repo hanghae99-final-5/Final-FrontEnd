@@ -25,7 +25,6 @@ const getNotificationDB = () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
             }).then((res)=> {
-                console.log('알람조회 미들웨어::',res.data);
                 dispatch(getNotification(res.data));
             }).catch((err)=>{
                 console.log("알람 조회 err::",err);
@@ -44,11 +43,9 @@ const deleteNotificationDB = () => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
         }).then((res) => {
-            console.log('알람삭제 미들웨어::',res.data);
             dispatch(getNotificationDB());
         }).catch((err) => {
             console.log("알람 삭제 err::",err);
-            console.log(err.response.data);
             const errMsg = err.response.data
         })
     }
@@ -63,11 +60,9 @@ const acceptMatchingDB = (senderId) => {
                 authorization: "Bearer " + localStorage.getItem("jwtToken")
             },
         }).then((res) => {
-            console.log('매칭수락 미들웨어::',res.data);
             dispatch(getNotificationDB());
         }).catch((err) => {
             console.log("매칭수락 err::",err);
-            console.log(err.response.data);
             const errMsg = err.response.data
         })
     }
@@ -79,8 +74,6 @@ const acceptMatchingDB = (senderId) => {
 export default handleActions(
     {
         [GET_NOTIFICATION]: (state,action) => {
-            console.log("GET_NOTIFICATION reducer:::",action);
-            console.log(action.payload.payload);
             return action.payload.payload
         }
     },
