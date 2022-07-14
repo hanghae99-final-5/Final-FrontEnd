@@ -35,14 +35,13 @@ const Login = () => {
   };
 
   const onClickGoogleLogin = (e) => {
-    const ClientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
-    console.log("Cli::", ClientId);
-    const redirectUri = "http://localhost:3000/login-process";
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${ClientId}.apps.googleusercontent.com`;
+    const clientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
+    const redirectUri = process.env.REACT_APP_GOOGLE_OAUTH_REDIRECT_URI;
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}.apps.googleusercontent.com`;
   };
 
   return (
-    <FirstWrap>       
+    <FirstWrap>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>

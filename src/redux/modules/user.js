@@ -32,7 +32,7 @@ export const checkUser = () => {
 export const logoutAccount = () => {
   return async function (dispatch) {
     dispatch(deleteUser());
-    window.location.href = "/login"
+    window.location.href = "/login";
   };
 };
 
@@ -77,43 +77,21 @@ export const LoginAccount = (user, callback) => {
   };
 };
 
-// export const LoginGoogleAccount = () => {
-//   return async function (dispatch, getState) {
-//     // let code = new URL(window.location.href).searchParams.get("code");
-//     await axios({
-//       method: "get",
-//       url: `${BASE_URL}/api/users/login/google`,
-//     })
-//       .then((res) => {
-//         console.log("google res :", res.data);
-//         const test =
-//           "https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=http://localhost:3000/login-process&client_id=741199557843-ca81auqk6ehf6prl05p9668t47hnfa7u.apps.googleusercontent.com";
-//         window.location.href = test;
-//       })
-//       .catch((err) => {
-//         console.log("google err", err);
-//       });
-//   };
-// };
-
 export const getJwtByGoogleOauth = (code, callback) => {
   return async function (dispatch, getState) {
-    console.log("getJwt!!");
     await axios({
       method: "get",
       url: `${BASE_URL}/api/login/oauth2/code/google/callback/?code=${code}`,
     })
       .then((res) => {
-        console.log("get jwt ::", res);
         localStorage.setItem("jwtToken", res.data.authorization);
-    
+
         callback();
       })
       .catch((err) => {
         console.log("google err", err);
       });
   };
-  
 };
 
 // Reducer
