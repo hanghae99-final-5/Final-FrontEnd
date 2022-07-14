@@ -62,6 +62,17 @@ const StyledButton = styled.button`
 
     /* 상세보기 매칭종료 버튼 */
     ${props =>
+    props.size === 'XXlarge' &&
+    css`
+    width: 280px;
+    height: 40px;
+    p {
+            width: inherit;
+            font-weight: 500;
+            font-size: 14px;
+        }
+    `}
+    ${props =>
     props.size === 'Xlarge' &&
     css`
     width: 86px;
