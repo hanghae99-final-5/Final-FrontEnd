@@ -11,7 +11,8 @@ import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import main_logo from "../assets/images/icons/main_logo.png";
+import main_logo from "../assets/images/logos/logo.png";
+import google_logo from "../assets/images/icons/google_login.png";
 
 const Login = () => {
   const idInputRef = useRef();
@@ -55,8 +56,17 @@ const Login = () => {
         <button onClick={onClickLogin}>
           <span>로그인</span>
         </button>
-        <button onClick={onClickGoogleLogin}>
+        <button
+          onClick={onClickGoogleLogin}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <img src={google_logo} style={{ verticalAlign: "bottom" }} />
           <span>Google 계정으로 로그인</span>
+          <span></span>
         </button>
       </FirstButtonWrap>
     </FirstPageWrapper>

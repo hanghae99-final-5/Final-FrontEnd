@@ -27,7 +27,6 @@ export const LOGO = styled.div`
   top: ${(props) => props.top};
   justify-content: center;
   align-items: center;
-  background: yellow;
 `;
 
 export const FirstButtonWrap = styled.button`
