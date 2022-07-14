@@ -26,6 +26,7 @@ const Signup = () => {
   const onConfirm = () => {
     setModal(false);
     setModalText(null);
+    navigate("/login");
   };
 
   const onClickSignUp = (e) => {
@@ -54,10 +55,15 @@ const Signup = () => {
             nickname: nicknameInputRef.current.value,
             password: passwordInputRef.current.value,
           },
-          () => navigate("/login")
+          () => openSuccessModal()
         )
       );
     }
+  };
+
+  const openSuccessModal = () => {
+    setModal(true);
+    setModalText("회원가입에 성공했습니다");
   };
 
   return (
@@ -70,19 +76,19 @@ const Signup = () => {
         onConfirm={onConfirm}
         confirmText={"확인"}
       />
-      <LOGO top="106px">
+      <LOGO top="106px" onClick={() => navigate("/firstPage")}>
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
         <input type="text" placeholder="이메일" ref={emailInputRef}></input>
         <input type="text" placeholder="닉네임" ref={nicknameInputRef}></input>
         <input
-          type="text"
+          type="password"
           placeholder="비밀번호"
           ref={passwordInputRef}
         ></input>
         <input
-          type="text"
+          type="password"
           placeholder="비밀번호 확인"
           ref={passwordCheckInputRef}
         ></input>

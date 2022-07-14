@@ -51,16 +51,15 @@ export const registerAccount = (user, callback) => {
     await apis
       .signUp(user.email, user.nickname, user.password)
       .then((res) => {
-        alert("회원가입 성공");
         callback();
       })
       .catch((err) => {
-        window.alert(err);
+        console.log("err :", err);
       });
   };
 };
 
-export const LoginAccount = (user, callback) => {
+export const LoginAccount = (user, successCallback, errorCallback) => {
   return async function (dispatch, getState) {
     await apis
       .signIn(user.email, user.password)
@@ -68,11 +67,10 @@ export const LoginAccount = (user, callback) => {
         const token = res.headers.authorization;
         localStorage.setItem("jwtToken", token);
         dispatch(setUser());
-        callback();
+        successCallback();
       })
       .catch((err) => {
-        console.log("===setLoginDB err === ", err);
-        window.alert("아이디와 비밀번호를 다시확인해주세요");
+        errorCallback();
       });
   };
 };
