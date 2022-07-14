@@ -1,19 +1,18 @@
 import React from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { BASE_URL } from "../assets/config";
+
 import {
-  FirstWrap,
+  FirstPageWrapper,
   LOGO,
   FirstButtonWrap,
   SignupButtonWrap,
 } from "../components/FirstPageCSS";
 import { useDispatch } from "react-redux";
-import { LoginAccount, LoginGoogleAccount } from "../redux/modules/user";
+import { LoginAccount } from "../redux/modules/user";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import main_logo from "../assets/images/icons/main_logo.png";
+import main_logo from "../assets/images/logos/logo.png";
+import google_logo from "../assets/images/icons/google_login.png";
 
 const Login = () => {
   const idInputRef = useRef();
@@ -41,19 +40,15 @@ const Login = () => {
   };
 
   return (
-    <FirstWrap>
+    <FirstPageWrapper>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
+        <input type="text" placeholder="아이디" ref={idInputRef}></input>
         <input
           type="text"
-          placeholder="아이디를 입력하세요"
-          ref={idInputRef}
-        ></input>
-        <input
-          type="text"
-          placeholder="비밀번호를 입력하세요"
+          placeholder="비밀번호"
           ref={passwordInputRef}
         ></input>
       </SignupButtonWrap>
@@ -61,11 +56,20 @@ const Login = () => {
         <button onClick={onClickLogin}>
           <span>로그인</span>
         </button>
-        <button onClick={onClickGoogleLogin}>
+        <button
+          onClick={onClickGoogleLogin}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <img src={google_logo} style={{ verticalAlign: "bottom" }} />
           <span>Google 계정으로 로그인</span>
+          <span></span>
         </button>
       </FirstButtonWrap>
-    </FirstWrap>
+    </FirstPageWrapper>
   );
 };
 

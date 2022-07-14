@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
-  FirstWrap,
+  FirstPageWrapper,
   LOGO,
   FirstButtonWrap,
   SignupButtonWrap,
@@ -9,7 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { registerAccount } from "../redux/modules/user";
 
-import main_logo from "../assets/images/icons/main_logo.png";
+import main_logo from "../assets/images/logos/logo.png";
 
 const Signup = () => {
   const emailInputRef = useRef();
@@ -35,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <FirstWrap>
+    <FirstPageWrapper>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>
@@ -58,7 +58,7 @@ const Signup = () => {
           <span>회원가입</span>
         </button>
       </FirstButtonWrap>
-    </FirstWrap>
+    </FirstPageWrapper>
   );
 };
 

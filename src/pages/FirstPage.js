@@ -1,14 +1,18 @@
 import React from "react";
-import { FirstWrap, LOGO, FirstButtonWrap } from "../components/FirstPageCSS";
+import {
+  FirstPageWrapper,
+  LOGO,
+  FirstButtonWrap,
+} from "../components/FirstPageCSS";
 import { useNavigate } from "react-router-dom";
 
-import main_logo from "../assets/images/icons/main_logo.png";
+import main_logo from "../assets/images/logos/logo.png";
 
 const FirstPage = () => {
   const navigate = useNavigate();
 
   return (
-    <FirstWrap>
+    <FirstPageWrapper>
       <LOGO top="106px">
         <img src={main_logo} />
       </LOGO>
@@ -20,7 +24,7 @@ const FirstPage = () => {
           <span>회원가입</span>
         </button>
       </FirstButtonWrap>
-    </FirstWrap>
+    </FirstPageWrapper>
   );
 };
 
