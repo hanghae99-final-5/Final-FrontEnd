@@ -4,6 +4,7 @@ const theme = {
     HPColor:'#E7765E',
     EXPColor:'#EF920F',
     sub01: '#807C3F',
+    sub02: '#807C3F',
     gray1:'#2D2D2D',
     gray2:'#6C6C6C',
     gray3:'#C2C2C2',

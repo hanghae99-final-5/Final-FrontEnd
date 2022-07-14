@@ -79,7 +79,6 @@ const Character = () => {
 export default Character;
 
 
-//fontweight 수정하기 
 const CharacterWrap = styled.div`
     max-width: 360px;
     width: 100%;
@@ -154,7 +153,10 @@ const LevelBar = styled.div`
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
-    font-weight: 400;
+
+    .nickName {
+        font-family: "Noto Sans Korean 500"
+    }
     
 `;
 const StatusBar = styled.div`

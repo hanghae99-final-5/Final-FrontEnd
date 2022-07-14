@@ -114,7 +114,7 @@ const ItemCategory = styled.div`
 const CategoryDiv = styled.div`
   width: 100%;
   height: 26px;
-  font-weight: 400;
+  font-family: "Noto Sans Korean 400";
   font-size: 18px;
   line-height: 26px;
   color: #2d2d2d;

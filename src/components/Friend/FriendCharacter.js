@@ -147,8 +147,8 @@ const LevelBar = styled.div`
     align-items: center;
     justify-content: space-between;
     font-size: 14px;
-    font-weight: 400;
     .nickName {
+        font-family: "Noto Sans Korean 400"
     }
     
 `;

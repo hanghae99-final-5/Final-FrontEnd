@@ -84,7 +84,7 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 const BackDiv = styled.div`
-    font-weight: 500;
+    font-family: "Noto Sans Korean 500";
     font-size: 20px;
     width: 24px;
     height: 24px;
@@ -96,7 +96,7 @@ const SearchBarinput = styled.input`
     width: 224px;
     margin: 0 0 0 12px;
     font-size: 14px;
-    font-weight: 500;
+    font-family: "Noto Sans Korean 500";
     background: ${props => props.theme.gray5};
     height: 30px;
     border-radius: 6px;
