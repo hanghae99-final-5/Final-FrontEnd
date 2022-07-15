@@ -3,6 +3,7 @@ import { actionCreators as characterAction } from "./characters";
 import axios from "axios";
 import produce from "immer";
 import { BASE_URL } from "../../assets/config";
+import { logoutAccountByError } from "../modules/user";
 
 //action type
 const GET_TODOLIST = "GET_TODOLIST";
@@ -39,6 +40,7 @@ const getTodolistDB =  () => {
                 dispatch(getTodolist(res.data))
             }).catch((err)=>{
                 console.log("Todolist조회err::",err);
+                dispatch(logoutAccountByError(err));
             })
         
     }
