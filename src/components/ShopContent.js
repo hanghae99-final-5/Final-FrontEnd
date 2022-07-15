@@ -15,6 +15,7 @@ const ShopContent = () => {
   const { items, inventories } = useSelector((state) => state.shop);
 
   const inventoryItems = inventories ? inventories.map((x) => x.itemId) : null;
+  console.log("inventoryItems::", inventoryItems);
 
   const categoryObj = {
     HAIR: "Hair",
@@ -65,28 +66,25 @@ const ShopContent = () => {
                     .filter((item) => item.category === category[0])
                     .map((item) => {
                       return (
-                        <>
-                          {inventoryItems.includes(item.itemId) ? null : (
-                            <InventoryBox
-                              key={item.itemId}
-                              value={item.itemId}
-                              onClick={openModal}
-                            >
-                              <ShopItemBox
-                                img={item.viewImg}
-                                value={item.itemId}
-                              />
-                              <ExpenseBox value={item.itemId}>
-                                <CoinIcon value={item.itemId}>
-                                  <img src={coinIconPng} value={item.itemId} />
-                                </CoinIcon>
-                                <CoinValueDiv value={item.itemId}>
-                                  {item.price}
-                                </CoinValueDiv>
-                              </ExpenseBox>
-                            </InventoryBox>
-                          )}
-                        </>
+                        <InventoryBox
+                          key={item.itemId}
+                          value={item.itemId}
+                          onClick={openModal}
+                        >
+                          <ShopItemBox
+                            img={item.viewImg}
+                            value={item.itemId}
+                            is_inventory={inventoryItems.includes(item.itemId)}
+                          />
+                          <ExpenseBox value={item.itemId}>
+                            <CoinIcon value={item.itemId}>
+                              <img src={coinIconPng} value={item.itemId} />
+                            </CoinIcon>
+                            <CoinValueDiv value={item.itemId}>
+                              {item.price}
+                            </CoinValueDiv>
+                          </ExpenseBox>
+                        </InventoryBox>
                       );
                     })
                 : null}
@@ -165,3 +163,28 @@ const CoinValueDiv = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
+
+// (
+//   <>
+//     {inventoryItems.includes(item.itemId) ? null : (
+//       <InventoryBox
+//         key={item.itemId}
+//         value={item.itemId}
+//         onClick={openModal}
+//       >
+//         <ShopItemBox
+//           img={item.viewImg}
+//           value={item.itemId}
+//         />
+//         <ExpenseBox value={item.itemId}>
+//           <CoinIcon value={item.itemId}>
+//             <img src={coinIconPng} value={item.itemId} />
+//           </CoinIcon>
+//           <CoinValueDiv value={item.itemId}>
+//             {item.price}
+//           </CoinValueDiv>
+//         </ExpenseBox>
+//       </InventoryBox>
+//     )}
+//   </>
+// );

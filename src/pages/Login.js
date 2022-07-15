@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   FirstPageWrapper,
@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 import main_logo from "../assets/images/logos/logo.png";
 import google_logo from "../assets/images/icons/google_login.png";
+import CommonModal from "../element/CommonModal";
 
 const Login = () => {
   const idInputRef = useRef();
@@ -28,9 +29,18 @@ const Login = () => {
           email: idInputRef.current.value,
           password: passwordInputRef.current.value,
         },
-        () => navigate("/")
+        () => navigate("/"),
+        () => openErrorModal()
       )
     );
+  };
+
+  const openErrorModal = () => {
+    setModal(true);
+  };
+
+  const onConfirm = () => {
+    setModal(false);
   };
 
   const onClickGoogleLogin = (e) => {
@@ -39,15 +49,25 @@ const Login = () => {
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}.apps.googleusercontent.com`;
   };
 
+  const [modal, setModal] = useState(false);
+
   return (
     <FirstPageWrapper>
-      <LOGO top="106px">
+      <CommonModal
+        title={"notice"}
+        visible={modal}
+        modalText={"아이디와 비밀번호를 확인해주세요"}
+        isSingleBtn={true}
+        onConfirm={onConfirm}
+        confirmText={"확인"}
+      />
+      <LOGO top="106px" onClick={() => navigate("/firstPage")}>
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
         <input type="text" placeholder="아이디" ref={idInputRef}></input>
         <input
-          type="text"
+          type="password"
           placeholder="비밀번호"
           ref={passwordInputRef}
         ></input>

@@ -8,24 +8,36 @@ export const ItemBox = styled.div`
   border-radius: 8px;
   padding: ${(props) =>
     props.category === "shop" ? "10px 13px 10px 13px" : "10px 10px 10px 10px"};
+  opacity: ${(props) => (props.is_inventory ? 0.4 : 1)};
 `;
 
 export const CustomImg = styled.img`
   width: 100%;
   min-height: 100%;
+  opacity: ${(props) => (props.is_inventory ? 0.4 : 1)};
 `;
 
-export const ShopItemBox = ({ img, value }) => (
-  <ItemBoxContainer img={img} category={"shop"} value={value}/>
+export const ShopItemBox = ({ img, value, is_inventory }) => (
+  <ItemBoxContainer
+    img={img}
+    category={"shop"}
+    value={value}
+    is_inventory={is_inventory}
+  />
 );
 
 export const DifficultyItemBox = ({ img, selected }) => (
   <ItemBoxContainer img={img} category={"difficulty"} selected={selected} />
 );
 
-const ItemBoxContainer = ({ img, category, selected, value }) => (
-  <ItemBox category={category} selected={selected} value={value}>
-    <CustomImg src={img} value={value}/>
+const ItemBoxContainer = ({ img, category, selected, value, is_inventory }) => (
+  <ItemBox
+    category={category}
+    selected={selected}
+    value={value}
+    is_inventory={is_inventory}
+  >
+    <CustomImg src={img} value={value} is_inventory={is_inventory} />
   </ItemBox>
 );
 
