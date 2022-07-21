@@ -6,6 +6,7 @@ import heart from "../assets/images/icons/heart.png";
 import search from "../assets/images/icons/search.png";
 import logout from "../assets/images/icons/logout_24.png";
 import logo from "../assets/images/logos/logo.png";
+import statistics from "../assets/images/icons/statistics_24.png"
 
 const MainHeader = ({ headerName, headerImg }) => {
   const navigate = useNavigate();
@@ -20,6 +21,9 @@ const MainHeader = ({ headerName, headerImg }) => {
       )}
 
       <NavDiv>
+        <div>
+          <img src={statistics} onClick={() => navigate("/statistics")}/>
+        </div>
         <div>
           <img src={heart} onClick={() => navigate("/notification")}/>
         </div>

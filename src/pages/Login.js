@@ -29,7 +29,7 @@ const Login = () => {
           email: idInputRef.current.value,
           password: passwordInputRef.current.value,
         },
-        () => navigate("/"),
+        () => navigate("/main"),
         () => openErrorModal()
       )
     );
@@ -45,7 +45,9 @@ const Login = () => {
 
   const onClickGoogleLogin = (e) => {
     const clientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
+    console.log("clientId::", clientId)
     const redirectUri = process.env.REACT_APP_GOOGLE_OAUTH_REDIRECT_URI;
+    console.log("redirectUri ::", redirectUri)
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}.apps.googleusercontent.com`;
   };
 
@@ -61,7 +63,7 @@ const Login = () => {
         onConfirm={onConfirm}
         confirmText={"확인"}
       />
-      <LOGO top="106px" onClick={() => navigate("/firstPage")}>
+      <LOGO top="106px" onClick={() => navigate("/")}>
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">
