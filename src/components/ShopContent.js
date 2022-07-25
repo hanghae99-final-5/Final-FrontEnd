@@ -99,19 +99,20 @@ export default ShopContent;
 
 const ShopContentContainer = styled.div`
   overflow: auto;
-  max-width: 360px;
-  width: 100%;
-  height: 402px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: fixed;
-  top: 174px;
-  padding: 10px 10px 0 10px;
-  ::-webkit-scrollbar {
+    max-width: 360px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    top: 174px;
+    bottom: 30px;
+    ::-webkit-scrollbar {
     display: none;
-  }
+    }
+  padding: 10px 10px 0 10px;
+  
 `;
 
 const ItemCategory = styled.div`
@@ -140,7 +141,7 @@ const InventoryBoxWrapper = styled.div`
 `;
 
 const InventoryBox = styled.div`
-  margin-right: 8px;
+  margin-right: 6.5px;
   &:last-child {
     margin-right: 0px;
   }

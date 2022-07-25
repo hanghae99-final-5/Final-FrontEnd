@@ -94,7 +94,6 @@ export const options = {
 export default Statistics;
 const Container = styled.div`
     min-width: 360px;
-    height: 640px;
     background: #FFFFFF;
     display: flex;
     align-items: center;

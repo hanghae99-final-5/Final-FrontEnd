@@ -86,7 +86,7 @@ const onCancel = () => {
 export default Inventory;
 
 const ShopContentContainer = styled.div`
-  overflow: auto;
+  /* overflow: auto;
   max-width: 360px;
   width: 100%;
   height: 402px;
@@ -99,7 +99,21 @@ const ShopContentContainer = styled.div`
   padding: 10px 10px 0 10px;
   ::-webkit-scrollbar {
     display: none;
-  }
+  } */
+  overflow: auto;
+    max-width: 360px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: absolute;
+    top: 174px;
+    bottom: 30px;
+    padding: 10px 10px 0 10px;
+    ::-webkit-scrollbar {
+    display: none;
+    }
 `;
 
 const ItemCategory = styled.div`
@@ -135,20 +149,3 @@ const InventoryBox = styled.div`
   }
 `;
 
-const ExpenseBox = styled.div`
-  width: 100%;
-  display: flex;
-  padding: 4px 0 4px 17px;
-`;
-
-const CoinIcon = styled.div`
-  margin-right: 4px;
-`;
-
-const CoinValueDiv = styled.div`
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: left;
-`;

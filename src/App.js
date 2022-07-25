@@ -71,6 +71,7 @@ const Container = styled.div`
     padding: 0 auto;
     position: relative;
     background: #fff;
+
   
   }
 `;
