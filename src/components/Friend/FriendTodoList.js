@@ -103,14 +103,17 @@ const TodoListContainer = styled.div`
     overflow: auto;
     max-width: 360px;
     width: 100%;
-    height: 402px;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    position: fixed;
+    position: absolute;
     top: 174px;
+    bottom: 30px;
+    ::-webkit-scrollbar {
+    display: none;
+    }
 `;
 const TodoListContext = styled.div`
 

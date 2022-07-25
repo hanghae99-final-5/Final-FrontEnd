@@ -2,6 +2,8 @@ import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import { BASE_URL } from "../../assets/config";
 import { logoutAccountByError } from "../modules/user";
+import {actionCreators as characterAction} from "../modules/characters"
+
 
 //action type
 const GET_ITEMS = "GET_ITEMS";
@@ -46,6 +48,7 @@ const buyItemsMiddleware = (itemId) => {
     })
       .then((res) => {
         dispatch(getItemsMiddleware());
+        dispatch(characterAction.getCharacterDB());
       })
       .catch((err) => {
         dispatch(logoutAccountByError(err));

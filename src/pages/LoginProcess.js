@@ -9,7 +9,7 @@ const LoginProcess = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const code = new URL(window.location.href).searchParams.get("code");
-    dispatch(getJwtByGoogleOauth(code, () => navigate("/")));
+    dispatch(getJwtByGoogleOauth(code, () => navigate("/main")));
   }, []);
   return (
     <FirstPageWrapper>

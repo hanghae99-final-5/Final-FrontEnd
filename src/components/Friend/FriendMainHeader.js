@@ -11,7 +11,7 @@ const FriendMainHeader = ({openModal}) => {
     
     return (
       <MainHeaderWrap>
-        <LogoDiv onClick={()=>{navigate("/")}}>
+        <LogoDiv onClick={()=>{navigate("/main")}}>
           <img src={logo}/>
         </LogoDiv>
         <NavDiv>

@@ -11,7 +11,7 @@ const MainFooter = () => {
   const navigate = useNavigate();
   return (
     <MainFooterWrap>
-      <ButtonGroup onClick={() => navigate("/")}>
+      <ButtonGroup onClick={() => navigate("/main")}>
         <Button>
           <img src={mypageImg}/>
         </Button>
@@ -50,7 +50,7 @@ const MainFooterWrap = styled.nav`
   width: 100%;
   height: 56px;
   position: fixed;
-  top: 576px;
+  bottom: 0;
   background-color: #ffffff;
   z-index: 10;
   display: flex;
@@ -71,7 +71,7 @@ const ButtonGroup = styled.div`
 const WriteButton = styled.div`
   display: flex;
   position: fixed;
-  top: 543px;
+  bottom: 30px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -79,7 +79,7 @@ const WriteButton = styled.div`
   align-items: center;
   & > button {
     position: fixed;
-    top: 559px;
+    bottom: 30px;
     width: 24px;
     height: 24px;
     background: white;
@@ -94,12 +94,12 @@ const Button = styled.button`
   background: #ffffff;
   border: transparent;
   position: fixed;
-  top: 583px;
+  bottom: 25px;
 `;
 
 const Text = styled.span`
   position: fixed;
-  top: 607px;
+  bottom: 3px;
   font-size: 12px;
   height: 18px;
   display: flex;

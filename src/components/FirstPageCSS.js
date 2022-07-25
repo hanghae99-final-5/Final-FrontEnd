@@ -12,6 +12,7 @@ export const FirstPageWrapper = styled.div`
   padding: 0 auto;
   position: relative;
   background-image: url(${mainImg});
+  background-repeat: no-repeat;
 `;
 
 export const FirstWrap = styled.div`
@@ -47,6 +48,7 @@ export const FirstButtonWrap = styled.button`
   & > button > span {
     font-size: 14px;
     color: ${(props) => props.theme.gray1};
+    font-family: "Noto Sans Korean 500";
   }
 `;
 

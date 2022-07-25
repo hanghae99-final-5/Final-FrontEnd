@@ -14,6 +14,7 @@ import Logout from "./pages/Logout";
 import Notification from "./pages/Notification";
 import Inventory from "./pages/Inventory";
 import LoginProcess from "./pages/LoginProcess";
+import Statistics from "./pages/Statistics";
 
 function App() {
   function setScreenSize() {
@@ -30,9 +31,9 @@ function App() {
         <div id="wrap">
           <Setting>
             <Routes>
-              <Route exact path="/" element={<Main />} />
+              <Route exact path="/main" element={<Main />} />
               <Route exact path="/friend" element={<FriendMain />} />
-              <Route exact path="/firstpage" element={<FirstPage />} />
+              <Route exact path="/" element={<FirstPage />} />
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/login" element={<Login />} />
               <Route exact path="/write" element={<Write />} />
@@ -43,6 +44,7 @@ function App() {
               <Route exact path="/notification" element={<Notification />} />
               <Route exact path="/inventory" element={<Inventory />} />
               <Route exact path="/login-process" element={<LoginProcess />} />
+              <Route exact path="/statistics" element={<Statistics />} />
             </Routes>
           </Setting>
         </div>
@@ -69,6 +71,7 @@ const Container = styled.div`
     padding: 0 auto;
     position: relative;
     background: #fff;
+
   
   }
 `;
