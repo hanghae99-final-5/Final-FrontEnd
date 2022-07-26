@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom";
 import backArrow from "../assets/images/icons/back_arrow_24.png"
+import { apis } from "../shared/api";
 
 import { Line,Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto';
@@ -9,25 +10,11 @@ import Chart from 'chart.js/auto';
 
 const Statistics = () => {
   const navigate = useNavigate();
+  const [statisticsData,setStatisticsData] = useState(null);
+  let labels;
+  let data;
 
-  return (
-    <Container>
-      <HeaderWrap>
-          <Wrapper>
-              <BackDiv onClick={()=>navigate(-1)}>
-                  <img src={backArrow}/>
-              </BackDiv>
-          </Wrapper>
-      </HeaderWrap>
-      <div>
-      <Bar options={options} data={data} />
-      </div>
-    </Container>
- 
-  );
-};
-
-export const options = {
+  const options = {
     responsive: true,
     plugins: {
       legend: {
@@ -35,7 +22,7 @@ export const options = {
       },
       title: {
         display: true,
-        text: 'Chart.js Bar Chart',
+        text: '일간 통계',
       },
     },
     scales: {
@@ -54,42 +41,76 @@ export const options = {
         },
       },
   };
+  if (statisticsData) {
+    labels = Object.keys(statisticsData.myAchievement);
   
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  
-  export const data = {
+  data = {
     labels,
     datasets: [
     {
         type: 'line',
-        label: 'Dataset 5',
-        borderColor: 'rgb(54, 162, 235)',
-        borderWidth: 2,
-        data: [1,2,3,4,5,6],
+        label: '내 경험치 증가량',
+        borderColor: '#E7765E',
+        backgroundColor: '#E7765E',
+        borderWidth: 3,
+        data: Object.values(statisticsData.myExpChanges),
         yAxisID: 'y1',
     },
       {
         type: 'line',
-        label: 'Dataset 1',
-        data: [5,10,15,20,25,30],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        label: '친구 경험치 증가량',
+        data: Object.values(statisticsData.friendExpChanges),
+        borderWidth: 3,
+        borderColor: '#EF920F',
+        backgroundColor: '#EF920F',
         yAxisID: 'y1',
       },
       {
-        label: 'Dataset 2',
-        data: [0,10,20,50,80,100],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        label: '내 매칭투두 달성갯수',
+        data: Object.values(statisticsData.myAchievement),
+        backgroundColor: '#E0C770',
         yAxisID: 'y',
 
       },
       {
-        label: 'Dataset 3',
-        data: [0,10,20,50,80,100],
-        backgroundColor: 'yellow',
+        label: '친구 매칭투두 달성갯수',
+        data: Object.values(statisticsData.friendAchievement),
+        backgroundColor: '#5C800C',
         yAxisID: 'y',
       },
     ],
-  };
+  }
+}
+
+  
+  useEffect(()=>{
+    const getDailyStatisticsApi = async () => {
+      const res = await apis.GetDailyStatistics()
+      console.log(res.data);
+      setStatisticsData(res.data);
+    }
+    getDailyStatisticsApi();
+  },[])
+
+  if (!statisticsData) return null;
+  return (
+    <Container>
+      <HeaderWrap>
+          <Wrapper>
+              <BackDiv onClick={()=>navigate(-1)}>
+                  <img src={backArrow}/>
+              </BackDiv>
+          </Wrapper>
+      </HeaderWrap>
+      <div>
+      <Bar options={options} data={data} />
+      </div>
+    </Container>
+ 
+  );
+};
+
+
 
 export default Statistics;
 const Container = styled.div`

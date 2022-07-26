@@ -107,7 +107,7 @@ const ShopContentContainer = styled.div`
     justify-content: flex-start;
     position: absolute;
     top: 174px;
-    bottom: 30px;
+    bottom: 70px;
     ::-webkit-scrollbar {
     display: none;
     }

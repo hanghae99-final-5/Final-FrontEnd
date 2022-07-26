@@ -86,20 +86,6 @@ const onCancel = () => {
 export default Inventory;
 
 const ShopContentContainer = styled.div`
-  /* overflow: auto;
-  max-width: 360px;
-  width: 100%;
-  height: 402px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: fixed;
-  top: 174px;
-  padding: 10px 10px 0 10px;
-  ::-webkit-scrollbar {
-    display: none;
-  } */
   overflow: auto;
     max-width: 360px;
     width: 100%;
@@ -109,7 +95,7 @@ const ShopContentContainer = styled.div`
     justify-content: flex-start;
     position: absolute;
     top: 174px;
-    bottom: 30px;
+    bottom: 70px;
     padding: 10px 10px 0 10px;
     ::-webkit-scrollbar {
     display: none;
