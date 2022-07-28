@@ -39,5 +39,10 @@ export const apis = {
     ),
   GoogleLogin: (userInfo) => api.post("/api/users/login/google", userInfo),
   GetDailyStatistics: () => 
-    api.get("/api/statistics/daily")
+    api.get("/api/statistics/daily"),
+  GetWeeklyStatistics: () => 
+    api.get("/api/statistics/weekly"),
+  GetMonthlyStatistics: () => 
+    api.get("/api/statistics/monthly")
+  
 };
