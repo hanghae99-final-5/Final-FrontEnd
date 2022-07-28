@@ -16,6 +16,8 @@ import Inventory from "./pages/Inventory";
 import LoginProcess from "./pages/LoginProcess";
 import Statistics from "./pages/Statistics";
 
+import background from "./assets/images/logos/web_bg_1920x1080.jpg"
+
 function App() {
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
@@ -62,6 +64,8 @@ const Container = styled.div`
   display: flex;
   position: relative;
   background-color: #eee;
+  background: url(${background}) 0% 0% / cover no-repeat; 
+  
   #wrap {
     width: 100%;
     max-width: 360px;
@@ -70,9 +74,7 @@ const Container = styled.div`
     margin: 0 auto;
     padding: 0 auto;
     position: relative;
-    background: #fff;
-
-  
+    background-color: #fff;
   }
 `;
 const Setting = styled.div`
