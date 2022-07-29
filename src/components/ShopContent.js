@@ -165,27 +165,3 @@ const CoinValueDiv = styled.div`
   text-align: left;
 `;
 
-// (
-//   <>
-//     {inventoryItems.includes(item.itemId) ? null : (
-//       <InventoryBox
-//         key={item.itemId}
-//         value={item.itemId}
-//         onClick={openModal}
-//       >
-//         <ShopItemBox
-//           img={item.viewImg}
-//           value={item.itemId}
-//         />
-//         <ExpenseBox value={item.itemId}>
-//           <CoinIcon value={item.itemId}>
-//             <img src={coinIconPng} value={item.itemId} />
-//           </CoinIcon>
-//           <CoinValueDiv value={item.itemId}>
-//             {item.price}
-//           </CoinValueDiv>
-//         </ExpenseBox>
-//       </InventoryBox>
-//     )}
-//   </>
-// );

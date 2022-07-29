@@ -16,7 +16,7 @@ import Inventory from "./pages/Inventory";
 import LoginProcess from "./pages/LoginProcess";
 import Statistics from "./pages/Statistics";
 
-import background from "./assets/images/logos/web_bg_1920x1080.jpg"
+import background from "./assets/images/logos/web_bg_1920x1080_final.jpg"
 
 function App() {
   function setScreenSize() {
@@ -64,8 +64,9 @@ const Container = styled.div`
   display: flex;
   position: relative;
   background-color: #eee;
-  background: url(${background}) 0% 0% / cover no-repeat; 
-  
+  @media (min-width: 500px) {
+    background: url(${background}) 0% 0% / cover no-repeat;
+  }
   #wrap {
     width: 100%;
     max-width: 360px;
