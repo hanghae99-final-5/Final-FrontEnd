@@ -21,7 +21,16 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const checkBlankInput = () => {
+    return idInputRef.current.value && passwordInputRef.current.value;
+  };
+
   const onClickLogin = (e) => {
+    if (!checkBlankInput()) {
+      openErrorModal();
+      return;
+    }
+
     dispatch(
       LoginAccount(
         {
@@ -44,9 +53,7 @@ const Login = () => {
 
   const onClickGoogleLogin = (e) => {
     const clientId = process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID;
-    console.log("clientId::", clientId)
     const redirectUri = process.env.REACT_APP_GOOGLE_OAUTH_REDIRECT_URI;
-    console.log("redirectUri ::", redirectUri)
     window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?scope=profile email&response_type=code&redirect_uri=${redirectUri}&client_id=${clientId}.apps.googleusercontent.com`;
   };
 

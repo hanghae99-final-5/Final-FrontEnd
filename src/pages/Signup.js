@@ -22,16 +22,16 @@ const Signup = () => {
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [modalText, setModalText] = useState(null);
+  const [confirmNavigatePath, setConfirmNavigatePath] = useState("/signup");
 
   const onConfirm = () => {
     setModal(false);
     setModalText(null);
-    navigate("/login");
+    navigate(confirmNavigatePath);
   };
 
   const onClickSignUp = (e) => {
     e.preventDefault();
-    console.log("onclick!");
     if (
       !(
         emailInputRef.current.value &&
@@ -55,15 +55,20 @@ const Signup = () => {
             nickname: nicknameInputRef.current.value,
             password: passwordInputRef.current.value,
           },
-          () => openSuccessModal()
+          (errorMsg = null) => openSignUpModal(errorMsg),
+          setConfirmNavigatePath
         )
       );
     }
   };
 
-  const openSuccessModal = () => {
+  const openSignUpModal = (errorMsg = null) => {
     setModal(true);
-    setModalText("회원가입에 성공했습니다");
+    if (errorMsg) {
+      setModalText(errorMsg);
+    } else {
+      setModalText("회원가입에 성공했습니다");
+    }
   };
 
   return (

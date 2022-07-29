@@ -46,15 +46,17 @@ export const logoutAccountByError = (err) => {
   };
 };
 
-export const registerAccount = (user, callback) => {
+export const registerAccount = (user, callback, navigateCallback) => {
   return async function (dispatch, getState) {
     await apis
       .signUp(user.email, user.nickname, user.password)
       .then((res) => {
         callback();
+        navigateCallback("/login");
       })
       .catch((err) => {
-        console.log("err :", err);
+        callback(err.response.data.message);
+        navigateCallback("/signup");
       });
   };
 };
