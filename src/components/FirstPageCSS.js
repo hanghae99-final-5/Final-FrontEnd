@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import mainImg from "../assets/images/icons/main_new.jpg";
+import mainImg from "../assets/images/icons/main_ver.02.jpg"
 
 export const FirstPageWrapper = styled.div`
   display: flex;
