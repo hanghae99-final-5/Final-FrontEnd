@@ -22,7 +22,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onClickLogin = (e) => {
-    e.preventDefault();
     dispatch(
       LoginAccount(
         {

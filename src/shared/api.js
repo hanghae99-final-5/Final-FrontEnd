@@ -16,7 +16,6 @@ api.interceptors.request.use(function (config) {
   }
 
   if (accessToken !== null) {
-    console.log(accessToken);
     config.headers.common["Authorization"] = `Bearer ${accessToken}`;
   }
   return config;
@@ -39,4 +38,11 @@ export const apis = {
       //   { withCredentials: true }
     ),
   GoogleLogin: (userInfo) => api.post("/api/users/login/google", userInfo),
+  GetDailyStatistics: () => 
+    api.get("/api/statistics/daily"),
+  GetWeeklyStatistics: () => 
+    api.get("/api/statistics/weekly"),
+  GetMonthlyStatistics: () => 
+    api.get("/api/statistics/monthly")
+  
 };

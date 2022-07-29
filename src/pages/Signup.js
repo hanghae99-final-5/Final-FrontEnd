@@ -76,7 +76,7 @@ const Signup = () => {
         onConfirm={onConfirm}
         confirmText={"확인"}
       />
-      <LOGO top="106px" onClick={() => navigate("/firstPage")}>
+      <LOGO top="106px" onClick={() => navigate("/")}>
         <img src={main_logo} />
       </LOGO>
       <SignupButtonWrap top="246px" gap="8px">

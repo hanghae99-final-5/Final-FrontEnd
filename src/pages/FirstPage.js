@@ -10,6 +10,7 @@ import main_logo from "../assets/images/logos/logo.png";
 
 const FirstPage = () => {
   const navigate = useNavigate();
+  console.log(process.env.REACT_APP_TEST)
 
   return (
     <FirstPageWrapper>
