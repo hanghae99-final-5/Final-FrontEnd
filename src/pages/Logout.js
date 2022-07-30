@@ -5,7 +5,7 @@ import { logoutAccount } from "../redux/modules/user";
 import { useNavigate } from "react-router-dom";
 import backArrow from "../assets/images/icons/back_arrow_24.png"
 import logo from "../assets/images/logos/logo.png"
-import creater from "../assets/images/logos/logout_cha.png"
+import creater from "../assets/images/logos/logout_01.png"
 import Button from "../element/Button";
 
 
