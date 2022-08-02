@@ -15,7 +15,6 @@ const ShopContent = () => {
   const { items, inventories } = useSelector((state) => state.shop);
 
   const inventoryItems = inventories ? inventories.map((x) => x.itemId) : null;
-  console.log("inventoryItems::", inventoryItems);
 
   const categoryObj = {
     HAIR: "Hair",
@@ -24,7 +23,10 @@ const ShopContent = () => {
   };
   //모달 상태관리
   const [modal, setModal] = useState(false);
+  const [errModal, setErrModal] = useState(false);
+  const [errText, setErrText] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+
   const openModal = (e) => {
     if (inventoryItems.includes(Number(e.target.getAttribute("value")))) {
       return;
@@ -33,8 +35,20 @@ const ShopContent = () => {
     setSelectedId(e.target.getAttribute("value"));
   };
   const onConfirm = () => {
-    dispatch(shopAction.buyItemsMiddleware(selectedId));
+    dispatch(
+      shopAction.buyItemsMiddleware(selectedId, (errText) =>
+        openErrorModal(errText)
+      )
+    );
     setModal(false);
+  };
+
+  const openErrorModal = (errText) => {
+    setErrModal(true);
+    setErrText(errText);
+  };
+  const onErrConfirm = () => {
+    setErrModal(false);
   };
   const onCancel = () => {
     setModal(false);
@@ -53,6 +67,14 @@ const ShopContent = () => {
         onCancel={onCancel}
         confirmText="구입하기"
         style={{ opacity: 1 }}
+      />
+      <CommonModal
+        title={"notice"}
+        visible={errModal}
+        modalText={errText}
+        isSingleBtn={true}
+        onConfirm={onErrConfirm}
+        confirmText={"확인"}
       />
       {Object.entries(categoryObj).map((category) => {
         return (
@@ -99,20 +121,19 @@ export default ShopContent;
 
 const ShopContentContainer = styled.div`
   overflow: auto;
-    max-width: 360px;
-    width: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: absolute;
-    top: 174px;
-    bottom: 70px;
-    ::-webkit-scrollbar {
+  max-width: 360px;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  top: 174px;
+  bottom: 70px;
+  ::-webkit-scrollbar {
     display: none;
-    }
+  }
   padding: 10px 10px 0 10px;
-  
 `;
 
 const ItemCategory = styled.div`
@@ -164,4 +185,3 @@ const CoinValueDiv = styled.div`
   letter-spacing: 0em;
   text-align: left;
 `;
-

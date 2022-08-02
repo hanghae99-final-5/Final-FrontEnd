@@ -2,8 +2,7 @@ import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import { BASE_URL } from "../../assets/config";
 import { logoutAccountByError } from "../modules/user";
-import {actionCreators as characterAction} from "../modules/characters"
-
+import { actionCreators as characterAction } from "../modules/characters";
 
 //action type
 const GET_ITEMS = "GET_ITEMS";
@@ -36,9 +35,8 @@ const getItemsMiddleware = (callback) => {
   };
 };
 
-const buyItemsMiddleware = (itemId) => {
+const buyItemsMiddleware = (itemId, errCallback) => {
   return async function (dispatch, getState) {
-    console.log("itemId::",itemId)
     await axios({
       method: "post",
       url: `${BASE_URL}/api/items/${itemId}`,
@@ -52,12 +50,10 @@ const buyItemsMiddleware = (itemId) => {
       })
       .catch((err) => {
         dispatch(logoutAccountByError(err));
-        console.log("item조회 err::", err);
+        errCallback(err.response.data.message);
       });
-
   };
 };
-
 
 //reducer
 export default handleActions(
