@@ -9,10 +9,22 @@ import Chart from 'chart.js/auto';
 import DailyStatistics from "../components/Statistics/DailyStatistics";
 import WeeklyStatistics from "../components/Statistics/WeeklyStatistics";
 import MonthlyStatistics from "../components/Statistics/MonthlyStatistics";
+import NotMatching from "../components/Statistics/NotMatching";
 
 
 const Statistics = () => {
   const navigate = useNavigate();
+  const [matchingState,setMatchingState] = useState(false);
+
+  useEffect(()=>{
+    const getStatisticsApi = async () => {
+      const res = await apis.GetDailyStatistics()
+      console.log(res.data.myMatchingState);
+      setMatchingState(res.data.myMatchingState);
+    }
+    getStatisticsApi();
+  },[matchingState])
+
 
   return (
     <Container>
@@ -24,9 +36,15 @@ const Statistics = () => {
           </Wrapper>
       </HeaderWrap>
       <StatisticsContainer>
-      <DailyStatistics/>
-      <WeeklyStatistics/>
-      <MonthlyStatistics/>
+        {!matchingState?
+         <NotMatching/>
+         :
+      <> 
+        <DailyStatistics/>
+        <WeeklyStatistics/>
+        <MonthlyStatistics/>
+      </>
+        }
       </StatisticsContainer>
     </Container>
 

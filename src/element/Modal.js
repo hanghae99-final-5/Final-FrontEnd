@@ -16,8 +16,7 @@ const DarkBackground = styled.div`
   /* display: flex;
     align-items: center;
     justify-content: center; */
-  background: rgba(0, 0, 0, 0.02);
-  z-index: 100;
+  /* background: rgba(0, 0, 0, 0.02); */
 `;
 
 const ModalTitle = styled.div`
