@@ -79,7 +79,6 @@ const DailyStatistics = () => {
   useEffect(()=>{
     const getDailyStatisticsApi = async () => {
       const res = await apis.GetDailyStatistics()
-      console.log(res.data);
       setStatisticsData(res.data);
     }
     getDailyStatisticsApi();

@@ -40,7 +40,6 @@ const MonthlyStatistics = () => {
     };
     if (statisticsData) {
       labels = Object.keys(statisticsData.myAchievement);
-      console.log(labels);
     data = {
       labels,
       datasets: [
@@ -81,7 +80,6 @@ const MonthlyStatistics = () => {
   useEffect(()=>{
     const getMonthlyStatisticsApi = async () => {
       const res = await apis.GetMonthlyStatistics();
-      console.log(res.data);
       setStatisticsData(res.data);
     }
     getMonthlyStatisticsApi();

@@ -6,6 +6,7 @@ import editIcon from "../assets/images/icons/edit_24.png"
 import deleteIcon from "../assets/images/icons/delete_24.png"
 import closeIcon from "../assets/images/icons/close_24.png"
 import proofIcon from "../assets/images/icons/proof_24.png"
+import defaultIcon from "../assets/images/icons/photo_confirm_250.png"
 
 const DarkBackground = styled.div`
   position: fixed;
@@ -16,8 +17,7 @@ const DarkBackground = styled.div`
   /* display: flex;
     align-items: center;
     justify-content: center; */
-  background: rgba(0, 0, 0, 0.02);
-  z-index: 100;
+  /* background: rgba(0, 0, 0, 0.02); */
 `;
 
 const ModalTitle = styled.div`
@@ -85,7 +85,6 @@ const ImgDiv = styled.div`
   justify-content: center;
   max-width: 250px;
   height: 250px;
-  border: 1px solid;
   cursor: pointer;
 
   & > img {
@@ -171,7 +170,7 @@ function Modal({
               ) : proofImg ? (
                 <img src={proofImg} />
               ) : (
-                <img src="https://marchericche.com/ui/assets/admin/img/default.jpg" />
+                <img src={defaultIcon} />
               )}
             </ImgDiv>
           </>

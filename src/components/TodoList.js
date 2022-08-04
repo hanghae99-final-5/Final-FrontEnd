@@ -11,6 +11,7 @@ import Modal from "../element/Modal";
 import add from "../assets/images/icons/add.png"
 import add_image from "../assets/images/icons/add_image.png"
 import more_horiz from "../assets/images/icons/more_horiz.png"
+import Button from "../element/Button";
 
 
 
@@ -64,6 +65,10 @@ const TodoList = () => {
     },[])
     return (
         <TodoListContainer>
+            <GuideBtn 
+            color="main02"
+            onClick={()=>navigate("/guide")}
+            >App Guide</GuideBtn>
         {/* 개인투두  */}
         {todosList && todosList.map((todo,idx) => {
             return (
@@ -161,6 +166,11 @@ const TodoListContainer = styled.div`
     display: none;
     }
 `;
+const GuideBtn = styled(Button)`
+    width: 90%;
+    height: 30px;
+`;
+
 const TodoListContext = styled.div`
 
 `
