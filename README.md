@@ -88,8 +88,27 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
     그래서 아예 실제 배포 하는것처럼 S3로 배포를 해보기로 결정했습니다.<br/>
     ROUTE53으로 도메인을 신청한 뒤 ACM에서 받은 도메인으로 SSL 인증서를 신청하고<br/>
     CloudFront로 https로 무조건 리다이렉트 시키도록 한 뒤 https 주소를 배당받았더니 정상적으로 PWA가 동작하는 것을 확인했습니다.
+  </div>
+</details>
 
-    
+<details>
+  <summary>3.Styled Component의 Global font 적용문제</summary>
+  <div markdown="1">
+    <br/>
+    <strong>[도입이유]</strong> ss를 전역으로 관리하기 위해서 styled component의 GlobalStyle을 사용하여  font를 적용했습니다.<br/>
+    또, styled-reset패키지를 추가적으로 설치해 유저에이전트의 기본 CSS 설정을 초기화하였습니다.
+    <br/>
+    <br/>
+    <strong>[문제상황]</strong> styled-reset 패키지를 적용하니 font가 제대로 적용되지 않는 문제가 발생했습니다.
+    <br/>
+    <br/>
+    <strong>[해결방안]</strong> <br/>
+    개발자 도구로 폰트를 적용하면서 확인해보니 styled-reset에 적용되는 font : inherit 설정이 해제되어야 했습니다.<br/>
+    해당 셀렉터의 우선순위가 떨어져서 적용되지 않는 것으로 판단하여 !important를 써서 적용 할 수도 있지만,<br/>
+    프로젝트 전반적으로 폰트적용이 필요한 경우였기 때문에 적절하지 않다고 생각했습니다.<br/>
+    styled-reset 처럼 공개되어 있는 리셋이나 노멀라이즈를 사용하면 편리하기는 하지만, <br/>
+    이 프로젝트의 경우 styled-reset 이 제공하는 모든 속성이 적합하지는 않았기 때문에<br/>
+    GlobalStyle 에서 styled-reset 에 있는 요소들을 참고하여 직접 리셋할 요소들을 지정하면서 커스텀하여 사용하기로 결정했습니다.
   </div>
 </details>
 
