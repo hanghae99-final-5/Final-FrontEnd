@@ -29,10 +29,24 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
 
 
 ##  기술스택
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)        
+<img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> 
+![Google](https://img.shields.io/badge/google-4285F4.svg?style=for-the-badge&logo=google&logoColor=white)
+![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)         
+![Axios](https://img.shields.io/badge/Axios-%23593d88.svg?style=for-the-badge&logoColor=000000)
+![PWA](https://img.shields.io/badge/PWA-%239146FF.svg?style=for-the-badge&logoColor=000000)
+<img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=Chart.js&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon%20S3&logoColor=white">
 
 ##  기술스택 선정이유
 
 ## 서비스 아키텍처
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7c812c8c-289f-404d-b192-e7e511c55f37/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220804T142506Z&X-Amz-Expires=86400&X-Amz-Signature=0fcbc18f5a90881b60a9f547db6758589ff41b83d9118c8d4d7e88cbbf4db764&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject">
+
+##  Troble Shooting
 
 ##  팀원소개
 
