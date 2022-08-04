@@ -15,6 +15,7 @@ import Notification from "./pages/Notification";
 import Inventory from "./pages/Inventory";
 import LoginProcess from "./pages/LoginProcess";
 import Statistics from "./pages/Statistics";
+import Guide from "./pages/Guide";
 
 import background from "./assets/images/logos/web_bg_1920x1080_final.jpg"
 
@@ -47,6 +48,7 @@ function App() {
               <Route exact path="/inventory" element={<Inventory />} />
               <Route exact path="/login-process" element={<LoginProcess />} />
               <Route exact path="/statistics" element={<Statistics />} />
+              <Route exact path="/guide" element={<Guide />} />
             </Routes>
           </Setting>
         </div>

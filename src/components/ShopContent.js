@@ -15,7 +15,6 @@ const ShopContent = () => {
   const { items, inventories } = useSelector((state) => state.shop);
 
   const inventoryItems = inventories ? inventories.map((x) => x.itemId) : null;
-  console.log("inventoryItems::", inventoryItems);
 
   const categoryObj = {
     HAIR: "Hair",

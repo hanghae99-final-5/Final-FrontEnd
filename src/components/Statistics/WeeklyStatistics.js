@@ -79,7 +79,6 @@ const WeeklyStatistics = () => {
   useEffect(()=>{
     const getWeeklyStatisticsApi = async () => {
       const res = await apis.GetWeeklyStatistics()
-      console.log(res.data);
       setStatisticsData(res.data);
     }
     getWeeklyStatisticsApi();

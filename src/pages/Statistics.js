@@ -19,7 +19,6 @@ const Statistics = () => {
   useEffect(()=>{
     const getStatisticsApi = async () => {
       const res = await apis.GetDailyStatistics()
-      console.log(res.data.myMatchingState);
       setMatchingState(res.data.myMatchingState);
     }
     getStatisticsApi();

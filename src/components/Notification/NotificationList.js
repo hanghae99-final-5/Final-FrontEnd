@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../../element/Button";
 import { actionCreators as notificationAction } from "../../redux/modules/notification";
 import { useNavigate } from "react-router-dom";
-
+import user from "../../assets/images/icons/account_40.png"
 
 const NotificationList = () => {
     const dispatch = useDispatch();
@@ -23,7 +23,9 @@ const NotificationList = () => {
                 <Container key={idx}>
                     <div className="writeDate">{noti.alarmDate}</div>
                     <div className="notiWrap">
-                        <IconDiv></IconDiv>
+                        <IconDiv>
+                            <img src={user}/>
+                        </IconDiv>
                         <p>{noti.message}</p>
                         <div>
                         {/* alarmType에 따라 인증하기 / 수락하기 */}
@@ -94,6 +96,5 @@ const Container =  styled.div`
 const IconDiv = styled.div`
     width: 40px;
     height: 40px;
-    background: gray;
     margin: 0 10px 0 0;
 `;
