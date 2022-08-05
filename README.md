@@ -27,13 +27,21 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
 
 
 ##  핵심기능
-1) 구글 로그인
-2) Todo 작성
-<img src="[https://user-images.githubusercontent.com/102137877/182991299-c57afe08-3e6b-4976-bb73-e1f0d3eac5a6.png](https://user-images.githubusercontent.com/102137877/182992247-533a5c16-37bf-4bd2-9a1d-2fb864b8384b.gif)">
-- 매칭상태에 따른 매칭투두, 개인 기록용 투두 선택가능(private Todo는 오직 기록용으로 아직 매칭을 이루지 않은 사람도 쓸 수 있도록 만들어졌습니다.)
-- 매칭투두는 난이도에 따라서 돈과 경험치를 다르게 얻을수 있음.
-- 날짜는  react-datepicker로 구현하였다. Todo 시작날짜와 완료날짜를 선택할수 있으며,
-- 시작 날짜는 오늘 날짜 이전으로는 선택할 수 없고 완료 날짜는 시작날짜 이전 날짜를 선택 할 수 없게 구현.
+1)구글 로그인
+<img src="https://user-images.githubusercontent.com/102137877/182992880-fdd1dcdd-15b6-49ec-bc59-350b88a2cc90.gif">
+2)Todo 작성
+<img src="https://user-images.githubusercontent.com/102137877/182992646-32f12cfc-3be5-491e-8d8a-6ccfb30fc25c.gif">
+- 매칭상태에 따른 매칭투두, 개인 기록용 투두 선택가능(private Todo는 오직 기록용으로 아직 매칭을 이루지 않은 사람도 쓸 수 있도록 만들어졌습니다.)<br/>
+- 매칭투두는 난이도에 따라서 돈과 경험치를 다르게 얻을수 있음.<br/>
+- 날짜는  react-datepicker로 구현하였다. Todo 시작날짜와 완료날짜를 선택할수 있으며,<br/>
+- 시작 날짜는 오늘 날짜 이전으로는 선택할 수 없고 완료 날짜는 시작날짜 이전 날짜를 선택 할 수 없게 구현.<br/>
+3) Todo 인증
+<img src="https://user-images.githubusercontent.com/102137877/182994700-6af3dec2-daad-4f70-af06-e8b0c1c1b640.gif">
+- 자신은 매칭되어있는 친구에게 로컬에있는 사진을 보낸다. 사진을 선택할 때 썸네일을 볼수 있도록 구현.<br/>
+- 사진인증요청을 보내면 친구에게는 인증을 요청해달라는 알림을 볼 수 있음.<Mbr/>
+- 친구는 그 알림을 클릭하거나 프렌드 탭에 가면 친구가 어떤 투두에 인증요청을 보냈는지 체크표시로 확인가능하고 인증을 해 줄 수 있다. <br/>
+- 인증이 완료되면 자신의 투두 왼쪽에 플러스 표시를 클릭하면 경험치와 돈을 얻을 수 있다!<br/>
+3) 아바타 Shop과 Inventory
 
 
 
