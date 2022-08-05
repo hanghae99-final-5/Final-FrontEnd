@@ -25,7 +25,16 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
 <br/>
 <br/>
 
+
 ##  핵심기능
+1) 구글 로그인
+2) Todo 작성
+<img src="[https://user-images.githubusercontent.com/102137877/182991299-c57afe08-3e6b-4976-bb73-e1f0d3eac5a6.png](https://user-images.githubusercontent.com/102137877/182992247-533a5c16-37bf-4bd2-9a1d-2fb864b8384b.gif)">
+- 매칭상태에 따른 매칭투두, 개인 기록용 투두 선택가능(private Todo는 오직 기록용으로 아직 매칭을 이루지 않은 사람도 쓸 수 있도록 만들어졌습니다.)
+- 매칭투두는 난이도에 따라서 돈과 경험치를 다르게 얻을수 있음.
+- 날짜는  react-datepicker로 구현하였다. Todo 시작날짜와 완료날짜를 선택할수 있으며,
+- 시작 날짜는 오늘 날짜 이전으로는 선택할 수 없고 완료 날짜는 시작날짜 이전 날짜를 선택 할 수 없게 구현.
+
 
 
 ##  기술스택
