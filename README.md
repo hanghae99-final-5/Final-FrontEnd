@@ -72,7 +72,7 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
 
 
 ## 서비스 아키텍처
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/7c812c8c-289f-404d-b192-e7e511c55f37/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220804T142506Z&X-Amz-Expires=86400&X-Amz-Signature=0fcbc18f5a90881b60a9f547db6758589ff41b83d9118c8d4d7e88cbbf4db764&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject">
+<img src="https://blog.kakaocdn.net/dn/zLBKO/btrRYxx5F9U/Gznu11a9KSnrrQBKO6ilSk/img.png">
 
 ##  Troble Shooting
 
