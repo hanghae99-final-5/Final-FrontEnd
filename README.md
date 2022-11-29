@@ -107,9 +107,8 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
     <strong>[해결방안]</strong> <br/>
     1)service-worker 적용해결<br/>
     우선은 service-worker가 로컬에서 적용할 수 없는 것을 발견했습니다.<br/>
-  
     아직 배포단계 전이었기 때문에 build한 파일을 로컬에서 볼 수 있는 라이브러리를 설치한 후 실험해보니 service-worker는 정상적으로 도입이 되는것을 확인했습니다.
-    <br/><br/>
+    <br/>
     2) manifest 적용해결<br/>
     PWA를 적용하려면 필수적으로 http가 아닌 https로 배포를 해야 적용이 될 수 있다는 것을 알고<br/>
    프로젝트 초반이라 쉽게 https 주소를 주는 깃허브와 ngrok로 실험해봤지만 적용이 되지 않았습니다.<br/>
