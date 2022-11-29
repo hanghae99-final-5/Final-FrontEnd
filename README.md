@@ -107,7 +107,7 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
     <strong>[해결방안]</strong> <br/>
     1)service-worker 적용해결<br/>
     우선은 service-worker가 로컬에서 적용할 수 없는 것을 발견했습니다.<br/>
-    <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/d722d505-2e25-4d88-9d6a-88f74b980390/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220804T151825Z&X-Amz-Expires=86400&X-Amz-Signature=ed0f80892d0e71c7ccdb131a4d570ad777b32b8f72dac1a0b74490b6077df485&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject"><br/>
+  
     아직 배포단계 전이었기 때문에 build한 파일을 로컬에서 볼 수 있는 라이브러리를 설치한 후 실험해보니 service-worker는 정상적으로 도입이 되는것을 확인했습니다.
     <br/><br/>
     2) manifest 적용해결<br/>
@@ -123,7 +123,7 @@ Twodo-li서비스는 `Todo를 친구와 작성하고 서로가 목표달성을 �
   <summary>3.Styled Component의 Global font 적용문제</summary>
   <div markdown="1">
     <br/>
-    <strong>[도입이유]</strong> ss를 전역으로 관리하기 위해서 styled component의 GlobalStyle을 사용하여  font를 적용했습니다.<br/>
+    <strong>[도입이유]</strong> Css를 전역으로 관리하기 위해서 styled component의 GlobalStyle을 사용하여  font를 적용했습니다.<br/>
     또, styled-reset패키지를 추가적으로 설치해 유저에이전트의 기본 CSS 설정을 초기화하였습니다.
     <br/>
     <br/>
